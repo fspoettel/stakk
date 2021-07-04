@@ -1,0 +1,8 @@
+.buttongroup {
+  display: inline-flex;
+  flex-flow: row nowrap;
+}
+
+.buttongroup > *:not(:last-child) {
+  margin-right: 0.5rem;
+}

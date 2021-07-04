@@ -1,0 +1,63 @@
+{
+  "author": {
+    "name": "felix",
+    "url": "https://spoettel.dev"
+  },
+  "title": "mixtapes",
+  "items": [
+    {
+      "id": "ckr0vxa2q000101jh0s5r5j7i",
+      "src": "/assets/1x/destination_moon.webp",
+      "title": "Test Mix #1",
+      "genres": [
+        "New Wave",
+        "Power Pop"
+      ],
+      "mixcloudId": "/mcmirage/test_mix_for_widget_development_1/",
+      "tracklist": [
+        {
+          "artist": "Blondie",
+          "title": "Hanging on the Telephone",
+          "at": "00:00"
+        },
+        {
+          "artist": "B-52's",
+          "title": "52 Girls",
+          "at": "03:00"
+        },
+        {
+          "artist": "Talking Heads",
+          "title": "The Great Curve",
+          "at": "8:00"
+        }
+      ]
+    },
+    {
+      "id": "ckr0vxa2q000101jh0s5r5j9i",
+      "src": "/assets/1x/destination_moon.webp",
+      "title": "Test Mix #2",
+      "genres": [
+        "New Wave",
+        "Power Pop"
+      ],
+      "mixcloudId": "/mcmirage/test_mix_for_widget_development_2/",
+      "tracklist": [
+        {
+          "artist": "Blondie",
+          "title": "Hanging on the Telephone",
+          "at": "00:00"
+        },
+        {
+          "artist": "B-52's",
+          "title": "52 Girls",
+          "at": "03:00"
+        },
+        {
+          "artist": "Talking Heads",
+          "title": "The Great Curve",
+          "at": "8:00"
+        }
+      ]
+    }
+  ]
+}

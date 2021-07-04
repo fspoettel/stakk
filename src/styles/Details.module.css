@@ -1,0 +1,47 @@
+.details {
+  text-align: center;
+  width: 100%;
+}
+
+.details-header {
+  margin-bottom: 0.5rem;
+}
+
+.details-title {
+  display: inline-block;
+  line-height: 1.375;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 0 0.25em;
+  background: var(--color);
+  color: var(--background-color);
+}
+
+.details-actions {
+  margin-bottom: 0.5rem;
+}
+
+.details-artists {
+  display: inline-block;
+  max-width: 60ch;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+@media screen and (min-width: 45rem) {
+  .details-title {
+    font-size: 2.5rem;
+  }
+
+  .details-header {
+    margin-bottom: 1rem;
+  }
+
+  .details-actions {
+    margin-bottom: 1rem;
+  }
+
+  .details-artists {
+    font-size: 1rem;
+  }
+}

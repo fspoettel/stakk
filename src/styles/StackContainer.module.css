@@ -1,0 +1,47 @@
+.stackcontainer {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  overflow-x: hidden;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 1rem 1rem 0;
+}
+
+.stackcontainer > * {
+  width: 100%;
+}
+
+.content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.audioplayer {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 60px;
+  width: 100%;
+  z-index: 999;
+}
+
+.audioplayer iframe {
+  display: block;
+}
+
+.stackcontainer.playing {
+  padding-bottom: 60px;
+}
+
+.stackcontainer.stackcontainer.playing .audioplayer {
+  display: block;
+}

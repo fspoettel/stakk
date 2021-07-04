@@ -1,0 +1,80 @@
+/* work-sans-regular - latin */
+@font-face {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local(''),
+       url('/fonts/work-sans-v9-latin-regular.woff2') format('woff2');
+}
+
+/* work-sans-700 - latin */
+@font-face {
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local(''),
+       url('/fonts/work-sans-v9-latin-700.woff2') format('woff2');
+}
+
+/* work-sans-italic - latin */
+@font-face {
+  font-family: 'Work Sans';
+  font-style: italic;
+  font-weight: 400;
+  src: local(''),
+       url('/fonts/work-sans-v9-latin-italic.woff2') format('woff2');
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --color: #25292c;
+  --background-color: #ffd700;
+}
+
+html,
+body,
+#__next {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--color);
+  background-color: var(--background-color);
+}
+
+a {
+  color: currentColor;
+  text-decoration: underline;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  line-height: 1;
+}
+
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  color: currentColor;
+  text-decoration: none;
+}

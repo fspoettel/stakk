@@ -1,0 +1,612 @@
+{
+  "author": {
+    "name": "felix",
+    "url": "https://spoettel.dev"
+  },
+  "title": "mixtapes",
+  "items": [
+    {
+      "id": "ckqz4ftbt000101mpft7df8rc",
+      "title": "Velveteen",
+      "src": "/assets/1x/velveteen.webp",
+      "genres": [
+        "Glam Rock",
+        "Britpop"
+      ],
+      "mixcloudId": "/mcmirage/velveteen/",
+      "spotifyId": "1Kiw8zXc8A0Mpt2TdqH7DZ",
+      "tracklist": [
+        {
+          "artist": "Alice Cooper",
+          "title": "Hello Hooray!",
+          "at": "00:00"
+        },
+        {
+          "artist": "Sweet",
+          "title": "Fox on the Run",
+          "at": "04:09"
+        },
+        {
+          "artist": "Brian Eno",
+          "title": "Needle in the Camel's Eye",
+          "at": "07:33"
+        },
+        {
+          "artist": "Steve Harley",
+          "title": "Make Me Smile (Come Up and See Me)",
+          "at": "10:39"
+        },
+        {
+          "artist": "David Bowie",
+          "title": "The Man Who Sold the World",
+          "at": "14:38"
+        },
+        {
+          "artist": "Nina Hagen",
+          "title": "Naturträne",
+          "at": "18:10"
+        },
+        {
+          "artist": "T-Rex",
+          "title": "Children of the Revolution",
+          "at": "22:10"
+        },
+        {
+          "artist": "Suede",
+          "title": "Animal Nitrate",
+          "at": "24:29"
+        },
+        {
+          "artist": "The Smashing Pumpkins",
+          "title": "Cherub Rock",
+          "at": "27:38"
+        },
+        {
+          "artist": "The Stone Roses",
+          "title": "I Wanna be Adored",
+          "at": "32:26"
+        },
+        {
+          "artist": "The Verve",
+          "title": "She's a Superstar",
+          "at": "36:16"
+        },
+        {
+          "artist": "Sonic Youth",
+          "title": "Superstar",
+          "at": "41:05"
+        }
+      ]
+    },
+    {
+      "id": "ckqz4g8qb000701mph8ds349c",
+      "src": "/assets/1x/kucuk_dunya.webp",
+      "title": "Küçük Dünya",
+      "mixcloudId": "/mcmirage/küçük-dünya/",
+      "genres": [
+        "Anatolian Rock",
+        "Psych. Rock"
+      ],
+      "tracklist": [
+        {
+          "artist": "Özdemir Erdoğan",
+          "title": "Gurbet",
+          "at": "00:00"
+        },
+        {
+          "artist": "Altın Gün",
+          "title": "Vay Dünya",
+          "at": "03:17"
+        },
+        {
+          "artist": "Barış Manço",
+          "title": "Hal Hal",
+          "at": "07:35"
+        },
+        {
+          "artist": "3 Hürel",
+          "title": "Ömür Biter Yol Bitmez",
+          "at": "11:02"
+        },
+        {
+          "artist": "Alpay",
+          "title": "Seni Dileniyorum",
+          "at": "14:50"
+        },
+        {
+          "artist": "Ersen",
+          "title": "Derman Bulunmaz",
+          "at": "18:46"
+        },
+        {
+          "artist": "Moğollar",
+          "title": "Özüm Kaldı",
+          "at": "22:10"
+        },
+        {
+          "artist": "Özdemir Erdoğan Ve Orkestrası",
+          "title": "Uzun İnce Bir Yoldayım",
+          "at": "24:08"
+        },
+        {
+          "artist": "Selda Bağcan",
+          "title": "İnce İnce Bir Kar Yağar",
+          "at": "27:17"
+        },
+        {
+          "artist": "Tülay German",
+          "title": "Burçak Tarlası",
+          "at": "30:52"
+        },
+        {
+          "artist": "Zafer Dilek",
+          "title": "Süpürgesi Yoncadan",
+          "at": "34:20"
+        },
+        {
+          "artist": "Erkin Koray",
+          "title": "Cemalim",
+          "at": "37:34"
+        }
+      ]
+    },
+    {
+      "id": "ckqz4gokh000d01mpedek8x5j",
+      "title": "Hung up on a Dream",
+      "src": "/assets/1x/hung_up_on_a_dream.webp",
+      "genres": [
+        "Psych. Rock",
+        "Psych. Pop"
+      ],
+      "mixcloudId": "/mcmirage/hung-up-on-a-dream/",
+      "spotifyId": "22prkINKfteJgUmbrH8XZv",
+      "tracklist": [
+        {
+          "artist": "R. Dean Taylor",
+          "title": "Gotta See Jane",
+          "at": "00:00"
+        },
+        {
+          "artist": "The Who",
+          "title": "I Can See For Miles",
+          "at": "2:59"
+        },
+        {
+          "artist": "The Smoke",
+          "title": "My Friend Jack",
+          "at": "07:00"
+        },
+        {
+          "artist": "Marmalade",
+          "title": "I See the Rain",
+          "at": "09:53"
+        },
+        {
+          "artist": "The United States of America",
+          "title": "Coming Down",
+          "at": "13:34"
+        },
+        {
+          "artist": "The 13th Floor Elevators",
+          "title": "You're Gonna Miss Me",
+          "at": "16:02"
+        },
+        {
+          "artist": "Pink Floyd",
+          "title": "Lucifer Sam",
+          "at": "18:25"
+        },
+        {
+          "artist": "The Yardbirds",
+          "title": "Happening Ten Years Time Ago",
+          "at": "21:25"
+        },
+        {
+          "artist": "The Doors",
+          "title": "Strange Days",
+          "at": "24:16"
+        },
+        {
+          "artist": "The Rolling Stones",
+          "title": "The Last Time",
+          "at": "27:21"
+        },
+        {
+          "artist": "The Beatles",
+          "title": "I Am The Walrus",
+          "at": "31:01"
+        },
+        {
+          "artist": "The Byrds",
+          "title": "Eight Miles High",
+          "at": "35:01"
+        },
+        {
+          "artist": "The Zombies",
+          "title": "Hung Up On A Dream",
+          "at": "38:35"
+        },
+        {
+          "artist": "The Kinks",
+          "title": "Death Of A Clown",
+          "at": "41:32"
+        }
+      ]
+    },
+    {
+      "id": "ckqz4gtec000f01mp221o2i6f",
+      "src": "/assets/1x/destination_moon.webp",
+      "title": "Destination Moon",
+      "genres": [
+        "New Wave",
+        "Power Pop"
+      ],
+      "mixcloudId": "/mcmirage/destination-moon/",
+      "spotifyId": "4kwtJAeEqYAwQL26O0WSYn",
+      "tracklist": [
+        {
+          "artist": "Blondie",
+          "title": "Hanging on the Telephone",
+          "at": "00:00"
+        },
+        {
+          "artist": "B-52's",
+          "title": "52 Girls",
+          "at": "02:14"
+        },
+        {
+          "artist": "Talking Heads",
+          "title": "The Great Curve",
+          "at": "05:47"
+        },
+        {
+          "artist": "XTC",
+          "title": "Making Plans For Nigel",
+          "at": "11:32"
+        },
+        {
+          "artist": "Martin Dupont",
+          "title": "Inside Out",
+          "at": "15:40"
+        },
+        {
+          "artist": "The Cure",
+          "title": "Primary",
+          "at": "19:55"
+        },
+        {
+          "artist": "Solid Space",
+          "title": "Destination Moon",
+          "at": "22:57"
+        },
+        {
+          "artist": "Tears For Fears",
+          "title": "Pale Shelter",
+          "at": "25:26"
+        },
+        {
+          "artist": "John Foxx",
+          "title": "Underpass",
+          "at": "29:47"
+        },
+        {
+          "artist": "Car Crash Set",
+          "title": "Outsider",
+          "at": "33:35"
+        },
+        {
+          "artist": "Depeche Mode",
+          "title": "Policy Of Truth",
+          "at": "39:19"
+        }
+      ]
+    },
+    {
+      "id": "ckqz4geiz000901mp0wu707ay",
+      "title": "Weekend Vampires",
+      "src": "/assets/1x/weekend_vampires.webp",
+      "genres": [
+        "Ambient Pop",
+        "Art Pop"
+      ],
+      "mixcloudId": "/mcmirage/weekend-vampires/",
+      "spotifyId": "7LvqpdkX0GVLQR6Fyxbh69",
+      "tracklist": [
+        {
+          "artist": "Jenny Hval",
+          "title": "Female Vampire",
+          "at": "00:00"
+        },
+        {
+          "artist": "Julia Holter",
+          "title": "Marienbad",
+          "at": "03:37"
+        },
+        {
+          "artist": "Björk",
+          "title": "Hidden Place",
+          "at": "08:55"
+        },
+        {
+          "artist": "Cocteau Twins",
+          "title": "Amelia",
+          "at": "14:03"
+        },
+        {
+          "artist": "Grouper",
+          "title": "Disengaged",
+          "at": "16:44"
+        },
+        {
+          "artist": "Cindy Lee",
+          "title": "Bondage of the Mind",
+          "at": "20:22"
+        },
+        {
+          "artist": "Nico",
+          "title": "Frozen Warnings",
+          "at": "24:46"
+        },
+        {
+          "artist": "Roy Orbison",
+          "title": "In Dreams",
+          "at": "28:45"
+        },
+        {
+          "artist": "Julianna Barwick",
+          "title": "Healing Is A Miracle",
+          "at": "31:32"
+        },
+        {
+          "artist": "Thom Yorke",
+          "title": "Unmade",
+          "at": "35:27"
+        },
+        {
+          "artist": "Brian Eno",
+          "title": "Spider And I",
+          "at": "39:43"
+        }
+      ]
+    },
+    {
+      "id": "ckqz4g3rl000501mp9gd4by7y",
+      "src": "/assets/1x/nouvelle_vague.webp",
+      "title": "nouvelle.wav",
+      "genres": [
+        "Film Score",
+        "Chanson"
+      ],
+      "mixcloudId": "/mcmirage/nouvellewav/",
+      "spotifyId": "6bDk7XDLEbmEf0jMjYC3Ee",
+      "tracklist": [
+        {
+          "artist": "Henry Mancini",
+          "title": "The Evil Theme",
+          "at": "00:00"
+        },
+        {
+          "artist": "Jacques Brel",
+          "title": "Ne Me Quitte Pas",
+          "at": "02:54"
+        },
+        {
+          "artist": "Nino Rota",
+          "title": "Kay",
+          "at": "06:19"
+        },
+        {
+          "artist": "Serge Gainsbourg",
+          "title": "Valse de Melody",
+          "at": "09:15"
+        },
+        {
+          "artist": "Antoine Duhamel",
+          "title": "Ferdinand",
+          "at": "10:42"
+        },
+        {
+          "artist": "Edith Piaf",
+          "title": "La Vie en Rose",
+          "at": "13:33"
+        },
+        {
+          "artist": "Fabrizio De André",
+          "title": "Il Sogno Di Maria",
+          "at": "16:37"
+        },
+        {
+          "artist": "Lee Hazlewood",
+          "title": "For One Moment",
+          "at": "20:43"
+        },
+        {
+          "artist": "Nino Rota",
+          "title": "Pin Penin",
+          "at": "23:15"
+        },
+        {
+          "artist": "Leonard Cohen",
+          "title": "Avalanche",
+          "at": "26:17"
+        },
+        {
+          "artist": "Anna Karina",
+          "title": "jamais je ne t'ai dit que je t'aimerais toujours",
+          "at": "31:17"
+        },
+        {
+          "artist": "Rachel's",
+          "title": "Esperanza",
+          "at": "33:19"
+        },
+        {
+          "artist": "Angelo Badalamenti",
+          "title": "Mysteries of Love",
+          "at": "38:39"
+        }
+      ]
+    },
+    {
+      "id": "ckqz4gjir000b01mp87n61wbg",
+      "title": "Dinosaur Tears",
+      "src": "/assets/1x/dinosaur_tears.webp",
+      "genres": [
+        "Post Punk",
+        "Indie Rock"
+      ],
+      "mixcloudId": "/mcmirage/dinosaur-tears/",
+      "spotifyId": "3tbiT2KdBRU8EbsTQHmCAj",
+      "tracklist": [
+        {
+          "artist": "Martin Dupont",
+          "title": "Just Because",
+          "at": "00:00"
+        },
+        {
+          "artist": "The Knife",
+          "title": "Pass This On",
+          "at": "04:49"
+        },
+        {
+          "artist": "Future Islands",
+          "title": "Seasons (Waiting On You)",
+          "at": "08:30"
+        },
+        {
+          "artist": "New Order",
+          "title": "True Faith",
+          "at": "12:10"
+        },
+        {
+          "artist": "Joy Division",
+          "title": "Love Will Tear Us Apart",
+          "at": "17:50"
+        },
+        {
+          "artist": "The Smiths",
+          "title": "Hand In Glove",
+          "at": "21:07"
+        },
+        {
+          "artist": "Siouxsie and the Banshees",
+          "title": "Arabian Knights",
+          "at": "24:24"
+        },
+        {
+          "artist": "Look Blue Go Purple",
+          "title": "Circumspect Penelope",
+          "at": "27:28"
+        },
+        {
+          "artist": "The War on Drugs",
+          "title": "Baby Missiles",
+          "at": "30:18"
+        },
+        {
+          "artist": "The Raveonettes",
+          "title": "Recharge & Revolt",
+          "at": "33:46"
+        },
+        {
+          "artist": "DIIV",
+          "title": "Under The Sun",
+          "at": "39:03"
+        },
+        {
+          "artist": "Interpol",
+          "title": "NYC",
+          "at": "42:45"
+        }
+      ]
+    },
+    {
+      "id": "ckqz4g09c000301mpeti04vdg",
+      "src": "/assets/1x/come_to_my_garden.webp",
+      "title": "Come to my Garden",
+      "mixcloudId": "/mcmirage/come-to-my-garden/",
+      "spotifyId": "3877PFqx7sGMccAWA7tInU",
+      "genres": [
+        "Baroque Pop",
+        "Psych. Pop"
+      ],
+      "tracklist": [
+        {
+          "artist": "Minnie Riperton",
+          "title": "Come To My Garden",
+          "at": "00:00"
+        },
+        {
+          "artist": "Hildgard Knef",
+          "title": "Insel meiner Angst",
+          "at": "03:15"
+        },
+        {
+          "artist": "Scott Walker",
+          "title": "It's Raining Today",
+          "at": "05:52"
+        },
+        {
+          "artist": "Georges Delerue",
+          "title": "Camille",
+          "at": "09:49"
+        },
+        {
+          "artist": "The Band",
+          "title": "I Shall Be Released",
+          "at": "12:17"
+        },
+        {
+          "artist": "Françoise Hardy",
+          "title": "Il n'y a pas d'amour heureux.",
+          "at": "15:26"
+        },
+        {
+          "artist": "The Andrew Oldham Orchestra",
+          "title": "The Last Time",
+          "at": "17:40"
+        },
+        {
+          "artist": "Lee Hazlewood",
+          "title": "My Autumn's Done Come",
+          "at": "21:27"
+        },
+        {
+          "artist": "Trees",
+          "title": "The Garden of Jane Delawney",
+          "at": "25:20"
+        },
+        {
+          "artist": "The Rolling Stones",
+          "title": "Play With Fire",
+          "at": "29:14"
+        },
+        {
+          "artist": "The Velvet Underground and Nico",
+          "title": "I'll Be Your Mirror",
+          "at": "31:26"
+        },
+        {
+          "artist": "Harry Nilsson",
+          "title": "One",
+          "at": "33:38"
+        },
+        {
+          "artist": "Serge Gainsbourg",
+          "title": "Bonnie & Clyde",
+          "at": "36:28"
+        },
+        {
+          "artist": "The Stranglers",
+          "title": "My Young Dreams (Demo)",
+          "at": "40:39"
+        },
+        {
+          "artist": "Michel Legrand",
+          "title": "La Gare",
+          "at": "43:22"
+        }
+      ]
+    }
+  ]
+}

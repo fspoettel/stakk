@@ -1,0 +1,55 @@
+.cover {
+  position: relative;
+  border-radius: 0.5rem;
+  margin: 0;
+  box-shadow: 0 4px 16px 4px rgba(0, 0, 0, 0.2);
+  height: min(100%, var(--item-height));
+  max-width: 100%;
+}
+
+.cover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.85;
+  background-image: url(/assets/overlay-600px.png);
+  background-position: top left;
+  background-size: cover;
+  z-index: 3;
+  transition: 0.25s transform ease-in 0.25s;
+}
+
+.cover.playing::after {
+  transform: translateX(calc(-100% - 0.5rem));
+  opacity: 0;
+  transition: 0.25s transform ease-in 0.25s, 1.5s opacity ease-in 0.75s;
+}
+
+.cover-media {
+  min-height: calc(var(--item-height) / 2.5);
+  max-height: var(--item-height);
+  height: 100%;
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.cover-media-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  pointer-events: none;
+}
+
+.cover-media-caption {
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+}

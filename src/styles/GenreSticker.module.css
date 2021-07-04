@@ -1,0 +1,21 @@
+.genresticker {
+  display: inline-block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: var(--background-color);
+  color: var(--color);
+  font-size: min(min(2vh, 3vw), 1rem);
+  font-style: italic;
+  padding: min(1.5rem, 4vh) min(0.5rem, 2vh);
+  border-radius: 50%;
+  white-space: nowrap;
+  text-transform: lowercase;
+  text-align: center;
+  user-select: none;
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.genresticker > li:not(:last-child)::after {
+  content: ',';
+}

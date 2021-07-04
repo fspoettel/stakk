@@ -1,0 +1,65 @@
+.button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--color);
+  cursor: pointer;
+  display: inline-block;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1;
+  font-weight: 700;
+  border: 2px solid currentColor;
+  padding: 0.5rem 0.75rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+.button:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.button:active {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.button:disabled:hover,
+.button:disabled:active {
+  background: transparent;
+}
+
+a.button {
+  text-decoration: none;
+}
+
+.button svg {
+  display: inline-block;
+  color: var(--color);
+}
+
+.button.icon {
+  font-size: 1.25rem;
+}
+
+.button-icon + .button-content {
+  margin-left: 0.25rem;
+}
+
+.button.secondary,
+.button.icon {
+  border-color: transparent;
+}
+
+@media screen and (min-width: 30rem) {
+  .button {
+    font-size: 1.25rem;
+  }
+}
