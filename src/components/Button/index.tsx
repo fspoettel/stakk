@@ -5,10 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import css from '../../styles/Button.module.css';
 
-type ButtonProps = {
+export type ButtonProps = {
   children?: React.ReactNode,
   href?: string,
   icon?: IconProp,
+  popperRef?: React.Dispatch<React.SetStateAction<HTMLElement | null>>,
   variant?: string,
 } & React.ComponentPropsWithoutRef<'button'> & React.ComponentPropsWithoutRef<'a'>;
 
@@ -16,6 +17,7 @@ function Button({
   children,
   href,
   icon,
+  popperRef,
   variant,
   ...rest
 }: ButtonProps) {
@@ -28,10 +30,12 @@ function Button({
   return (
     <Tag
       {...rest}
+      href={href}
       className={cx([
         css.button,
         { [css[cssVariant]]: cssVariant != null }
       ])}
+      ref={popperRef}
     >
       {icon && (
         <FontAwesomeIcon

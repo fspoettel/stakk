@@ -2,7 +2,7 @@ import React,{ useCallback, useEffect, useReducer } from 'react';
 import { useKey } from 'react-use';
 import cx from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronSquareLeft, faChevronSquareRight, faRedo, faSpinner, faStop } from '@fortawesome/pro-solid-svg-icons';
+import { faChevronSquareLeft, faChevronSquareRight, faSpinner, faStop, faUndo } from '@fortawesome/pro-solid-svg-icons';
 import { Stack as StackData } from '../../types/Stack';
 
 import preloadImage from '../../helpers/preloadImage';
@@ -28,12 +28,8 @@ type StackContainerProps = {
 function StackContainer({ children, data }: StackContainerProps) {
   const [state, dispatch] = useReducer(stackReducer, getInitialState(data));
 
-  const activeIndex = selectors.getActiveIndex(state);
-  const playbackIndex = selectors.getPlaybackIndex(state);
-  const activeItem = selectors.getActiveItem(state);
   const items = selectors.getItems(state);
   const loading = selectors.getIsLoading(state);
-  const playbackProgress = selectors.getPlaybackProgress(state);
 
   useEffect(() => {
     function run() {
@@ -46,6 +42,13 @@ function StackContainer({ children, data }: StackContainerProps) {
 
     run();
   }, [items]);
+
+  const activeIndex = selectors.getActiveIndex(state);
+  const activeItem = selectors.getActiveItem(state);
+
+  const playbackIndex = selectors.getPlaybackIndex(state);
+  const playbackProgress = selectors.getPlaybackProgress(state);
+  const isPlaying = playbackIndex != null;
 
   const onPrev = useCallback(() => {
     actions.prev(dispatch);
@@ -86,7 +89,7 @@ function StackContainer({ children, data }: StackContainerProps) {
     <div
       className={cx([
         css.stackcontainer,
-        { [css['playing']]: playbackIndex != null }
+        { [css['playing']]: isPlaying }
       ])}
     >
       <main className={css.content}>
@@ -129,25 +132,33 @@ function StackContainer({ children, data }: StackContainerProps) {
             visible: playbackIndex != null,
             disabled: false,
             onClick: onStopPlayback,
-            icon: faStop
+            icon: faStop,
+            tooltip: 'stop playback',
+          },
+          {
+            key: 'reset',
+            disabled: loading || (
+              isPlaying
+                ? playbackIndex === activeIndex
+                : selectors.getIsFirstItem(state)
+            ),
+            onClick: onReset,
+            icon: faUndo,
+            tooltip: isPlaying ? 'back to playing item' : 'back to first item'
           },
           {
             key: 'prev',
             disabled: loading || selectors.getIsFirstItem(state),
             onClick: onPrev,
             icon: faChevronSquareLeft,
+            tooltip: 'prev. item',
           },
           {
             key: 'next',
             disabled: loading,
             onClick: onNextGeneric,
-            icon: faChevronSquareRight
-          },
-          {
-            key: 'reset',
-            disabled: loading,
-            onClick: onReset,
-            icon: faRedo
+            icon: faChevronSquareRight,
+            tooltip: 'next item',
           },
         ]}
       />
@@ -158,7 +169,7 @@ function StackContainer({ children, data }: StackContainerProps) {
         <div className={css.audioplayer}>
           <Player
             url={getMixCloudUrl(
-              playbackIndex != null
+              isPlaying && playbackIndex != null
                 ? selectors.getItemByIndex(state, playbackIndex)
                 : undefined
             )}

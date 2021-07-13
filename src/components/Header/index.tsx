@@ -4,7 +4,7 @@ import { faAlbumCollection } from '@fortawesome/pro-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
-import Button from '../Button';
+import ButtonWithTooltip from '../ButtonWithTooltip';
 import ButtonGroup from '../ButtonGroup';
 import css from '../../styles/Header.module.css';
 
@@ -13,7 +13,8 @@ type Action = {
   disabled: boolean,
   icon: IconProp,
   onClick: () => void,
-  visible?: boolean
+  visible?: boolean,
+  tooltip: string,
 };
 
 type HeaderProps = {
@@ -62,10 +63,11 @@ function Header({
         {actions.map((action) => {
           if (action.visible === false) return null;
           return (
-            <Button
+            <ButtonWithTooltip
               disabled={action.disabled}
               icon={action.icon}
               key={action.key}
+              tooltip={action.tooltip}
               onClick={action.onClick}
             />
           );

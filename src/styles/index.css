@@ -78,3 +78,24 @@ h6 a {
   color: currentColor;
   text-decoration: none;
 }
+
+.tooltip {
+  background: #333;
+  color: white;
+  font-weight: bold;
+  padding: 4px 8px;
+  font-size: 13px;
+  border-radius: 4px;
+}
+
+.tooltip-container {
+  background-color: var(--color);
+  border-radius: 3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+  color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  padding: 0.25rem;
+  transition: opacity 0.3s;
+  z-index: 9999;
+}

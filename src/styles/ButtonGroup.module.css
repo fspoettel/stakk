@@ -3,6 +3,7 @@
   flex-flow: row nowrap;
 }
 
-.buttongroup > *:not(:last-child) {
+.buttongroup > button:not(:last-child),
+.buttongroup > a:not(:last-child) {
   margin-right: 0.5rem;
 }

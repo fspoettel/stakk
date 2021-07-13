@@ -26,6 +26,10 @@
   background: rgba(0, 0, 0, 0.1);
 }
 
+.button:focus {
+  outline: 1px solid var(--color);
+}
+
 .button:disabled {
   opacity: 0.6;
   cursor: default;
