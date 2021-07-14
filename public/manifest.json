@@ -20,8 +20,8 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#ffd700",
-  "background_color": "#gold",
+  "theme_color": "#25292c",
+  "background_color": "#ffd700",
   "orientation": "portrait",
   "categories": ["music"],
   "lang": "en-US"
