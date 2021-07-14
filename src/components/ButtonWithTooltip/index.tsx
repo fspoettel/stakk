@@ -45,6 +45,7 @@ function ButtonWithTooltip({
         onMouseLeave={onHide}
         onBlur={onHide}
         onFocus={onShow}
+        aria-label={tooltip}
         {...buttonProps}
       />
     </>
