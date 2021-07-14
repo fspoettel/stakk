@@ -1,23 +1,20 @@
 import React from 'react';
-import { animated, useSprings } from '@react-spring/web';
+import { useSprings } from '@react-spring/web';
 import { useDrag } from 'react-use-gesture';
 
-import { StackItem } from '../../types/StackItem';
 import { DragDirection, DragState } from '../../types/DragState';
 import { HiddenState } from '../../types/HiddenState';
 import useDidMountEffect from '../../helpers/useDidMountEffect';
 import css from '../../styles/Stack.module.css';
-import GenreSticker from '../GenreSticker';
-import Cover from '../Cover';
+
 
 import exceedsDragThreshold from './helpers/exceedsDragThreshold';
 import getDirectionFromDelta from './helpers/getDirectionFromDelta';
 import getStackCSSVariables from './helpers/getStackCSSVariables';
-import springToInnerTransform from './helpers/springToInnerTransform';
-import springToOuterTransform from './helpers/springToOuterTransform';
-import { isSpring } from './helpers/constants';
 import { updateDraggingSpring, updateRestingSpring } from './helpers/updateSprings';
 import { toSpringStacked } from './helpers/springs/springStacked';
+import StackMember from './StackMember';
+import { StackItem } from '../../types/StackItem';
 
 type StackProps = {
   activeIndex: number,
@@ -114,31 +111,16 @@ function Stack({
 
   return (
     <section className={css['stack']} style={getStackCSSVariables(items.length)}>
-      {springs.map((spring, i: number) => {
-        if (!isSpring(spring)) return null;
-
-        return (
-          <animated.div
-            key={i}
-            className={css['stack-item-outer']}
-            style={{ transform: springToOuterTransform(spring) }}
-          >
-            <animated.div
-              {...bind(i)}
-              className={css['stack-item-inner']}
-              style={{ transform: springToInnerTransform(spring) }}
-            >
-              <Cover
-                title={items[i].title}
-                playing={playbackIndex === i}
-                src={items[i].src}
-              >
-                <GenreSticker item={items[i]} />
-              </Cover>
-            </animated.div>
-          </animated.div>
-        );
-      })}
+      {springs.map((spring, i: number) => (
+        <StackMember
+          bind={bind}
+          key={i}
+          index={i}
+          item={items[i]}
+          isPlaying={playbackIndex === i}
+          spring={spring}
+        />
+      ))}
     </section>
   );
 }

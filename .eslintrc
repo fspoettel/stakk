@@ -23,7 +23,6 @@
       "always"
     ],
     "no-undef": "error",
-    "no-unused-vars": "warn",
     "@next/next/no-img-element": "off",
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/explicit-module-boundary-types": "off"

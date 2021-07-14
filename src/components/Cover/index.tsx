@@ -10,12 +10,19 @@ type CoverProps = {
   title: string,
 };
 
+interface CoverStyle extends React.CSSProperties {
+  '--cover': string;
+}
+
 function Cover({
   children,
   playing,
   src,
-  title,
 }: CoverProps) {
+  const style: CoverStyle = {
+    '--cover': `url(${src})`,
+  };
+
   return (
     <figure
       className={cx([
@@ -23,13 +30,10 @@ function Cover({
         { [css['playing']]: playing }
       ])}
     >
-      <div className={css['cover-media']}>
-        <img
-          className={css['cover-media-image']}
-          src={src}
-          alt={`cover for ${title}`}
-        />
-      </div>
+      <div
+        className={css['cover-media']}
+        style={style}
+      />
       {children && (
         <figcaption className={css['cover-media-caption']}>{children}</figcaption>
       )}

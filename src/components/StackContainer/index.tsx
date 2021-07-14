@@ -19,6 +19,7 @@ import stackReducer from '../../reducer/reducer';
 
 import css from '../../styles/StackContainer.module.css';
 import { HiddenState } from '../../types/HiddenState';
+import { rafPromise } from '../../helpers/rafPromise';
 
 type StackContainerProps = {
   children?: React.ReactNode,
@@ -37,6 +38,7 @@ function StackContainer({ children, data }: StackContainerProps) {
         preloadImage('/assets/overlay-600px.png'),
         ...items.map(item => preloadImage(item.src).catch(err => console.error(err))),
       ])
+      .then(rafPromise)
       .then(() => actions.load(dispatch));
     }
 

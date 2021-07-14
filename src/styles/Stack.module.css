@@ -1,22 +1,21 @@
 .stack {
-  --stack-size: calc(var(--item-height) + var(--item-count) * var(--item-offset));
-
+  flex: 1 1 auto;
   position: relative;
-  min-height: calc(var(--stack-size) / 2.5);
-  height: min(var(--stack-size), calc(100% - 2rem));
-  max-width: 80%;
-  aspect-ratio: 1 / 1;
-  margin-bottom: 1rem;
+  width: 100%;
+  min-height: calc(var(--item-height) / 2.5);
   margin-top: calc(var(--item-count) * var(--item-offset));
+  margin-bottom: 1em;
 }
 
 .stack-item-outer {
   position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
-  width: 100%;
 }
 
 .stack-item-inner {
@@ -27,6 +26,10 @@
   cursor: grab;
   cursor: -moz-grab;
   cursor: -webkit-grab;
+  aspect-ratio: 1 / 1;
+  height: 100%;
+  max-height: min(var(--item-height), 80vw);
+  min-height: min(calc(var(--item-height) / 3), 100%);
 }
 
 .stack-item-inner img {
