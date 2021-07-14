@@ -35,7 +35,7 @@ function StackContainer({ children, data }: StackContainerProps) {
   useEffect(() => {
     function run() {
       Promise.all([
-        preloadImage('/assets/overlay-600px.png'),
+        preloadImage('/assets/overlay-600px.webp'),
         ...items.map(item => preloadImage(item.src).catch(err => console.error(err))),
       ])
       .then(rafPromise)
