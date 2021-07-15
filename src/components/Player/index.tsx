@@ -42,22 +42,22 @@ class Player extends React.Component<PlayerProps, PlayerState> {
     this.onProgress = this.onProgress.bind(this);
   }
 
-  componentDidMount() {
-    loadScript('https://widget.mixcloud.com/media/js/widgetApi.js', window.Mixcloud)
+  componentWillUnmount() {
+    this.cleanup();
+  }
+
+  componentDidUpdate() {
+    if (!this.state.loaded && this.props.url !== '') {
+      loadScript('https://widget.mixcloud.com/media/js/widgetApi.js', window.Mixcloud)
       .then(() => {
         this.setState({ loaded: true });
       })
       .catch(err => {
         console.error(err);
       });
-  }
-
-  componentWillUnmount() {
-    this.cleanup();
-  }
-
-  componentDidUpdate() {
-    if (this.props.url === '') this.cleanup();
+    } else if (this.state.loaded && this.props.url === '') {
+      this.cleanup();
+    }
   }
 
   shouldComponentUpdate(nextProps: PlayerProps, nextState: PlayerState) {
@@ -99,6 +99,7 @@ class Player extends React.Component<PlayerProps, PlayerState> {
 
   render() {
     if (!this.state.loaded) return null;
+    if (this.props.url === '') return null;
 
     return (
       <iframe
