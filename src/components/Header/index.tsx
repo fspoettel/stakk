@@ -1,12 +1,11 @@
 import React from 'react';
 import Head from 'next/head';
-import { faAlbumCollection } from '@fortawesome/pro-regular-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 import ButtonWithTooltip from '../ButtonWithTooltip';
 import ButtonGroup from '../ButtonGroup';
 import css from '../../styles/Header.module.css';
+import Logo from '../Logo';
 
 type Action = {
   key: string,
@@ -41,12 +40,7 @@ function Header({
       </Head>
       <div className={css['header-content']}>
         <h1 className={css['header-title']}>
-          <FontAwesomeIcon
-            className={css['logo']}
-            transform="rotate-180"
-            icon={faAlbumCollection}
-          />
-            stakk &middot; {title} by&nbsp;<a
+          <Logo /> &middot; {title} by&nbsp;<a
               className={css['header-stakker']}
               href={authorUrl}
               target="_blank"

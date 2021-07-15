@@ -10,6 +10,7 @@ import getSpotifyPlaylistUrl from './helpers/getSpotifyUrl';
 import { StackItem } from '../../types/StackItem';
 import css from '../../styles/Details.module.css';
 import getCurrentTrack from './helpers/getCurrentTrack';
+import Headline from '../Headline';
 
 type DetailsProps = {
   item: StackItem,
@@ -54,7 +55,7 @@ function Details({
     (styles, item) => item && (
       <animated.article className={css['details']} style={styles}>
         <header className={css['details-header']}>
-          <h1 className={css['details-title']}>{item.title}</h1>
+          <Headline>{item.title}</Headline>
         </header>
 
         <nav className={css['details-actions']}>

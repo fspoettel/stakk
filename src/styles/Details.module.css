@@ -8,16 +8,6 @@
   margin-bottom: 0.5rem;
 }
 
-.details-title {
-  display: inline-block;
-  line-height: 1.375;
-  font-size: 1.5rem;
-  text-align: center;
-  padding: 0 0.25em;
-  background: var(--color);
-  color: var(--background-color);
-}
-
 .details-actions {
   margin-bottom: 0.5rem;
 }

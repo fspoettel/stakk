@@ -1,0 +1,21 @@
+.headline {
+  display: inline-block;
+  line-height: 1.375;
+  /* md */
+  font-size: 2rem;
+  padding: 0 0.5em;
+
+  text-align: center;
+  background: var(--color);
+  color: var(--background-color);
+}
+
+.headline.sm {
+  font-size: 1.5rem;
+  padding: 0 0.25em;
+}
+
+.headline.lg {
+  font-size: 2.5rem;
+  padding: 0 0.5em;
+}
