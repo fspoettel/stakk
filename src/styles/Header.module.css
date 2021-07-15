@@ -3,7 +3,8 @@
   justify-content: space-between;
   flex-flow: row wrap;
   align-items: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
+  line-height: 1;
 }
 
 .header-content {
@@ -24,9 +25,8 @@
   display: flex;
   justify-content: flex-start;
   flex-flow: row wrap;
-  align-items: center;
+  align-items: baseline;
   font-size: 1.125rem;
-  line-height: 1.25;
   width: 100%;
 }
 
@@ -36,6 +36,12 @@
 }
 
 .header-stakker {
+  font-size: 1rem;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.header-stakker a {
   text-decoration: underline;
   text-decoration-skip-ink: all;
 }

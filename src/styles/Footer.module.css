@@ -1,16 +1,11 @@
 .footer {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   font-size: 0.75rem;
+  margin-bottom: 0.25rem;
 }
 
 .footer > *:not(:last-child),
 .footer-nav > *:not(:last-child) {
   margin-right: 0.5rem;
-}
-
-@media screen and (min-width: 45rem) {
-  .footer {
-    justify-content: flex-start;
-  }
 }

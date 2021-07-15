@@ -1,9 +1,15 @@
+import Link from 'next/link';
 import css from '../../styles/Footer.module.css';
 
 function Footer() {
-  return null;
   return (
-    <footer className={css.footer}></footer>
+    <footer className={css.footer}>
+      <nav className={css['footer-nav']}>
+        <Link href='/about'>
+          <a>About</a>
+        </Link>
+      </nav>
+    </footer>
   );
 }
 

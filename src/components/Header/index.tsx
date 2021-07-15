@@ -40,18 +40,21 @@ function Header({
       </Head>
       <div className={css['header-content']}>
         <h1 className={css['header-title']}>
-          <Logo /> &middot; {title} by&nbsp;<a
-              className={css['header-stakker']}
+          <span className={css['header-title-logo']}>
+            <Logo />
+            &nbsp;&middot;&nbsp;{title}
+          </span>
+          <span className={css['header-stakker']}>
+            &nbsp;by&nbsp;
+            <a
               href={authorUrl}
               target="_blank"
               rel="noreferrer nofollow"
-            >{authorName}</a>
+            >
+              {authorName}
+            </a>
+          </span>
         </h1>
-        {/*
-        <nav className={css['header-nav']}>
-          <a href='#'>Want your own stakk?</a>
-        </nav>
-        */}
       </div>
       <ButtonGroup className={css['header-actions']}>
         {actions.map((action) => {

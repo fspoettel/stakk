@@ -1,0 +1,24 @@
+.block + .block {
+  margin-top: 2rem;
+}
+
+.block {
+  max-width: 65ch;
+  margin: 0 auto;
+  color: var(--color);
+}
+
+.block-header {
+  margin-bottom: 1.5rem;
+}
+
+.block-content * + * {
+  margin-top: 1rem;
+}
+
+
+@media screen and (min-width: 45rem) {
+  .block-content {
+    font-size: 1.25rem;
+  }
+}

@@ -55,7 +55,7 @@ function Details({
     (styles, item) => item && (
       <animated.article className={css['details']} style={styles}>
         <header className={css['details-header']}>
-          <Headline>{item.title}</Headline>
+          <Headline size='lg'>{item.title}</Headline>
         </header>
 
         <nav className={css['details-actions']}>
