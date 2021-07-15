@@ -32,6 +32,6 @@
   min-height: min(calc(var(--item-height) / 3), 100%);
 }
 
-.stack-item-inner img {
+.stack-item-inner {
   touch-action: none;
 }
