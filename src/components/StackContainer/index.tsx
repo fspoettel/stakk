@@ -34,8 +34,8 @@ function StackContainer({ children, data }: StackContainerProps) {
   const loading = selectors.getIsLoading(state);
 
   useEffect(() => {
-    setRootCSSVariable('--color', data?.colors?.text);
-    setRootCSSVariable('--background-color', data?.colors?.background);
+    setRootCSSVariable('--color', data?.theme?.text);
+    setRootCSSVariable('--background-color', data?.theme?.background);
   }, [data]);
 
   useEffect(() => {

@@ -3,9 +3,9 @@
     "name": "felix",
     "url": "https://spoettel.dev"
   },
-  "colors": {
-    "background": null,
-    "text": null
+  "theme": {
+    "background": "#FFD600",
+    "text": "#34332B"
   },
   "title": "mixtapes",
   "items": [

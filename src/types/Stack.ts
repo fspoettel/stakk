@@ -5,7 +5,7 @@ export type Stack = {
     name: string,
     url: string,
   },
-  colors: {
+  theme: {
     background: string|null,
     text: string|null,
   },
