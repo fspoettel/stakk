@@ -3,6 +3,10 @@
     "name": "felix",
     "url": "https://spoettel.dev"
   },
+  "colors": {
+    "background": null,
+    "text": null
+  },
   "title": "mixtapes",
   "items": [
     {

@@ -3,8 +3,11 @@ import { useKey } from 'react-use';
 import cx from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronSquareLeft, faChevronSquareRight, faSpinner, faStop, faUndo } from '@fortawesome/pro-solid-svg-icons';
-import { Stack as StackData } from '../../types/Stack';
 
+import { HiddenState } from '../../types/HiddenState';
+import { Stack as StackData } from '../../types/Stack';
+import { rafPromise } from '../../helpers/rafPromise';
+import setRootCSSVariable from '../../helpers/setRootCSSVariable';
 import preloadImage from '../../helpers/preloadImage';
 import getMixCloudUrl from './helpers/getMixcloudUrl';
 import Details from '../Details';
@@ -18,8 +21,6 @@ import getInitialState from '../../reducer/getInitialState';
 import stackReducer from '../../reducer/reducer';
 
 import css from '../../styles/StackContainer.module.css';
-import { HiddenState } from '../../types/HiddenState';
-import { rafPromise } from '../../helpers/rafPromise';
 
 type StackContainerProps = {
   children?: React.ReactNode,
@@ -31,6 +32,11 @@ function StackContainer({ children, data }: StackContainerProps) {
 
   const items = selectors.getItems(state);
   const loading = selectors.getIsLoading(state);
+
+  useEffect(() => {
+    setRootCSSVariable('--color', data?.colors?.text);
+    setRootCSSVariable('--background-color', data?.colors?.background);
+  }, [data]);
 
   useEffect(() => {
     function run() {

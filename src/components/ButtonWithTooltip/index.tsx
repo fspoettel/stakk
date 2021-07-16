@@ -25,7 +25,7 @@ function ButtonWithTooltip({
     if (buttonProps.disabled && visible) onHide();
   }, [buttonProps.disabled, visible]);  
   // 2. hide when swiping the stack on touch devices
-  useClickAway({ current: referenceElement }, () => setVisible(false), ['touchstart']);
+  useClickAway({ current: referenceElement }, onHide, ['touchstart']);
 
   return (
     <>
