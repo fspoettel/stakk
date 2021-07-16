@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSprings } from '@react-spring/web';
 import { useDrag } from 'react-use-gesture';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUndo } from '@fortawesome/pro-solid-svg-icons';
 
 import { DragDirection, DragState } from '../../types/DragState';
 import { HiddenState } from '../../types/HiddenState';
@@ -51,8 +53,11 @@ function Stack({
   const stackSize = items.length;
   const [springs, api] = useSprings(items.length, toSpringStacked(stackSize, true));
 
+  const isFirstItem = activeIndex === items.length - 1;
+  const isLastItem = activeIndex === 0;
+
   const shouldAnimateChanges = !dragState.dragging
-    && activeIndex === items.length - 1
+    && isFirstItem
     && !animationLock;
 
   useDidMountEffect(() => {
@@ -121,6 +126,16 @@ function Stack({
           spring={spring}
         />
       ))}
+      {isLastItem && exceedsDragThreshold(dragState) && (
+        <div className={css['stack-instructions']}>
+          <div className={css['stack-instructions-icon']}>
+            <FontAwesomeIcon icon={faUndo} size="2x" />
+          </div>
+          <p>
+            Start over from the beginning
+          </p>
+        </div>
+      )}
     </section>
   );
 }
