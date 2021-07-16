@@ -4,6 +4,7 @@ import { faSpotify } from '@fortawesome/free-brands-svg-icons';
 import { faPlay, faWaveformPath } from '@fortawesome/pro-solid-svg-icons';
 import Button from '../Button';
 import ButtonGroup from '../ButtonGroup';
+import formatDateString from '../../helpers/formatDateString';
 import getArtistString from './helpers/getArtistString';
 import getSpotifyPlaylistUrl from './helpers/getSpotifyUrl';
 
@@ -82,7 +83,7 @@ function Details({
           </ButtonGroup>
         </nav>
         {!playing && item.tracklist && (
-          <p className={css['details-artists']}>with {artists}</p>
+          <p className={css['details-artists']}>{formatDateString(item.createdAt)} / with {artists}</p>
         )}
         {currentTrack && (
           <p className={css['details-artists']}>

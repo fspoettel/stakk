@@ -8,5 +8,6 @@ export type StackItem = {
   genres: string[],
   mixcloudId?: string,
   spotifyId?: string,
-  tracklist: Tracklist
+  tracklist: Tracklist,
+  createdAt: number|string
 };
