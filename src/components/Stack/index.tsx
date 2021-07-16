@@ -131,9 +131,7 @@ function Stack({
           <div className={css['stack-instructions-icon']}>
             <FontAwesomeIcon icon={faUndo} size="2x" />
           </div>
-          <p>
-            Start over from the beginning
-          </p>
+          <p>back to first item</p>
         </div>
       )}
     </section>

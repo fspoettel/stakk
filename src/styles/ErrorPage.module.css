@@ -1,0 +1,12 @@
+.page_error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  height: 100%;
+  text-align: center;
+}
+
+.page_error .icon {
+  margin-bottom: 1rem;
+}
