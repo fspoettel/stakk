@@ -11,8 +11,7 @@ function About() {
       </ContentBlock>
       <ContentBlock title='Want your own?'>
         <p>If you&apos;re interested in having your own <em>stakk</em>, I want to hear from you.&nbsp;
-        {/*Fill out your email below and I&apos;ll get in touch.*/}
-        Drop me an email with your idea at felix&#064;spoet&#46;tel and I&apos;ll get in touch.
+        Drop me an email at felix&#064;spoet&#46;tel and I&apos;ll get in touch.
         </p>
       </ContentBlock>
     </PageLayout>
