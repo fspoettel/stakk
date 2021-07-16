@@ -4,7 +4,7 @@ import { animated } from '@react-spring/web';
 import GenreSticker from '../GenreSticker';
 import Cover from '../Cover';
 
-import css from '../../styles/Stack.module.css';
+import css from './Stack.module.css';
 
 import { isSpring } from './helpers/constants';
 import springToInnerTransform from './helpers/springToInnerTransform';

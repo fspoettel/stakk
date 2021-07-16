@@ -4,7 +4,7 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 import ButtonWithTooltip from '../ButtonWithTooltip';
 import ButtonGroup from '../ButtonGroup';
-import css from '../../styles/Header.module.css';
+import css from './Header.module.css';
 import Logo from '../Logo';
 
 type Action = {
@@ -41,8 +41,7 @@ function Header({
       <div className={css['header-content']}>
         <h1 className={css['header-title']}>
           <span className={css['header-title-logo']}>
-            <Logo />
-            &nbsp;&middot;&nbsp;{title}
+            <Logo />&nbsp;&middot;&nbsp;{title}
           </span>
           <span className={css['header-stakker']}>
             &nbsp;by&nbsp;

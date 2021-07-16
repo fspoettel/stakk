@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { faGhost } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import css from '../styles/ErrorPage.module.css';
+import css from '../components/PageLayout/PageLayout.module.css';
 
 export default function Custom404() {
   return (

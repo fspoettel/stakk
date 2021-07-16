@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import css from '../../styles/Headline.module.css';
+import css from './Headline.module.css';
 
 type HeadlineProps = {
   children: React.ReactNode,

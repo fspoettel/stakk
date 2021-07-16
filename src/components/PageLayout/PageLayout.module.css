@@ -1,3 +1,17 @@
+.page {
+  padding: 2rem;
+  max-width: 65ch;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: 2.5rem;
+}
+
+.page-title {
+  font-size: 2rem;
+}
+
 .page_error {
   display: flex;
   align-items: center;

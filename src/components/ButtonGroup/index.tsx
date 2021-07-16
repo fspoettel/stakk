@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 
-import css from '../../styles/ButtonGroup.module.css';
+import css from './ButtonGroup.module.css';
 
 type ButtonGroupProps = {
   children: React.ReactNode,

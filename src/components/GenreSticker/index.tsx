@@ -1,6 +1,7 @@
 import React from 'react';
-import css from '../../styles/GenreSticker.module.css';
+
 import { StackItem } from '../../types/StackItem';
+import css from './GenreSticker.module.css';
 
 type GenreStickerProps = {
   item: StackItem,

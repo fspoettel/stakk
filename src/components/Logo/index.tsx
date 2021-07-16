@@ -1,9 +1,13 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAlbumCollection } from '@fortawesome/pro-regular-svg-icons';
 
-import css from '../../styles/Logo.module.css';
+import css from './Logo.module.css';
 
-function Logo() {
+type LogoProps = {
+  hideTitle?: boolean,
+};
+
+function Logo({ hideTitle }: LogoProps) {
   return (
     <>
     <FontAwesomeIcon
@@ -11,7 +15,7 @@ function Logo() {
       transform="rotate-180"
       icon={faAlbumCollection}
     />
-      stakk
+    {!hideTitle && 'stakk'}
     </>
   );
 }

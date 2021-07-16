@@ -9,7 +9,7 @@ import getArtistString from './helpers/getArtistString';
 import getSpotifyPlaylistUrl from './helpers/getSpotifyUrl';
 
 import { StackItem } from '../../types/StackItem';
-import css from '../../styles/Details.module.css';
+import css from './Details.module.css';
 import getCurrentTrack from './helpers/getCurrentTrack';
 import Headline from '../Headline';
 

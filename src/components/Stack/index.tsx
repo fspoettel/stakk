@@ -7,7 +7,7 @@ import { faUndo } from '@fortawesome/pro-solid-svg-icons';
 import { DragDirection, DragState } from '../../types/DragState';
 import { HiddenState } from '../../types/HiddenState';
 import useDidMountEffect from '../../helpers/useDidMountEffect';
-import css from '../../styles/Stack.module.css';
+import css from './Stack.module.css';
 
 
 import exceedsDragThreshold from './helpers/exceedsDragThreshold';

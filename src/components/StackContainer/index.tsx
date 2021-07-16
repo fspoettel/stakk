@@ -20,7 +20,7 @@ import * as selectors from '../../reducer/selectors';
 import getInitialState from '../../reducer/getInitialState';
 import stackReducer from '../../reducer/reducer';
 
-import css from '../../styles/StackContainer.module.css';
+import css from './StackContainer.module.css';
 
 type StackContainerProps = {
   children?: React.ReactNode,

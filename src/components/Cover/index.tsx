@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 
-import css from '../../styles/Cover.module.css';
+import css from './Cover.module.css';
 
 type CoverProps = {
   children?: React.ReactNode,

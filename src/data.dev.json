@@ -6,6 +6,7 @@
   "title": "mixtapes",
   "items": [
     {
+      "createdAt": "2020-12-01T00:00:00Z",
       "id": "ckr0vxa2q000101jh0s5r5j7i",
       "src": "/assets/1x/destination_moon.webp",
       "title": "Test Mix #1",
@@ -33,6 +34,7 @@
       ]
     },
     {
+      "createdAt": "2020-12-01T00:00:00Z",
       "id": "ckr0vxa2q000101jh0s5r5j9i",
       "src": "/assets/1x/destination_moon.webp",
       "title": "Test Mix #2",

@@ -106,17 +106,3 @@ h6 a {
   transition: opacity 0.3s;
   z-index: 9999;
 }
-
-.page {
-  padding: 2rem;
-  max-width: 65ch;
-  margin: 0 auto;
-}
-
-.page-header {
-  margin-bottom: 2.5rem;
-}
-
-.page-title {
-  font-size: 2rem;
-}

@@ -3,7 +3,7 @@ import React from 'react';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import css from '../../styles/Button.module.css';
+import css from './Button.module.css';
 
 export type ButtonProps = {
   children?: React.ReactNode,
