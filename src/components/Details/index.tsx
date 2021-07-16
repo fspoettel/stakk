@@ -41,7 +41,7 @@ function Details({
     from: { opacity: 0, transform: 'translateY(1rem)' },
     enter: { opacity: 1, transform: 'translateY(0)' },
     config: {
-      duration: 300
+      duration: 325
     },
     delay: initial ? 500 : undefined,
   });

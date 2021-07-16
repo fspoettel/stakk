@@ -44,8 +44,30 @@
   text-align: center;
   max-width: calc(var(--item-height) / 2.5);
   z-index: -1;
+  animation: instructions ease-out 0.35s both;
 }
 
 .stack-instructions-icon {
   margin-bottom: 1rem;
+  animation: instructions-icon ease-out 0.35s both;
+}
+
+@keyframes instructions {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes instructions-icon {
+  0% {
+    transform: rotate(180deg);
+  }
+
+  100% {
+    transform: rotate(0);
+  }
 }
