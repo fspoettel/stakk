@@ -1,4 +1,3 @@
-import Footer from '../components/Footer';
 import StackContainer from '../components/StackContainer';
 import { Stack } from '../types/Stack';
 
@@ -19,11 +18,7 @@ type IndexProps = {
 };
 
 function Index({ data }: IndexProps) {
-  return (
-    <StackContainer data={data}>
-      <Footer />
-    </StackContainer>
-  );
+  return <StackContainer data={data} />;
 }
 
 export default Index;

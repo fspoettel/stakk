@@ -11,6 +11,7 @@ import setRootCSSVariable from '../../helpers/setRootCSSVariable';
 import preloadImage from '../../helpers/preloadImage';
 import getMixCloudUrl from './helpers/getMixcloudUrl';
 import Details from '../Details';
+import Footer from '../Footer';
 import Header from '../Header';
 import Player from '../Player';
 import Stack from '../Stack';
@@ -23,11 +24,10 @@ import stackReducer from '../../reducer/reducer';
 import css from './StackContainer.module.css';
 
 type StackContainerProps = {
-  children?: React.ReactNode,
   data: StackData;
 };
 
-function StackContainer({ children, data }: StackContainerProps) {
+function StackContainer({ data }: StackContainerProps) {
   const [state, dispatch] = useReducer(stackReducer, getInitialState(data));
 
   const items = selectors.getItems(state);
@@ -171,7 +171,7 @@ function StackContainer({ children, data }: StackContainerProps) {
         ]}
       />
 
-      {children}
+      <Footer isPlaying={isPlaying} />
 
       {!loading && (
         <div className={css.audioplayer}>
