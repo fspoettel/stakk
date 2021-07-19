@@ -1,5 +1,4 @@
 import React from 'react';
-import Head from 'next/head';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 import ButtonWithTooltip from '../ButtonWithTooltip';
@@ -31,13 +30,6 @@ function Header({
 }: HeaderProps) {
   return (
     <header className={css.header}>
-      <Head>
-        <title>stakk &middot; {title} by {authorName}</title>
-        <meta
-          name="description"
-          content={`flip through ${authorName}'s stakk "${title}"`}
-        />
-      </Head>
       <div className={css['header-content']}>
         <h1 className={css['header-title']}>
           <span className={css['header-title-logo']}>

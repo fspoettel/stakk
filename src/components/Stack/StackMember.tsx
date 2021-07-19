@@ -63,7 +63,7 @@ function StackMember({
           <Cover
             title={item.title}
             playing={isPlaying}
-            src={item.src}
+            src={`/assets/1x/${item.slug}.webp`}
           >
             <GenreSticker item={item} />
           </Cover>

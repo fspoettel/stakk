@@ -1,3 +1,4 @@
+import HtmlHead from '../../../components/HtmlHead';
 import StackContainer from '../../../components/StackContainer';
 import { getMixData, getDataForAllMixes } from '../../../helpers/getMixData';
 import { Stack } from '../../../types/Stack';
@@ -51,13 +52,18 @@ export async function getStaticProps(ctx: ItemContext): Promise<{
 function Item({ data, targetItemSlug }: ItemProps) {
   const sortedData = {
     ...data,
-    items: data.items.sort((a, b) => {
+    items: data.items.sort((a, _) => {
       if (a.slug === targetItemSlug) return 1;
       return 0;
     })
   };
 
-  return <StackContainer data={sortedData} />;
+  return (
+    <>
+      <HtmlHead data={data} targetItemSlug={targetItemSlug} />
+      <StackContainer data={sortedData} />
+    </>
+  );
 }
 
 export default Item;

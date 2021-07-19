@@ -1,3 +1,4 @@
+import HtmlHead from '../../../components/HtmlHead';
 import StackContainer from '../../../components/StackContainer';
 import { getMixData, getDataForAllMixes } from '../../../helpers/getMixData';
 import { Stack } from '../../../types/Stack';
@@ -37,7 +38,12 @@ export async function getStaticProps(ctx: MixContext): Promise<{
 }
 
 function Mix({ data }: MixProps) {
-  return <StackContainer data={data} />;
+  return (
+    <>
+      <HtmlHead data={data} />
+      <StackContainer data={data} />
+    </>
+  );
 }
 
 export default Mix;

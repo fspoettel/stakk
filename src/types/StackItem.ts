@@ -5,7 +5,6 @@ export type StackItem = {
   slug: string,
   index: number,
   title: string,
-  src: string,
   genres: string[],
   mixcloudId?: string,
   spotifyId?: string,
