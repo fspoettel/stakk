@@ -1,6 +1,9 @@
 {
+  "id": "ckrb3c8bi000101mvfxfbc3qn",
+  "slug": "mixtapes",
   "author": {
     "name": "felix",
+    "slug": "felix",
     "url": "https://spoettel.dev"
   },
   "theme": {
@@ -12,6 +15,7 @@
     {
       "createdAt": "2020-12-01T00:00:00Z",
       "id": "ckqz4ftbt000101mpft7df8rc",
+      "slug": "velveteen",
       "title": "Velveteen",
       "src": "/assets/1x/velveteen.webp",
       "genres": [
@@ -86,6 +90,7 @@
     {
       "createdAt": "2021-01-01T00:00:00Z",
       "id": "ckqz4g8qb000701mph8ds349c",
+      "slug": "kucuk-dunya",
       "src": "/assets/1x/kucuk_dunya.webp",
       "title": "Küçük Dünya",
       "mixcloudId": "/mcmirage/küçük-dünya/",
@@ -159,6 +164,7 @@
     {
       "createdAt": "2021-02-01T00:00:00Z",
       "id": "ckqz4gokh000d01mpedek8x5j",
+      "slug": "hung-up-on-a-dream",
       "title": "Hung up on a Dream",
       "src": "/assets/1x/hung_up_on_a_dream.webp",
       "genres": [
@@ -243,6 +249,7 @@
     {
       "createdAt": "2021-03-01T00:00:00Z",
       "id": "ckqz4gtec000f01mp221o2i6f",
+      "slug": "destination-moon",
       "src": "/assets/1x/destination_moon.webp",
       "title": "Destination Moon",
       "genres": [
@@ -313,6 +320,7 @@
       "createdAt": "2021-04-01T00:00:00Z",
       "id": "ckqz4geiz000901mp0wu707ay",
       "title": "Weekend Vampires",
+      "slug": "weekend-vampires",
       "src": "/assets/1x/weekend_vampires.webp",
       "genres": [
         "Ambient Pop",
@@ -381,6 +389,7 @@
     {
       "createdAt": "2021-05-01T00:00:00Z",
       "id": "ckqz4g3rl000501mp9gd4by7y",
+      "slug": "nouvelle-wav",
       "src": "/assets/1x/nouvelle_vague.webp",
       "title": "nouvelle.wav",
       "genres": [
@@ -461,6 +470,7 @@
       "createdAt": "2021-06-01T00:00:00Z",
       "id": "ckqz4gjir000b01mp87n61wbg",
       "title": "Dinosaur Tears",
+      "slug": "dinosaur-tears",
       "src": "/assets/1x/dinosaur_tears.webp",
       "genres": [
         "Post Punk",
@@ -534,6 +544,7 @@
     {
       "createdAt": "2021-07-01T00:00:00Z",
       "id": "ckqz4g09c000301mpeti04vdg",
+      "slug": "come-to-my-garden",
       "src": "/assets/1x/come_to_my_garden.webp",
       "title": "Come to my Garden",
       "mixcloudId": "/mcmirage/come-to-my-garden/",

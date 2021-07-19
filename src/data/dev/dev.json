@@ -1,12 +1,15 @@
 {
   "author": {
-    "name": "felix",
+    "name": "dev",
+    "slug": "dev",
     "url": "https://spoettel.dev"
   },
   "title": "mixtapes",
+  "slug": "dev",
   "items": [
     {
       "createdAt": "2020-12-01T00:00:00Z",
+      "slug": "test-mix-1",
       "id": "ckr0vxa2q000101jh0s5r5j7i",
       "src": "/assets/1x/destination_moon.webp",
       "title": "Test Mix #1",
@@ -36,6 +39,7 @@
     {
       "createdAt": "2020-12-01T00:00:00Z",
       "id": "ckr0vxa2q000101jh0s5r5j9i",
+      "slug": "test-mix-2",
       "src": "/assets/1x/destination_moon.webp",
       "title": "Test Mix #2",
       "genres": [
