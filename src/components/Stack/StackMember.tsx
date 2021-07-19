@@ -12,6 +12,7 @@ import springToOuterTransform from './helpers/springToOuterTransform';
 import { StackItem } from '../../types/StackItem';
 import { ReactEventHandlers } from 'react-use-gesture/dist/types';
 import { useEvent } from 'react-use';
+import getCoverPath from '../../helpers/getCoverPath';
 
 type StackMemberProps = {
   // eslint-disable-next-line no-unused-vars
@@ -63,7 +64,7 @@ function StackMember({
           <Cover
             title={item.title}
             playing={isPlaying}
-            src={`/assets/1x/${item.slug}.webp`}
+            src={getCoverPath(item)}
           >
             <GenreSticker item={item} />
           </Cover>
