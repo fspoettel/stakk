@@ -45,7 +45,7 @@ export async function getMixData(user: string, name: string): Promise<Stack> {
 
   const content = await fsPromises.readFile(filePath, {
     encoding: 'utf-8',
-  })
+  });
 
   return JSON.parse(content);
 }

@@ -1,5 +1,5 @@
 import StackContainer from '../../../components/StackContainer';
-import { getMixData, getDataForAllMixes } from '../../../helpers/readData';
+import { getMixData, getDataForAllMixes } from '../../../helpers/getMixData';
 import { Stack } from '../../../types/Stack';
 
 export async function getStaticPaths() {

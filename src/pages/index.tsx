@@ -1,5 +1,5 @@
 import StackContainer from '../components/StackContainer';
-import { getMixData } from '../helpers/readData';
+import { getMixData } from '../helpers/getMixData';
 import { Stack } from '../types/Stack';
 
 export async function getStaticProps(): Promise<{
