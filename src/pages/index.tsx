@@ -1,15 +1,15 @@
+import HtmlHead from '../components/HtmlHead';
 import StackContainer from '../components/StackContainer';
+import { getMixData } from '../helpers/getMixData';
 import { Stack } from '../types/Stack';
 
 export async function getStaticProps(): Promise<{
   props: IndexProps
 }> {
-  const data = await import('../data.json');
+  const data = await getMixData('felix', 'mixtapes');
 
   return {
-    props: {
-      data: JSON.parse(JSON.stringify(data)),
-    }
+    props: { data }
   };
 }
 
@@ -18,7 +18,12 @@ type IndexProps = {
 };
 
 function Index({ data }: IndexProps) {
-  return <StackContainer data={data} />;
+  return (
+    <>
+      <HtmlHead data={data} />
+      <StackContainer data={data} />
+    </>
+  );
 }
 
 export default Index;

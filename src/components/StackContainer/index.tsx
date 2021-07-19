@@ -22,6 +22,7 @@ import getInitialState from '../../reducer/getInitialState';
 import stackReducer from '../../reducer/reducer';
 
 import css from './StackContainer.module.css';
+import getCoverPath from '../../helpers/getCoverPath';
 
 type StackContainerProps = {
   data: StackData;
@@ -42,7 +43,7 @@ function StackContainer({ data }: StackContainerProps) {
     function run() {
       Promise.all([
         preloadImage('/assets/overlay-600px.webp'),
-        ...items.map(item => preloadImage(item.src).catch(err => console.error(err))),
+        ...items.map(item => preloadImage(getCoverPath(item)).catch(err => console.error(err))),
       ])
       .then(rafPromise)
       .then(() => actions.load(dispatch));
