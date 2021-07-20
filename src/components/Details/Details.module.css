@@ -20,6 +20,10 @@
   margin: 0;
 }
 
+.details-artists svg {
+  margin-right: 0.25rem;
+}
+
 @media screen and (min-width: 45rem) {
   .details-header {
     margin-bottom: 1rem;

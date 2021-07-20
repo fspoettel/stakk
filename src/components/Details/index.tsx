@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { animated, useTransition } from '@react-spring/web';
 import { faSpotify } from '@fortawesome/free-brands-svg-icons';
-import { faPlay, faWaveformPath } from '@fortawesome/pro-solid-svg-icons';
+import { faPlay, faStop } from '@fortawesome/pro-solid-svg-icons';
+import { faWaveform } from '@fortawesome/pro-regular-svg-icons';
 import Button from '../Button';
 import ButtonGroup from '../ButtonGroup';
 import formatDateString from '../../helpers/formatDateString';
@@ -12,6 +13,7 @@ import { StackItem } from '../../types/StackItem';
 import css from './Details.module.css';
 import getCurrentTrack from './helpers/getCurrentTrack';
 import Headline from '../Headline';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type DetailsProps = {
   item: StackItem,
@@ -63,10 +65,10 @@ function Details({
           <ButtonGroup>
             {item.mixcloudId && (
               <Button
-                icon={playing ? faWaveformPath : faPlay}
+                icon={playing ? faStop : faPlay}
                 onClick={onTogglePlayback}
               >
-                {playing ? 'Playing' : 'Play'}
+                {playing ? 'Stop' : 'Play'}
               </Button>
             )}
             {item.spotifyId && (
@@ -87,6 +89,7 @@ function Details({
         )}
         {currentTrack && (
           <p className={css['details-artists']}>
+            <FontAwesomeIcon icon={faWaveform} />
             Current Track: <strong>{currentTrack.artist} - {currentTrack.title}</strong>
           </p>
         )}

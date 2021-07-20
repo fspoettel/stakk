@@ -54,8 +54,13 @@ type AnyAction = LoadAction|NextAction|PrevAction|ResetAction|ToAction|ClearActi
 export default function reducer(state: StackState, action: AnyAction): StackState {
   switch (action.type) {
     case 'reset': {
+      const initialState = getInitialState(action.data);
       return {
-        ...getInitialState(action.data),
+        ...initialState,
+        stack: {
+          ...initialState.stack,
+          hasInteraction: true,
+        },
         loading: false,
       };
     }
@@ -70,19 +75,17 @@ export default function reducer(state: StackState, action: AnyAction): StackStat
     case 'togglePlayback': {
       const activeIndex = getActiveIndex(state);
       const playbackIndex = getPlaybackIndex(state);
-
-      if (playbackIndex === activeIndex) {
-        return {
-          ...state,
-          stack: { ...state.stack, animationLock: true },
-          playback: { ...state.playback, index: undefined }
-        };
-      }
-
+      
       return {
         ...state,
-        stack: { ...state.stack, animationLock: true },
-        playback: { index: activeIndex, progress: 0 },
+        stack: {
+          ...state.stack,
+          animationLock: true,
+          hasInteraction: true,
+        },
+        playback: playbackIndex === activeIndex
+          ? { ...state.playback, index: undefined }
+          : { index: activeIndex, progress: 0 }
       };
     }
 
@@ -106,6 +109,7 @@ export default function reducer(state: StackState, action: AnyAction): StackStat
         stack: {
           ...state.stack,
           animationLock: true,
+          hasInteraction: true,
           dragState: action.dragState,
         }
       };
@@ -122,6 +126,7 @@ export default function reducer(state: StackState, action: AnyAction): StackStat
             activeIndex: state.items.length - 1,
             animationLock: false,
             dragState: { dragging: false },
+            hasInteraction: true,
             hiddenItems: {},
           },
           playback: state.playback,
@@ -135,6 +140,7 @@ export default function reducer(state: StackState, action: AnyAction): StackStat
           ...state.stack,
           animationLock: true,
           activeIndex: activeIndex - 1,
+          hasInteraction: true,
           hiddenItems: {
             ...state.stack.hiddenItems,
             [activeIndex]: action.item ?? { direction: 1 }
@@ -157,6 +163,7 @@ export default function reducer(state: StackState, action: AnyAction): StackStat
           ...state.stack,
           animationLock: true,
           activeIndex: activeIndex + 1,
+          hasInteraction: true,
           hiddenItems: nextHiddenItems,
         },
       };
@@ -169,6 +176,7 @@ export default function reducer(state: StackState, action: AnyAction): StackStat
           ...state.stack,
           animationLock: true,
           activeIndex: action.index ?? state.items.length - 1,
+          hasInteraction: true,
           hiddenItems: Object.entries(state.stack.hiddenItems)
             .filter(([key]) => Number.parseInt(key, 10) < action.index)
             .reduce((acc, curr) => ({ ...acc, curr }), {}),
@@ -183,6 +191,7 @@ export default function reducer(state: StackState, action: AnyAction): StackStat
           ...state.stack,
           animationLock: true,
           activeIndex: -1,
+          hasInteraction: true,
           hiddenItems: {
             ...state.items
               .map((_, i) => ({ index: i, direction: 1 }))

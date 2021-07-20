@@ -2,7 +2,7 @@ import React from 'react';
 import { useSprings } from '@react-spring/web';
 import { useDrag } from 'react-use-gesture';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUndo } from '@fortawesome/pro-solid-svg-icons';
+import { faHandPaper, faUndo } from '@fortawesome/pro-solid-svg-icons';
 
 import { DragDirection, DragState } from '../../types/DragState';
 import { HiddenState } from '../../types/HiddenState';
@@ -21,6 +21,7 @@ import { StackItem } from '../../types/StackItem';
 type StackProps = {
   activeIndex: number,
   animationLock: boolean,
+  hasInteraction: boolean,
   hiddenItems: Record<string, HiddenState>,
   dragState: DragState,
   items: StackItem[],
@@ -43,6 +44,7 @@ type StackProps = {
 function Stack({
   activeIndex,
   animationLock,
+  hasInteraction,
   hiddenItems,
   dragState,
   items,
@@ -126,6 +128,13 @@ function Stack({
           spring={spring}
         />
       ))}
+      {isFirstItem && !hasInteraction && (
+        <FontAwesomeIcon
+          className={css['stack-drag-indicator']}
+          icon={faHandPaper}
+          size='3x'
+        />
+      )}
       {isLastItem && exceedsDragThreshold(dragState) && (
         <div className={css['stack-instructions']}>
           <div className={css['stack-instructions-icon']}>

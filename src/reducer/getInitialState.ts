@@ -15,6 +15,7 @@ export type StackState = {
     activeIndex: number,
     animationLock: boolean,
     dragState: DragState,
+    hasInteraction: boolean,
     hiddenItems: Record<string, HiddenState>,
   },
   playback: {
@@ -35,6 +36,7 @@ const getInitialState = (data: Stack): StackState => {
       activeIndex: data.items.length - 1,
       animationLock: false,
       dragState: { dragging: false },
+      hasInteraction: false,
       hiddenItems: {},
     },
     /** playback state */
