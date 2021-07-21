@@ -1,9 +1,9 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import { faGhost } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import css from '../components/PageLayout/PageLayout.module.css';
-import Link from 'next/link';
 
 export default function Custom404() {
   return (

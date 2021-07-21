@@ -1,20 +1,10 @@
-import HtmlHead from '../../../components/HtmlHead';
-import StackContainer from '../../../components/StackContainer';
+import { Stack } from '../../../types/Stack';
 import { getMixData, getDataForAllMixes } from '../../../helpers/getMixData';
 import getStackMetadata from '../../../helpers/getStackMetadata';
-import { generateRSS, writeRSS } from '../../../helpers/rss';
-import { Stack } from '../../../types/Stack';
-
-type MixContext = {
-  params: {
-    user: string,
-    mix: string,
-  },
-};
-
-type MixProps = {
-  data: Stack,
-};
+import generateRSS from '../../../helpers/generateRSS';
+import writeRSSToFile from '../../../helpers/writeRSSToFile';
+import HtmlHead from '../../../components/HtmlHead';
+import StackContainer from '../../../components/StackContainer';
 
 export async function getStaticPaths() {
   const mixes = await getDataForAllMixes();
@@ -30,11 +20,20 @@ export async function getStaticPaths() {
   };
 }
 
+type MixContext = {
+  params: {
+    user: string,
+    mix: string,
+  },
+};
+
+type MixProps = { data: Stack };
+
 export async function getStaticProps(ctx: MixContext): Promise<{
   props: MixProps
 }> {
   const data = await getMixData(ctx.params.user, ctx.params.mix);
-  await writeRSS(getStackMetadata(data).rssPath, generateRSS(data));
+  await writeRSSToFile(getStackMetadata(data).rssPath, generateRSS(data));
   return { props: { data } };
 }
 
