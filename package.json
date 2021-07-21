@@ -19,12 +19,12 @@
     "react-use-gesture": "^9.1.3"
   },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "yarn assets:generate && next dev",
+    "build": "yarn assets:generate && next build",
     "start": "next start",
     "lint": "eslint src",
+    "assets:generate": "./scripts/generateAssets.sh",
     "cue:generate": "node ./scripts/generateCueSheet.js",
-    "images:optimize": "./scripts/covers.sh",
     "analyze": "ANALYZE=true next build"
   },
   "browserslist": [
@@ -36,6 +36,7 @@
   ],
   "devDependencies": {
     "@next/bundle-analyzer": "^11.0.1",
+    "@squoosh/cli": "^0.7.2",
     "@types/react": "^17.0.14",
     "@typescript-eslint/eslint-plugin": "^4.28.3",
     "@typescript-eslint/parser": "^4.28.3",

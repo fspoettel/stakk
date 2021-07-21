@@ -22,4 +22,5 @@ yarn-error.log*
 .next
 
 # generated folders
+public/assets
 public/rss
