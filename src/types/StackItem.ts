@@ -9,5 +9,5 @@ export type StackItem = {
   mixcloudId?: string,
   spotifyId?: string,
   tracklist: Tracklist,
-  createdAt: number|string
+  createdAt: string
 };
