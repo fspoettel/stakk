@@ -128,13 +128,7 @@ function Stack({
           spring={spring}
         />
       ))}
-      {isFirstItem && !hasInteraction && (
-        <FontAwesomeIcon
-          className={css['stack-drag-indicator']}
-          icon={faHandPaper}
-          size='3x'
-        />
-      )}
+
       {isLastItem && exceedsDragThreshold(dragState) && (
         <div className={css['stack-instructions']}>
           <div className={css['stack-instructions-icon']}>
@@ -142,6 +136,14 @@ function Stack({
           </div>
           <p>back to first item</p>
         </div>
+      )}
+
+      {!hasInteraction && (
+        <FontAwesomeIcon
+          className={css['stack-drag-indicator']}
+          icon={faHandPaper}
+          size='3x'
+        />
       )}
     </section>
   );

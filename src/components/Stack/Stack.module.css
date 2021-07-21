@@ -59,13 +59,13 @@
   margin-top: -1.5rem;
   margin-left: -1.5rem;
   animation-name: drag-indicator;
-  animation-duration: 5s;
+  animation-duration: 8s;
   animation-delay: 5s;
   animation-fill-mode: both;
   animation-iteration-count: 2;
   pointer-events: none;
   color: #fff;
-  filter: drop-shadow(0 0 0.25rem rgba(0, 0, 0, 0.8));
+  filter: drop-shadow(0 0 0.25rem rgba(0, 0, 0, 0.7));
 }
 
 @keyframes drag-indicator {
@@ -74,12 +74,12 @@
     transform: translateX(0);
   }
 
-  30% {
+  20% {
     opacity: 1;
     transform: translateX(8rem);
   }
 
-  50% {
+  30% {
     opacity: 0;
     transform: translateX(8rem);
   }
