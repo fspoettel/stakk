@@ -1,16 +1,14 @@
-import fsPromises from 'fs/promises';
-import path from 'path';
 import { SITE_OPERATOR, SITE_URL } from '../constants';
 import { Stack } from '../types/Stack';
 import { StackItem } from '../types/StackItem';
-import { getCoverUrl } from './coverUtils';
+import { getCoverPath } from './getCoverPath';
 import getArtistString from './getArtistString';
-import getStackMetadata, { StackMetadata } from './getStakkMetadata';
+import getStackMetadata, { StackMetadata } from './getStackMetadata';
 
 function generateRSSItem(item: StackItem, metadata: StackMetadata): string {
   const content = `
         <![CDATA[ 
-        <p><img src="${getCoverUrl(item, 'og', 'jpg')}" /></p>
+        <p><img src="${SITE_URL}${getCoverPath(item, 'og', 'jpg')}" /></p>
         <p>with ${getArtistString(item.tracklist)}</p>
         ]]>
       `;
@@ -26,11 +24,11 @@ function generateRSSItem(item: StackItem, metadata: StackMetadata): string {
     `;
 }
 
-export function generateRSS(data: Stack): string {
+function generateRSS(data: Stack): string {
   const metadata = getStackMetadata(data);
   const date = new Date();
 
-  const latestItem = data.items[0];
+  const latestItem = data.items[data.items.length - 1];
   const pubDate = new Date(latestItem.createdAt).toUTCString();
 
   const items = data.items
@@ -56,25 +54,5 @@ export function generateRSS(data: Stack): string {
 `;
 }
 
-function fileExists(filePath: string): Promise<boolean> {
-  return fsPromises.access(filePath)
-    .then(() => true)
-    .catch(() => false);
-}
+export default generateRSS;
 
-async function ensureDirectory(filePath: string): Promise<string|undefined> {
-  const dirname = path.dirname(filePath);
-  if (await fileExists(dirname)) return dirname;
-  return fsPromises.mkdir(dirname, { recursive: true });
-}
-
-export async function writeRSS(feedPath: string, feed: string): Promise<void> {
-  const pathOnDisk = path.join(
-    process.cwd(),
-    'public',
-    `${feedPath}`
-  );
-
-  await ensureDirectory(pathOnDisk);
-  await fsPromises.writeFile(pathOnDisk, feed);
-}

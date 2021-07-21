@@ -22,7 +22,7 @@ import getInitialState from '../../reducer/getInitialState';
 import stackReducer from '../../reducer/reducer';
 
 import css from './StackContainer.module.css';
-import { getCoverPath } from '../../helpers/coverUtils';
+import { getCoverPath } from '../../helpers/getCoverPath';
 
 type StackContainerProps = {
   data: StackData;

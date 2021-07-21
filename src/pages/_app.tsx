@@ -1,10 +1,9 @@
+import { AppProps } from 'next/dist/next-server/lib/router/router';
 import '@fortawesome/fontawesome-svg-core/styles.css';
-
 import { config } from '@fortawesome/fontawesome-svg-core';
 config.autoAddCss = false;
 
 import '../globals.css';
-import { AppProps } from 'next/dist/next-server/lib/router/router';
 
 function MyApp ({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />;
