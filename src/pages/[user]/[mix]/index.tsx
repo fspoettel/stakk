@@ -1,7 +1,7 @@
 import HtmlHead from '../../../components/HtmlHead';
 import StackContainer from '../../../components/StackContainer';
 import { getMixData, getDataForAllMixes } from '../../../helpers/getMixData';
-import getStackMetadata from '../../../helpers/getStakkMetadata';
+import getStackMetadata from '../../../helpers/getStackMetadata';
 import { generateRSS, writeRSS } from '../../../helpers/rss';
 import { Stack } from '../../../types/Stack';
 

@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { SITE_URL } from '../../constants';
-import getStackMetadata from '../../helpers/getStakkMetadata';
+import getStackMetadata from '../../helpers/getStackMetadata';
 import { Stack } from '../../types/Stack';
 
 type HtmlHeadProps = {

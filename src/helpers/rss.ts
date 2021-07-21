@@ -5,7 +5,7 @@ import { Stack } from '../types/Stack';
 import { StackItem } from '../types/StackItem';
 import { getCoverUrl } from './coverUtils';
 import getArtistString from './getArtistString';
-import getStackMetadata, { StackMetadata } from './getStakkMetadata';
+import getStackMetadata, { StackMetadata } from './getStackMetadata';
 
 function generateRSSItem(item: StackItem, metadata: StackMetadata): string {
   const content = `
