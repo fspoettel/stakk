@@ -1,4 +1,4 @@
-import { Tracklist } from '../../../types/Tracklist';
+import { Tracklist } from '../types/Tracklist';
 
 function getArtistString(tracklist: Tracklist, count = 3): string {
   if (!Array.isArray(tracklist)) return '';

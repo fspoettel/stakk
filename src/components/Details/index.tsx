@@ -6,7 +6,7 @@ import { faWaveform } from '@fortawesome/pro-regular-svg-icons';
 import Button from '../Button';
 import ButtonGroup from '../ButtonGroup';
 import formatDateString from '../../helpers/formatDateString';
-import getArtistString from './helpers/getArtistString';
+import getArtistString from '../../helpers/getArtistString';
 import getSpotifyPlaylistUrl from './helpers/getSpotifyUrl';
 
 import { StackItem } from '../../types/StackItem';

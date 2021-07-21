@@ -1,16 +1,13 @@
 import HtmlHead from '../components/HtmlHead';
 import StackContainer from '../components/StackContainer';
-import { getMixData } from '../helpers/getMixData';
 import { Stack } from '../types/Stack';
 
 export async function getStaticProps(): Promise<{
   props: IndexProps
 }> {
+  const { getMixData } = await import('../helpers/getMixData');
   const data = await getMixData('felix', 'mixtapes');
-
-  return {
-    props: { data }
-  };
+  return { props: { data } };
 }
 
 type IndexProps = {

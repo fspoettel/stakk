@@ -12,7 +12,7 @@ import springToOuterTransform from './helpers/springToOuterTransform';
 import { StackItem } from '../../types/StackItem';
 import { ReactEventHandlers } from 'react-use-gesture/dist/types';
 import { useEvent } from 'react-use';
-import getCoverPath from '../../helpers/getCoverPath';
+import { getCoverPath } from '../../helpers/coverUtils';
 
 type StackMemberProps = {
   // eslint-disable-next-line no-unused-vars
