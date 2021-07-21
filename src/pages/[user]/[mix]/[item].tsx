@@ -52,7 +52,7 @@ export async function getStaticProps(ctx: ItemContext): Promise<{
 function Item({ data, targetItemSlug }: ItemProps) {
   const sortedData = {
     ...data,
-    items: data.items.sort((a, _) => {
+    items: data.items.sort((a) => {
       if (a.slug === targetItemSlug) return 1;
       return 0;
     })
