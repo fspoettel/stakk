@@ -23,6 +23,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint src",
+    "cue:generate": "node ./scripts/generateCueSheet.js",
     "images:optimize": "./scripts/covers.sh"
   },
   "browserslist": [
