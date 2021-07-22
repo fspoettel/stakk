@@ -16,20 +16,24 @@ const pipeline = promisify(stream.pipeline);
 const rimraf = promisify(_rimraf);
 
 (async () => {
+  console.debug('re-creating `./content`...');
+
   const contentPath = path.join(process.cwd(), 'content');
   const zipPath = path.join(contentPath, 'data.zip');
 
   await rimraf(contentPath);
   await fsPromises.mkdir(contentPath);
 
-  const request = got.stream(`https://api.github.com/repos/${process.env.GH_REPO}/zipball/master`, {
-    headers: {
-      Authorization: `token ${process.env.GH_TOKEN}`,
-    }
-  });
+  console.debug('downloading content repository...');
+
+  const request = got.stream(`https://api.github.com/repos/${process.env.GH_REPO}/zipball/master`);
 
   await pipeline(request, fs.createWriteStream(zipPath));
+
+  console.debug('unzipping content repository...');
   await decompress(zipPath, contentPath, { strip: 1 });
+
+  console.debug('cleaning up...');
   await rimraf(zipPath);
 })();
 
