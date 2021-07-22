@@ -16,16 +16,12 @@ import { Stack } from '../src/types/Stack';
   if (!user) throw new Error('required attribute `--user` missing');
   if (!mix) throw new Error('required attribute `--mix` missing');
 
-
-  const data: Stack = await import(`../src/data/${user}/${mix}.json`);
+  const data: Stack = await import(`../content/data/${user}/${mix}.json`);
 
   const target = data.items.find(m => m.slug === item);
-
   if (!target) throw new Error('could not find the specified --item');
 
-  const tracklist = target.tracklist;
-
-  const tracklistStr = tracklist
+  const tracklistStr = target.tracklist
   .map((t, i) => `${i + 1}. ${t.artist} - ${t.title} ${t.at}`)
   .join(EOL);
 

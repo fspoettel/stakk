@@ -21,7 +21,7 @@ async function scan(directoryName: string, results: string[]): Promise<string[]>
 export async function getDataForAllMixes(): Promise<Stack[]> {
   const dir = path.join(
     process.cwd(),
-    'src',
+    'content',
     'data',
   );
 
@@ -37,7 +37,7 @@ export async function getDataForAllMixes(): Promise<Stack[]> {
 export async function getMixData(user: string, name: string): Promise<Stack> {
   const filePath = path.join(
     process.cwd(),
-    'src',
+    'content',
     'data',
     user,
     `${name}.json`,

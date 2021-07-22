@@ -19,12 +19,13 @@
     "react-use-gesture": "^9.1.3"
   },
   "scripts": {
-    "dev": "yarn assets:generate && next dev",
-    "build": "yarn assets:generate && next build",
+    "dev": "next dev",
+    "build": "yarn content:sync && yarn assets:generate && next build",
     "start": "next start",
     "lint": "eslint src",
     "assets:generate": "./scripts/generateAssets.sh",
-    "cue:generate": "ts-node  --project ./scripts/scripts.tsconfig.json ./scripts/generateCueSheet.ts",
+    "content:sync": "ts-node --project ./scripts/scripts.tsconfig.json ./scripts/syncContent.ts",
+    "cue:generate": "ts-node --project ./scripts/scripts.tsconfig.json ./scripts/generateCueSheet.ts",
     "analyze": "ANALYZE=true next build"
   },
   "browserslist": [
@@ -37,13 +38,20 @@
   "devDependencies": {
     "@next/bundle-analyzer": "^11.0.1",
     "@squoosh/cli": "^0.7.2",
+    "@types/decompress": "^4.2.4",
     "@types/minimist": "^1.2.2",
+    "@types/node": "^16.4.0",
     "@types/react": "^17.0.14",
+    "@types/rimraf": "^3.0.1",
     "@typescript-eslint/eslint-plugin": "^4.28.3",
     "@typescript-eslint/parser": "^4.28.3",
+    "decompress": "^4.2.1",
+    "dotenv": "^10.0.0",
     "eslint": "^7.30.0",
     "eslint-config-next": "^11.0.1",
+    "got": "^11",
     "minimist": "^1.2.5",
+    "rimraf": "^3.0.2",
     "ts-node": "^10.1.0",
     "typescript": "^4.3.5"
   }
