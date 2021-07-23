@@ -34,6 +34,23 @@ export async function getDataForAllMixes(): Promise<Stack[]> {
   return files.map(str => JSON.parse(str));
 }
 
+export async function getDataForAllUserMixes(user: string): Promise<Stack[]> {
+  const dir = path.join(
+    process.cwd(),
+    'content',
+    'data',
+    user,
+  );
+
+  const paths = await scan(dir, []);
+
+  const files = await Promise.all(
+    paths.map(path => fsPromises.readFile(path, { encoding: 'utf-8' }))
+  );
+
+  return files.map(str => JSON.parse(str));
+}
+
 export async function getMixData(user: string, name: string): Promise<Stack> {
   const filePath = path.join(
     process.cwd(),
