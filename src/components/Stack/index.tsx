@@ -57,6 +57,7 @@ function Stack({
 
   const isFirstItem = activeIndex === items.length - 1;
   const isLastItem = activeIndex === 0;
+  const isStatic = items.length === 1;
 
   const shouldAnimateChanges = !dragState.dragging
     && isFirstItem
@@ -97,7 +98,7 @@ function Stack({
     movement: [xDelta],
     velocity
   }) => {
-    if (index !== activeIndex) return;
+    if (index !== activeIndex || isStatic) return;
 
     const dragState = {
       dragging,
@@ -138,7 +139,7 @@ function Stack({
         </div>
       )}
 
-      {!hasInteraction && (
+      {!hasInteraction && !isStatic && (
         <FontAwesomeIcon
           className={css['stack-drag-indicator']}
           icon={faHandPaper}

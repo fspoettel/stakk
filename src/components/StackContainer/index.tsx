@@ -59,6 +59,7 @@ function StackContainer({ data }: StackContainerProps) {
   const playbackIndex = selectors.getPlaybackIndex(state);
   const playbackProgress = selectors.getPlaybackProgress(state);
   const isPlaying = playbackIndex != null;
+  const isStatic = items.length === 1;
 
   const onPrev = useCallback(() => {
     actions.prev(dispatch);
@@ -136,7 +137,7 @@ function StackContainer({ data }: StackContainerProps) {
         authorName={selectors.getAuthorName(state)}
         authorUrl={selectors.getAuthorUrl(state)}
         title={selectors.getTitle(state)}
-        actions={[
+        actions={isStatic ? [] : [
           {
             key: 'stopPlayback',
             visible: playbackIndex != null,
