@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { animated } from '@react-spring/web';
 
-import GenreSticker from '../GenreSticker';
+import TagSticker from '../TagSticker';
 import Cover from '../Cover';
 
 import css from './Stack.module.css';
@@ -66,7 +66,7 @@ function StackMember({
             playing={isPlaying}
             src={getCoverPath(item)}
           >
-            <GenreSticker item={item} />
+            <TagSticker item={item} />
           </Cover>
       </animated.div>
     </animated.div>

@@ -1,4 +1,4 @@
-.genresticker {
+.tagsticker {
   display: inline-block;
   list-style: none;
   margin: 0;
@@ -16,6 +16,6 @@
   box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
-.genresticker > li:not(:last-child)::after {
+.tagsticker > li:not(:last-child)::after {
   content: ',';
 }
