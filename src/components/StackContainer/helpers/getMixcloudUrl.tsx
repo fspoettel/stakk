@@ -1,13 +1,24 @@
+import { ExternalLink } from '../../../types/ExternalLink';
 import { StackItem } from '../../../types/StackItem';
 
+function isMixcloudUrl(url: ExternalLink|string): url is string {
+  return typeof url === 'string' && url.includes('mixcloud');
+}
+
 function getMixCloudUrl(playbackItem?: StackItem): string {
-  if (!playbackItem) return '';
+  if (!playbackItem || !playbackItem.links) return '';
+
+  const mixcloudUrl = playbackItem.links.find(isMixcloudUrl);
+  if (!mixcloudUrl) return '';
+
+  const mixcloudURL = new URL(mixcloudUrl);
+  const mixcloudId = mixcloudURL.pathname;
 
   const url = new URL('https://www.mixcloud.com/widget/iframe/');
   url.searchParams.set('mini', '1');
   url.searchParams.set('hide_artwork', '0');
   url.searchParams.set('autoplay', '1');
-  if (playbackItem?.mixcloudId) url.searchParams.set('feed', playbackItem.mixcloudId);
+  url.searchParams.set('feed', mixcloudId);
   return url.href;
 }
 

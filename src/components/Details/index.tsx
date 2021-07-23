@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { animated, useTransition } from '@react-spring/web';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpotify } from '@fortawesome/free-brands-svg-icons';
-import { faPlay, faStop } from '@fortawesome/pro-solid-svg-icons';
+import { faLink } from '@fortawesome/pro-solid-svg-icons';
 import { faWaveform } from '@fortawesome/pro-regular-svg-icons';
-import Button from '../Button';
 import ButtonGroup from '../ButtonGroup';
 import formatDateString from '../../helpers/formatDateString';
 import getArtistString from '../../helpers/getArtistString';
-import getSpotifyPlaylistUrl from './helpers/getSpotifyUrl';
 
-import { StackItem } from '../../types/StackItem';
 import css from './Details.module.css';
+import { StackItem } from '../../types/StackItem';
 import getCurrentTrack from './helpers/getCurrentTrack';
 import Headline from '../Headline';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import MixcloudButton from './MixcloudButton';
+import LinkButton from './SpotifyButton';
 
 type DetailsProps = {
   item: StackItem,
@@ -63,25 +63,35 @@ function Details({
 
         <nav className={css['details-actions']}>
           <ButtonGroup>
-            {item.mixcloudId && (
-              <Button
-                icon={playing ? faStop : faPlay}
-                onClick={onTogglePlayback}
-              >
-                {playing ? 'Stop' : 'Play'}
-              </Button>
-            )}
-            {item.spotifyId && (
-              <Button
-                href={getSpotifyPlaylistUrl(item.spotifyId)}
-                icon={faSpotify}
-                rel='noreferrer nofollow'
-                target='_blank'
-                variant='secondary'
-              >
-                Follow
-              </Button>
-            )}
+            {item.links && item.links.map((link, i) =>  {
+              if (typeof link !== 'string') {
+                return (
+                  <LinkButton
+                    url={link.url}
+                    icon={faLink}
+                    title={link.title ?? 'Follow'}
+                    key={link.url}
+                  />
+                );
+              }
+
+              if (link.includes('mixcloud')) {
+                return <MixcloudButton onClick={onTogglePlayback} playing={playing} key={i} />;
+              }
+
+              if (link.includes('spotify')) {
+                return <LinkButton url={link} title={'Follow'} icon={faSpotify} key={i} />;
+              }
+
+              return (
+                <LinkButton
+                  key={i}
+                  url={link}
+                  title={'Follow'}
+                  icon={faLink}
+                />
+              );
+            })}
           </ButtonGroup>
         </nav>
         {!playing && item.tracklist && (

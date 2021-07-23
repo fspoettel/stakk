@@ -13,6 +13,7 @@ function About() {
         <p>If you&apos;re interested in having your own <em>stakk</em>, I want to hear from you.&nbsp;
         Drop me an email at felix&#064;spoet&#46;tel and I&apos;ll get in touch.
         </p>
+        <p>If you are not afraid of getting your hands dirty, you can open a pull request to the <a href="https://github.com/fspoettel/stakk-content" target="_blank" rel="nofollow noreferrer">content repository</a> to add your stakk.</p>
       </ContentBlock>
     </PageLayout>
   );

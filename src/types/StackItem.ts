@@ -1,3 +1,4 @@
+import { ExternalLink } from './ExternalLink';
 import { Tracklist } from './Tracklist';
 
 export type StackItem = {
@@ -6,8 +7,7 @@ export type StackItem = {
   index: number,
   title: string,
   tags: string[],
-  mixcloudId?: string,
-  spotifyId?: string,
+  links?: (ExternalLink|string)[],
   tracklist: Tracklist,
   createdAt: string
 };

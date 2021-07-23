@@ -61,3 +61,10 @@ export function getActiveOrNextItem(state: StackState): StackItem {
 export function getPlaybackProgress(state: StackState): number {
   return state.playback.progress ?? 0;
 }
+
+export function getHasPlayer(state: StackState): boolean {
+  return state.items
+    .some(
+      item => item.links && item.links.some(l => typeof l === 'string' && l.includes('mixcloud'))
+    );
+}
