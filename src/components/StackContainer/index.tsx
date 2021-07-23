@@ -55,6 +55,7 @@ function StackContainer({ data }: StackContainerProps) {
   const activeIndex = selectors.getActiveIndex(state);
   const activeItem = selectors.getActiveItem(state);
 
+  const hasPlayer = selectors.getHasPlayer(state);
   const playbackIndex = selectors.getPlaybackIndex(state);
   const playbackProgress = selectors.getPlaybackProgress(state);
   const isPlaying = playbackIndex != null;
@@ -174,7 +175,7 @@ function StackContainer({ data }: StackContainerProps) {
 
       <Footer isPlaying={isPlaying} />
 
-      {!loading && (
+      {!loading && hasPlayer && (
         <div className={css.audioplayer}>
           <Player
             url={getMixCloudUrl(
