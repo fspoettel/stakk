@@ -17,7 +17,7 @@ type Action = {
 
 type HeaderProps = {
   authorName: string,
-  authorUrl: string,
+  authorUrl?: string,
   actions: Action[],
   title: string,
 };
@@ -37,13 +37,13 @@ function Header({
           </span>
           <span className={css['header-stakker']}>
             &nbsp;by&nbsp;
-            <a
-              href={authorUrl}
-              target="_blank"
-              rel="noreferrer nofollow"
-            >
-              {authorName}
-            </a>
+            {authorUrl
+              ? (
+                <a href={authorUrl} target="_blank" rel="noreferrer nofollow">
+                  {authorName}
+                </a>
+                )
+              : authorName}
           </span>
         </h1>
       </div>

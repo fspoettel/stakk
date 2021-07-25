@@ -5,7 +5,7 @@
 
 .editoritems-item {
   list-style: none;
-  padding: 0.5rem;
+  padding: 0.5rem 0.75rem;
   border: 1px solid var(--color);
   margin-bottom: 1rem;
 
@@ -13,4 +13,14 @@
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
+}
+
+.editoritems-add {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.editoritems-add-spinner {
+  margin-left: 0.5rem;
 }

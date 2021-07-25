@@ -3,7 +3,7 @@
 }
 
 .form-footer {
-  margin-top: 0.5rem;
+  margin-top: 1.5rem;
 }
 
 .field {
@@ -30,7 +30,13 @@
 }
 
 .field label {
-  font-size: 1rem;
+  display: inline-block;
+  font-size: 0.875rem;
+  margin-bottom: 0.125rem;
+}
+
+.field label.hidden {
+  display: none;
 }
 
 .field input,
@@ -38,11 +44,17 @@
   width: 100%;
   font-size: 1rem;
   line-height: 1.5;
-  padding: 0.75rem;
+  padding: 0.5rem;
 
   appearance: none;
   border: none;
   background: rgba(0, 0, 0, 0.05);
+  color: var(--color);
+}
+
+.field.small input,
+.field.small textarea {
+  padding: 0.25rem 0.5rem;
 }
 
 .field input[type="color"] {

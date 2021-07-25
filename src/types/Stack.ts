@@ -5,8 +5,8 @@ export type Stack = {
   slug: string,
   author: {
     name: string,
-    url: string,
     slug: string,
+    url?: string,
   },
   theme: {
     background: string|null,
@@ -15,3 +15,6 @@ export type Stack = {
   title: string,
   items: StackItem[],
 };
+
+export type ColorKey = 'background'|'text';
+export type AuthorKey = 'url'|'name'|'slug';

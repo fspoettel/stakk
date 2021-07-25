@@ -5,6 +5,9 @@ export function getCoverPath(
   resolution: '1x'|'2x'|'og' = '1x',
   format: 'webp'|'jpg' = 'webp'
 ) {
-  if (item.image) return item.image;
+  if (item.imageId) {
+    return `https://i.stakk.ltd/file/stakk-cdn/${item.imageId}/600x.webp`;
+  }
+
   return `/assets/${resolution}/${item.slug}.${format}`;
 }
