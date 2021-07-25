@@ -1,7 +1,7 @@
 import { DragState } from '../types/DragState';
 import { HiddenState } from '../types/HiddenState';
 import { Stack } from '../types/Stack';
-import { StackItem } from '../types/StackItem';
+import { StackItemFull } from '../types/StackItem';
 
 export type StackState = {
   author: {
@@ -9,7 +9,7 @@ export type StackState = {
     url: string,
   },
   title: string,
-  items: StackItem[],
+  items: StackItemFull[],
   loading: boolean,
   stack: {
     activeIndex: number,

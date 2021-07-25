@@ -9,7 +9,7 @@ import css from './Stack.module.css';
 import { isSpring } from './helpers/constants';
 import springToInnerTransform from './helpers/springToInnerTransform';
 import springToOuterTransform from './helpers/springToOuterTransform';
-import { StackItem } from '../../types/StackItem';
+import { StackItemFull } from '../../types/StackItem';
 import { ReactEventHandlers } from 'react-use-gesture/dist/types';
 import { useEvent } from 'react-use';
 import { getCoverPath } from '../../helpers/getCoverPath';
@@ -20,7 +20,7 @@ type StackMemberProps = {
   spring: unknown,
   index: number,
   isPlaying: boolean,
-  item: StackItem,
+  item: StackItemFull,
 };
 
 function StackMember({

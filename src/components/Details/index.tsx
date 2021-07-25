@@ -9,14 +9,14 @@ import formatDateString from '../../helpers/formatDateString';
 import getArtistString from '../../helpers/getArtistString';
 
 import css from './Details.module.css';
-import { StackItem } from '../../types/StackItem';
+import { StackItemFull } from '../../types/StackItem';
 import getCurrentTrack from './helpers/getCurrentTrack';
 import Headline from '../Headline';
 import MixcloudButton from './MixcloudButton';
 import LinkButton from './SpotifyButton';
 
 type DetailsProps = {
-  item: StackItem,
+  item: StackItemFull,
   playbackIndex?: number,
   playbackProgress: number,
   onTogglePlayback: () => void,

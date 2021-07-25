@@ -16,7 +16,7 @@ import getStackCSSVariables from './helpers/getStackCSSVariables';
 import { updateDraggingSpring, updateRestingSpring } from './helpers/updateSprings';
 import { toSpringStacked } from './helpers/springs/springStacked';
 import StackMember from './StackMember';
-import { StackItem } from '../../types/StackItem';
+import { StackItemFull } from '../../types/StackItem';
 
 type StackProps = {
   activeIndex: number,
@@ -24,7 +24,7 @@ type StackProps = {
   hasInteraction: boolean,
   hiddenItems: Record<string, HiddenState>,
   dragState: DragState,
-  items: StackItem[],
+  items: StackItemFull[],
   playbackIndex?: number,
   // eslint-disable-next-line no-unused-vars
   onDragCommit: (payload: { direction: DragDirection, index: number }) => void,

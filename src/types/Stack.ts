@@ -13,5 +13,5 @@ export type Stack = {
     text: string|null,
   },
   title: string,
-  items: Omit<StackItem, 'index'>[],
+  items: StackItem[],
 };

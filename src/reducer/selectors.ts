@@ -1,5 +1,5 @@
 import exceedsDragThreshold from '../components/Stack/helpers/exceedsDragThreshold';
-import { StackItem } from '../types/StackItem';
+import { StackItemFull } from '../types/StackItem';
 import { StackState } from './getInitialState';
 
 export function getActiveIndex(state: StackState): number {
@@ -10,7 +10,7 @@ export function getPlaybackIndex(state: StackState): number|undefined {
   return state.playback.index;
 }
 
-export function getItems(state: StackState): StackItem[] {
+export function getItems(state: StackState): StackItemFull[] {
   return state.items;
 }
 
@@ -18,11 +18,11 @@ export function getIsLoading(state: StackState): boolean {
   return state.loading;
 }
 
-export function getItemByIndex(state: StackState, index: number): StackItem {
+export function getItemByIndex(state: StackState, index: number): StackItemFull {
   return state.items[index];
 }
 
-export function getActiveItem(state: StackState): StackItem {
+export function getActiveItem(state: StackState): StackItemFull {
   return getItemByIndex(state, getActiveIndex(state));
 }
 
@@ -52,7 +52,7 @@ function getExceedsDragThreshold(state: StackState): boolean {
   return exceedsDragThreshold(dragState);
 }
 
-export function getActiveOrNextItem(state: StackState): StackItem {
+export function getActiveOrNextItem(state: StackState): StackItemFull {
   return getExceedsDragThreshold(state) && !getIsLastItem(state)
     ? getItemByIndex(state, getActiveIndex(state) - 1)
     : getActiveItem(state);

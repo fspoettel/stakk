@@ -1,11 +1,11 @@
 import { SITE_OPERATOR, SITE_URL } from '../constants';
 import { Stack } from '../types/Stack';
-import { StackItem } from '../types/StackItem';
+import { StackItemFull } from '../types/StackItem';
 import { getCoverPath } from './getCoverPath';
 import getArtistString from './getArtistString';
 import getStackMetadata, { StackMetadata } from './getStackMetadata';
 
-function generateRSSItem(item: StackItem, metadata: StackMetadata): string {
+function generateRSSItem(item: StackItemFull, metadata: StackMetadata): string {
   const content = `
         <![CDATA[ 
         <p><img src="${SITE_URL}${getCoverPath(item, 'og', 'jpg')}" /></p>

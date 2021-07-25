@@ -1,11 +1,11 @@
 import { ExternalLink } from '../../../types/ExternalLink';
-import { StackItem } from '../../../types/StackItem';
+import { StackItemFull } from '../../../types/StackItem';
 
 function isMixcloudUrl(url: ExternalLink|string): url is string {
   return typeof url === 'string' && url.includes('mixcloud');
 }
 
-function getMixCloudUrl(playbackItem?: StackItem): string {
+function getMixCloudUrl(playbackItem?: StackItemFull): string {
   if (!playbackItem || !playbackItem.links) return '';
 
   const mixcloudUrl = playbackItem.links.find(isMixcloudUrl);
