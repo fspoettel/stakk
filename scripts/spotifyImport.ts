@@ -10,7 +10,7 @@ dotenv.config({
 });
 
 (async () => {
-  const url = 'https://open.spotify.com/playlist/6LBvAsyp5pGCdkLows6k6c';
+  const url = 'https://open.spotify.com/playlist/3877PFqx7sGMccAWA7tInU';
 
   const { accessToken } = await getAccessToken();
   const playlist = await getPlaylist(accessToken, url);

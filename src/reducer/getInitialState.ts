@@ -1,15 +1,10 @@
 import { DragState } from '../types/DragState';
 import { HiddenState } from '../types/HiddenState';
-import { Stack } from '../types/Stack';
-import { StackItemFull } from '../types/StackItem';
+import { StackItem } from '../types/StackItem';
 
 export type StackState = {
-  author: {
-    name: string,
-    url: string,
-  },
-  title: string,
-  items: StackItemFull[],
+  // todo: try to get rid of this
+  items: StackItem[],
   loading: boolean,
   stack: {
     activeIndex: number,
@@ -24,16 +19,14 @@ export type StackState = {
   }
 };
 
-const getInitialState = (data: Stack): StackState => {
+const getInitialState = (items: StackItem[]): StackState => {
   return {
     /** global state */
-    author: data.author,
-    title: data.title,
-    items: data.items.map((d, i) => ({ ...d, index: i })),
+    items,
     loading: true,
     /** stack state */
     stack: {
-      activeIndex: data.items.length - 1,
+      activeIndex: items.length - 1,
       animationLock: false,
       dragState: { dragging: false },
       hasInteraction: false,

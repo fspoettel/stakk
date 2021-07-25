@@ -1,13 +1,14 @@
 import { Dispatch } from 'react';
 import { DragState } from '../types/DragState';
 import { HiddenState } from '../types/HiddenState';
-import { Stack } from '../types/Stack';
+import { StackItem } from '../types/StackItem';
 import {
   ClearAction,
   DragStateAction,
   LoadAction,
   NextAction,
   PrevAction,
+  ReinitAction,
   ResetAction,
   StopPlaybackAction,
   ToAction,
@@ -17,6 +18,10 @@ import {
 
 export function load(dispatch: Dispatch<LoadAction>) {
   dispatch({ type: 'load' });
+}
+
+export function reinit(dispatch: Dispatch<ReinitAction>, data: StackItem[]) {
+  dispatch({ type: 'reinit', data });
 }
 
 type NextPayload = {
@@ -38,13 +43,13 @@ export function prev(dispatch: Dispatch<PrevAction>) {
 }
 
 type ResetPayload = {
-  data: Stack,
+  items: StackItem[],
   playbackIndex?: number,
 };
 
 export function reset(
   dispatch: Dispatch<ResetAction|ToAction|ClearAction>,
-  { data, playbackIndex }: ResetPayload
+  { items, playbackIndex }: ResetPayload
 ) {
   if (playbackIndex != null) {
     dispatch({ type: 'stackTo', index: playbackIndex });
@@ -52,7 +57,7 @@ export function reset(
     dispatch({ type: 'stackClear' });
 
     setTimeout(() => {
-      dispatch({ type: 'reset', data });
+      dispatch({ type: 'reset', items });
     }, 200);
   }
 }

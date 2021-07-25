@@ -4,6 +4,7 @@ import { Tracklist } from './Tracklist';
 export type StackItem = {
   id: string,
   slug: string,
+  image?: string,
   title: string,
   tags: string[],
   links?: (ExternalLink|string)[],

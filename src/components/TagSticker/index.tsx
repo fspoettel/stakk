@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { StackItemFull } from '../../types/StackItem';
+import { StackItem } from '../../types/StackItem';
 import css from './TagSticker.module.css';
 
 type TagStickerProps = {
-  item: StackItemFull,
+  item: StackItem,
 };
 
 function TagSticker({ item }: TagStickerProps) {

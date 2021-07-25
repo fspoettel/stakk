@@ -1,0 +1,67 @@
+.form-header {
+  margin-bottom: 1.5rem;
+}
+
+.form-footer {
+  margin-top: 0.5rem;
+}
+
+.field {
+  width: 100%;
+}
+
+.fieldgroup-fields {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+}
+
+.fieldgroup-fields .field + .field {
+  margin-top: 0;
+}
+
+.fieldgroup.full .fieldgroup-fields {
+  grid-template-columns: 1fr;
+}
+
+.fieldgroup-header {
+  margin-bottom: 1rem;
+}
+
+.field label {
+  font-size: 1rem;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 0.75rem;
+
+  appearance: none;
+  border: none;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.field input[type="color"] {
+  min-height: 3rem;
+}
+
+.field textarea {
+  min-height: 5rem;
+  max-width: 100%;
+}
+
+.field + .field {
+  margin-top: 1rem;
+}
+
+.field + .fieldgroup {
+  margin-top: 1.5rem;
+}
+
+.fieldgroup + .fieldgroup {
+  margin-top: 1.5rem;
+}

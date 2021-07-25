@@ -1,13 +1,12 @@
 import React,{ useCallback, useEffect, useReducer } from 'react';
 import { useKey } from 'react-use';
+import { KeyFilter } from 'react-use/lib/useKey';
 import cx from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronSquareLeft, faChevronSquareRight, faSpinner, faStop, faUndo } from '@fortawesome/pro-solid-svg-icons';
 
 import { HiddenState } from '../../types/HiddenState';
 import { Stack as StackData } from '../../types/Stack';
-import { rafPromise } from '../../helpers/rafPromise';
-import setRootCSSVariable from '../../helpers/setRootCSSVariable';
 import preloadImage from '../../helpers/preloadImage';
 import getMixCloudUrl from './helpers/getMixcloudUrl';
 import Details from '../Details';
@@ -26,18 +25,27 @@ import { getCoverPath } from '../../helpers/getCoverPath';
 
 type StackContainerProps = {
   data: StackData;
+  hideDragIndicator?: boolean;
+  hideInitialAnimation?: boolean;
 };
 
-function StackContainer({ data }: StackContainerProps) {
-  const [state, dispatch] = useReducer(stackReducer, getInitialState(data));
+function keyPredicate(key: string): KeyFilter {
+  return (event: KeyboardEvent): boolean => {
+    if (event.key !== key) return false;
+    if (event.target instanceof Element) {
+      return event.target.tagName !== 'INPUT';
+    } else {
+      return true;
+    }
+  };
+}
 
-  const items = selectors.getItems(state);
+function StackContainer({ data, hideDragIndicator, hideInitialAnimation }: StackContainerProps) {
+  const [state, dispatch] = useReducer(stackReducer, getInitialState(data.items));
+
+  const items = data.items;
+
   const loading = selectors.getIsLoading(state);
-
-  useEffect(() => {
-    setRootCSSVariable('--color', data?.theme?.text);
-    setRootCSSVariable('--background-color', data?.theme?.background);
-  }, [data]);
 
   useEffect(() => {
     function run() {
@@ -45,10 +53,10 @@ function StackContainer({ data }: StackContainerProps) {
         preloadImage('/assets/overlay-600px.webp'),
         ...items.map(item => preloadImage(getCoverPath(item)).catch(err => console.error(err))),
       ])
-      .then(rafPromise)
       .then(() => actions.load(dispatch));
     }
 
+    actions.reinit(dispatch, items);
     run();
   }, [items]);
 
@@ -74,8 +82,8 @@ function StackContainer({ data }: StackContainerProps) {
   }, [activeIndex]);
 
   const onReset = useCallback(() => {
-    actions.reset(dispatch, { data, playbackIndex });
-  }, [data, playbackIndex]);
+    actions.reset(dispatch, { items, playbackIndex });
+  }, [items, playbackIndex]);
 
   const onSetDrageState = useCallback((dragState) => {
     actions.setDragState(dispatch, { dragState });
@@ -93,8 +101,8 @@ function StackContainer({ data }: StackContainerProps) {
     actions.setTrackProgress(dispatch, { progress });
   }, []);
 
-  useKey('ArrowRight', onNextGeneric, {}, [onNext]);
-  useKey('ArrowLeft', onPrev, {}, [onPrev]);
+  useKey(keyPredicate('ArrowRight'), onNextGeneric, {}, [onNext]);
+  useKey(keyPredicate('ArrowLeft'), onPrev, {}, [onPrev]);
 
   return (
     <div
@@ -102,6 +110,10 @@ function StackContainer({ data }: StackContainerProps) {
         css.stackcontainer,
         { [css['playing']]: isPlaying }
       ])}
+      style={{
+        '--color': data?.theme?.text ?? 'var(--color)',
+        '--background-color': data?.theme?.background ?? 'var(--background-color)',
+      }}
     >
       <main className={css.content}>
         {loading
@@ -116,17 +128,22 @@ function StackContainer({ data }: StackContainerProps) {
             <>
               <Stack
                 {...state.stack}
+                hasInteraction={!!hideDragIndicator || state.stack.hasInteraction}
+                hideInitialAnimation={hideInitialAnimation}
+                isStatic={isStatic}
                 items={items}
-                playbackIndex={playbackIndex}
-                onDragCommit={onNext}
                 onDrag={onSetDrageState}
+                onDragCommit={onNext}
+                playbackIndex={playbackIndex}
               />
               {activeItem && (
                 <Details
+                  hideInitialAnimation={hideInitialAnimation}
+                  index={activeIndex}
                   item={selectors.getActiveOrNextItem(state)}
+                  onTogglePlayback={onTogglePlayback}
                   playbackIndex={playbackIndex}
                   playbackProgress={playbackProgress}
-                  onTogglePlayback={onTogglePlayback}
                 />
               )}
             </>
@@ -134,9 +151,9 @@ function StackContainer({ data }: StackContainerProps) {
         }
       </main>
       <Header
-        authorName={selectors.getAuthorName(state)}
-        authorUrl={selectors.getAuthorUrl(state)}
-        title={selectors.getTitle(state)}
+        authorName={data.author.name}
+        authorUrl={data.author.url}
+        title={data.title}
         actions={isStatic ? [] : [
           {
             key: 'stopPlayback',

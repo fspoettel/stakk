@@ -16,6 +16,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 2;
 }
 
 .stack-item-inner {
@@ -43,7 +44,7 @@
   transform: translateX(-50%);
   text-align: center;
   max-width: calc(var(--item-height) / 2.5);
-  z-index: -1;
+  z-index: 1;
   animation: instructions ease-out 0.35s both;
 }
 

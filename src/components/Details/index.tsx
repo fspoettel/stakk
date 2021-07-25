@@ -9,21 +9,25 @@ import formatDateString from '../../helpers/formatDateString';
 import getArtistString from '../../helpers/getArtistString';
 
 import css from './Details.module.css';
-import { StackItemFull } from '../../types/StackItem';
+import { StackItem } from '../../types/StackItem';
 import getCurrentTrack from './helpers/getCurrentTrack';
 import Headline from '../Headline';
 import MixcloudButton from './MixcloudButton';
 import LinkButton from './SpotifyButton';
 
 type DetailsProps = {
-  item: StackItemFull,
+  hideInitialAnimation?: boolean,
+  index: number,
+  item: StackItem,
   playbackIndex?: number,
   playbackProgress: number,
   onTogglePlayback: () => void,
 };
 
 function Details({
+  hideInitialAnimation,
   item,
+  index,
   playbackIndex,
   playbackProgress,
   onTogglePlayback,
@@ -45,10 +49,10 @@ function Details({
     config: {
       duration: 325
     },
-    delay: initial ? 500 : undefined,
+    delay: initial && !hideInitialAnimation ? 500 : undefined,
   });
 
-  const playing = item.index === playbackIndex;
+  const playing = index === playbackIndex;
 
   const currentTrack = playing && item.tracklist && playbackProgress > 0
     ? getCurrentTrack(item.tracklist, playbackProgress)

@@ -1,0 +1,16 @@
+.editoritems-listing {
+  padding: 0;
+  margin: 0;
+}
+
+.editoritems-item {
+  list-style: none;
+  padding: 0.5rem;
+  border: 1px solid var(--color);
+  margin-bottom: 1rem;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}

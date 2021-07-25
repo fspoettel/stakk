@@ -33,9 +33,10 @@ function Button({
       href={href}
       className={cx([
         css.button,
-        { [css[cssVariant]]: cssVariant != null }
+        { [css[cssVariant]]: cssVariant !== '' }
       ])}
       ref={popperRef}
+      type={Tag === 'button' ? (rest.type ?? 'button') : undefined}
     >
       {icon && (
         <FontAwesomeIcon

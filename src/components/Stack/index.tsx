@@ -16,15 +16,17 @@ import getStackCSSVariables from './helpers/getStackCSSVariables';
 import { updateDraggingSpring, updateRestingSpring } from './helpers/updateSprings';
 import { toSpringStacked } from './helpers/springs/springStacked';
 import StackMember from './StackMember';
-import { StackItemFull } from '../../types/StackItem';
+import { StackItem } from '../../types/StackItem';
 
 type StackProps = {
   activeIndex: number,
   animationLock: boolean,
   hasInteraction: boolean,
+  hideInitialAnimation?: boolean,
   hiddenItems: Record<string, HiddenState>,
   dragState: DragState,
-  items: StackItemFull[],
+  items: StackItem[],
+  isStatic: boolean,
   playbackIndex?: number,
   // eslint-disable-next-line no-unused-vars
   onDragCommit: (payload: { direction: DragDirection, index: number }) => void,
@@ -46,6 +48,8 @@ function Stack({
   animationLock,
   hasInteraction,
   hiddenItems,
+  hideInitialAnimation,
+  isStatic,
   dragState,
   items,
   playbackIndex,
@@ -53,11 +57,10 @@ function Stack({
   onDrag,
 }: StackProps) {
   const stackSize = items.length;
-  const [springs, api] = useSprings(items.length, toSpringStacked(stackSize, true));
+  const [springs, api] = useSprings(items.length, toSpringStacked(stackSize, !hideInitialAnimation));
 
   const isFirstItem = activeIndex === items.length - 1;
   const isLastItem = activeIndex === 0;
-  const isStatic = items.length === 1;
 
   const shouldAnimateChanges = !dragState.dragging
     && isFirstItem

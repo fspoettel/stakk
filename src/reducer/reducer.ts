@@ -1,8 +1,13 @@
 import { DragState } from '../types/DragState';
 import { HiddenState } from '../types/HiddenState';
-import { Stack } from '../types/Stack';
+import { StackItem } from '../types/StackItem';
 import getInitialState, { StackState } from './getInitialState';
 import { getActiveIndex, getIsFirstItem, getIsLastItem, getPlaybackIndex } from './selectors';
+
+export type ReinitAction = {
+  type: 'reinit',
+  data: StackItem[]
+};
 
 export type LoadAction = {
   type: 'load',
@@ -19,7 +24,7 @@ export type PrevAction = {
 
 export type ResetAction = {
   type: 'reset',
-  data: Stack,
+  items: StackItem[],
 };
 
 export type ToAction = {
@@ -49,12 +54,12 @@ export type TrackProgressAction = {
   progress: number,
 };
 
-type AnyAction = LoadAction|NextAction|PrevAction|ResetAction|ToAction|ClearAction|DragStateAction|TogglePlaybackAction|StopPlaybackAction|TrackProgressAction;
+type AnyAction = ReinitAction|LoadAction|NextAction|PrevAction|ResetAction|ToAction|ClearAction|DragStateAction|TogglePlaybackAction|StopPlaybackAction|TrackProgressAction;
 
 export default function reducer(state: StackState, action: AnyAction): StackState {
   switch (action.type) {
     case 'reset': {
-      const initialState = getInitialState(action.data);
+      const initialState = getInitialState(action.items);
       return {
         ...initialState,
         stack: {
@@ -63,6 +68,11 @@ export default function reducer(state: StackState, action: AnyAction): StackStat
         },
         loading: false,
       };
+    }
+
+    case 'reinit': {
+      const initialState = getInitialState(action.data);
+      return initialState;
     }
 
     case 'load': {
