@@ -14,9 +14,6 @@
     "es6": true,
     "node": true
   },
-  "globals": {
-    "SpotifyApi": true
-  },
   "rules": {
     "quotes": [
       "warn",
