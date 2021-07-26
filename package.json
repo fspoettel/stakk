@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build": "lerna run build --scope=@stakk/api --stream",
+    "postinstall": "yarn run build",
     "start": "lerna run start --scope=@stakk/api --stream"
   },
   "devDependencies": {

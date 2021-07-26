@@ -4,7 +4,7 @@
   "author": "Felix Spöttel <1682504+fspoettel@users.noreply.github.com>",
   "license": "UNLICENSED",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --verbose",
     "dev": "tsc && (tsc -w & nodemon dist/server.js)",
     "start": "node dist/api/src/server.js",
     "lint": "eslint src",
@@ -20,7 +20,8 @@
     "file-type": "^16.5.2",
     "got": "^11.8.2",
     "sharp": "^0.28.3",
-    "slugify": "^1.6.0"
+    "slugify": "^1.6.0",
+    "typescript": "^4.3.5"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
@@ -31,7 +32,6 @@
     "@typescript-eslint/eslint-plugin": "^4.28.4",
     "@typescript-eslint/parser": "^4.28.4",
     "eslint": "^7.31.0",
-    "nodemon": "^2.0.12",
-    "typescript": "^4.3.5"
+    "nodemon": "^2.0.12"
   }
 }
