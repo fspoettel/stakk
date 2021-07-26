@@ -7,7 +7,6 @@
       "esnext"
     ],
     "allowJs": false,
-    "composite": true,
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
@@ -30,8 +29,5 @@
   ],
   "exclude": [
     "node_modules"
-  ],
-  "references": [
-    { "path": "../types" }
   ]
 }
