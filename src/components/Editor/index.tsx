@@ -50,6 +50,7 @@ function Editor() {
   return (
     <main className={css['editor']}>
       <Form
+        className={css['editor-form']}
         footer={(
           <>
             <Button type='submit'>Get Code</Button>
