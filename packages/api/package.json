@@ -4,7 +4,7 @@
   "author": "Felix Spöttel <1682504+fspoettel@users.noreply.github.com>",
   "license": "UNLICENSED",
   "scripts": {
-    "build": "tsc --verbose",
+    "build": "tsc --build --verbose",
     "dev": "tsc && (tsc -w & nodemon dist/server.js)",
     "start": "node dist/api/src/server.js",
     "lint": "eslint src",
