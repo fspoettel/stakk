@@ -8,6 +8,7 @@ import ButtonWithTooltip from '../ButtonWithTooltip';
 import Field from '../Form/Field';
 
 import css from './EditorItems.module.css';
+import fetchMixcloudShow from '../../helpers/fetchMixcloudShow';
 
 type EditorItemsProps = {
   items: StackItem[],
@@ -19,20 +20,26 @@ function EditorItems({ items, onItemAdd, onItemDelete }: EditorItemsProps) {
   const [url, setUrl] = useState('');
   const [fetching, setFetching] = useState(false);
 
-  const isUrlValid = /https:\/\/open\.spotify\.com\/playlist\/.*/.test(url);
+  const isSpotifyUrl = /https:\/\/open\.spotify\.com\/playlist\/.*/.test(url);
+  const isMixcloudUrl = /https:\/\/www\.mixcloud\.com\/.*/.test(url);
+
+  const isUrlValid = isSpotifyUrl || isMixcloudUrl;
 
   const onItemSubmit = useCallback(async () => {
     setFetching(true);
 
     try {
-      const item = await fetchSpotifyPlaylist(url);
+      const item = isSpotifyUrl
+        ? await fetchSpotifyPlaylist(url)
+        : await fetchMixcloudShow(url);
+
       onItemAdd(item);
     } finally {
       setFetching(false);
       setUrl('');
     }
 
-  }, [onItemAdd, setFetching, url]);
+  }, [isSpotifyUrl, onItemAdd, setFetching, url]);
 
   const onUrlChange = useCallback((evt: ChangeEvent<HTMLInputElement>) => {
     setUrl(evt.target.value);
@@ -64,7 +71,7 @@ function EditorItems({ items, onItemAdd, onItemDelete }: EditorItemsProps) {
           label='URL'
           size='small'
           onChange={onUrlChange}
-          placeholder='enter a spotify playlist link...'
+          placeholder='enter a (spotify or mixcloud) playlist link...'
           value={url}
         >
           {(props) => (<input type='text' {...props} />)}

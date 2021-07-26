@@ -19,10 +19,3 @@ node_modules
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-.next
-
-# generated folders
-content
-public/assets
-public/rss

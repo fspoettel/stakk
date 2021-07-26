@@ -98,9 +98,10 @@ function Details({
             })}
           </ButtonGroup>
         </nav>
-        {!playing && item.tracklist && (
+        {!playing && item.tracklist && item.tracklist.length > 0 && (
           <p className={css['details-artists']}>{formatDateString(item.createdAt)} / with {artists}</p>
         )}
+
         {currentTrack && (
           <p className={css['details-artists']}>
             <FontAwesomeIcon icon={faWaveform} />

@@ -1,13 +1,12 @@
 {
   "name": "@stakk/api",
   "version": "1.0.0",
-  "main": "index.js",
   "author": "Felix Spöttel <1682504+fspoettel@users.noreply.github.com>",
   "license": "UNLICENSED",
   "scripts": {
     "build": "tsc",
     "dev": "tsc && (tsc -w & nodemon dist/server.js)",
-    "start": "node dist/server.js",
+    "start": "node dist/api/src/server.js",
     "lint": "eslint src",
     "test": "yarn build"
   },
