@@ -1,3 +1,5 @@
+import { DragEndEvent } from '@dnd-kit/core';
+import { arrayMove } from '@dnd-kit/sortable';
 import slugify from 'slugify';
 import { AuthorKey, ColorKey } from '@stakk/types/Stack';
 import { StackItem } from '@stakk/types/StackItem';
@@ -30,7 +32,12 @@ type ItemAddAction = {
   item: StackItem
 };
 
-type AnyAction = TitleChangeAction|ColorChangeAction|AuthorChangeAction|ItemDeleteAction|ItemAddAction;
+type ItemsSortAction = {
+  type: 'items-sort',
+  event: DragEndEvent
+};
+
+type AnyAction = TitleChangeAction|ColorChangeAction|AuthorChangeAction|ItemDeleteAction|ItemAddAction|ItemsSortAction;
 
 function reducer(state: EditorState, action: AnyAction) {
   switch (action.type) {
@@ -105,6 +112,23 @@ function reducer(state: EditorState, action: AnyAction) {
       return {
         ...state,
         stack: { ...state.stack, items: [...state.stack.items, action.item] },
+      };
+    }
+
+    case 'items-sort': {
+      const { active, over } = action.event;
+      if (!over?.id) return state;
+
+      const items = state.stack.items;
+  
+      const oldIndex = items.findIndex(item => item.id === active.id);
+      const newIndex = items.findIndex(item => item.id === over.id);
+
+      const nextItems = arrayMove(items, oldIndex, newIndex);
+
+      return {
+        ...state,
+        stack: { ...state.stack, items: nextItems },
       };
     }
 

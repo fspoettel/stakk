@@ -8,7 +8,7 @@
   padding: 2rem;
 }
 
-@media screen and (min-width: 40rem) {
+@media screen and (min-width: 62.5rem) {
   .editor {
     display: flex;
     flex-flow: row nowrap;

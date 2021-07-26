@@ -12,6 +12,8 @@ import getInitialState from './reducer/getInitialState';
 import css from './Editor.module.css';
 import Button from '../Button';
 import { useCopyToClipboard } from 'react-use';
+import ButtonGroup from '../ButtonGroup';
+import { SortCallback } from '../SortableList/interfaces';
 
 function Editor() {
   const [state, dispatch] = useReducer(reducer, getInitialState());
@@ -25,6 +27,10 @@ function Editor() {
       const id = evt.currentTarget.dataset.id;
       dispatch({ type: 'item-delete', id });
     }
+  };
+
+  const onItemsSort: SortCallback = (event) => {
+    dispatch({ type: 'items-sort', event });
   };
 
   const onTitleChange = (evt: ChangeEvent<HTMLInputElement>) => {
@@ -53,7 +59,10 @@ function Editor() {
         className={css['editor-form']}
         footer={(
           <>
-            <Button type='submit'>Get Code</Button>
+            <ButtonGroup>
+              <Button type='submit'>Get Code</Button>
+              <Button disabled>Load Stack</Button>
+            </ButtonGroup>
             {clipboardState.error
               ? <p>Unable to copy value: {clipboardState.error.message}</p>
               : clipboardState.value && <p>Copied to clipboard!</p>}
@@ -114,7 +123,8 @@ function Editor() {
           </Field>
           <Field
             name='author-name'
-            label='URL'
+            label='Profile URL'
+            placeholder='your website / insta / tik-tok'
             onChange={makeOnAuthorChange('url')}
             value={state.stack.author.url ?? ''}
           >
@@ -127,6 +137,7 @@ function Editor() {
             items={state.stack.items}
             onItemAdd={onItemAdd}
             onItemDelete={onItemDelete}
+            onSort={onItemsSort}
           />
         </FieldGroup>
       </Form>

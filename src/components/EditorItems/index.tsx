@@ -1,6 +1,7 @@
-import { faSave, faSpinner, faTrash } from '@fortawesome/pro-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ChangeEvent, MouseEventHandler, useCallback, useState } from 'react';
+import cx from 'classnames';
+import { faGripVertical, faSave, faSpinner, faTrash } from '@fortawesome/pro-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import fetchSpotifyPlaylist from '../../helpers/fetchSpotifyPlaylist';
 import { StackItem } from '@stakk/types/StackItem';
 import ButtonGroup from '../ButtonGroup';
@@ -9,14 +10,18 @@ import Field from '../Form/Field';
 
 import css from './EditorItems.module.css';
 import fetchMixcloudShow from '../../helpers/fetchMixcloudShow';
+import SortableList from '../SortableList';
+import Button from '../Button';
+import { SortCallback } from '../SortableList/interfaces';
 
 type EditorItemsProps = {
   items: StackItem[],
   onItemAdd: (item: StackItem) => void,
   onItemDelete: MouseEventHandler;
+  onSort: SortCallback
 };
 
-function EditorItems({ items, onItemAdd, onItemDelete }: EditorItemsProps) {
+function EditorItems({ items, onItemAdd, onItemDelete, onSort }: EditorItemsProps) {
   const [url, setUrl] = useState('');
   const [fetching, setFetching] = useState(false);
 
@@ -47,21 +52,39 @@ function EditorItems({ items, onItemAdd, onItemDelete }: EditorItemsProps) {
 
   return (
     <div className={css['editoritems']}>
-      <ol className={css['editoritems-listing']}>
-        {items.map((item) => (
-          <li className={css['editoritems-item']} key={item.id}>
-            <span>{item.title}</span>
-            <ButtonGroup className={css['editoritems-item-actions']}>
-              <ButtonWithTooltip
-                data-id={item.id}
-                icon={faTrash}
-                onClick={onItemDelete}
-                tooltip='delete item'
-              />
-            </ButtonGroup>
-          </li>
-        ))}
-      </ol>
+      <SortableList
+        items={items}
+        onSort={onSort}
+      >
+        {({ item, dragging, listeners }) => {
+          if (!item || typeof item.title === undefined) return null;
+
+          return (
+            <div
+              className={cx([
+                css['editoritems-item'],
+                { [css.dragging]: dragging }
+              ])}
+              key={item.id}
+            >
+              <span>{typeof item.title === 'string' ? item.title : item.id}</span>
+              <ButtonGroup className={css['editoritems-item-actions']}>
+                <ButtonWithTooltip
+                  data-id={item.id}
+                  icon={faTrash}
+                  onClick={onItemDelete}
+                  tooltip='delete item'
+                />
+                <Button
+                  {...listeners}
+                  icon={faGripVertical}
+                  style={{ cursor: 'grab' }}
+                />
+              </ButtonGroup>
+            </div>
+          );
+        }}
+      </SortableList>
 
       <div className={css['editoritems-add']}>
         <Field
@@ -69,7 +92,6 @@ function EditorItems({ items, onItemAdd, onItemDelete }: EditorItemsProps) {
           name='add-item'
           hideLabel
           label='URL'
-          size='small'
           onChange={onUrlChange}
           placeholder='enter a (spotify or mixcloud) playlist link...'
           value={url}
