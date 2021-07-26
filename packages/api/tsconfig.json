@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
       "allowSyntheticDefaultImports": true,
+      "composite": true,
       "esModuleInterop": true,
       "isolatedModules": true,
       "module": "commonjs",
@@ -21,5 +22,8 @@
   ],
   "exclude": [
     "node_modules"
+  ],
+  "references": [
+    { "path": "../types" }
   ]
 }

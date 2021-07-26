@@ -7,8 +7,7 @@
     ]
   },
   "scripts": {
-    "postinstall": "lerna run build --scope=@stakk/api --stream",
-    "start": "lerna run start --scope=@stakk/api --stream"
+    "start": "lerna run build --scope=@stakk/api --stream && lerna run start --scope=@stakk/api --stream"
   },
   "devDependencies": {
     "lerna": "^4.0.0"
