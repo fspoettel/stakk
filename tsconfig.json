@@ -19,7 +19,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "paths": {
-      "@stakk/types/*": ["../types/src/*"]
+      "@stakk/types/*": ["./src/types/*"]
     }
   },
   "include": [
