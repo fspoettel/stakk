@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "lerna run start --scope=@stakk/api --stream",
-    "build": "lerna run build --scope@stakk/api --stream"
+    "build": "lerna run build --scope=@stakk/api --stream"
   },
   "devDependencies": {
     "lerna": "^4.0.0"
