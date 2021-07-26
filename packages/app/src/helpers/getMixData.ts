@@ -27,7 +27,9 @@ export async function getDataForAllMixes(): Promise<Stack[]> {
   const paths = await scan(dir, []);
 
   const files = await Promise.all(
-    paths.map(path => fsPromises.readFile(path, { encoding: 'utf-8' }))
+    paths
+      .filter(path => path.endsWith('json'))
+      .map(path => fsPromises.readFile(path, { encoding: 'utf-8' }))
   );
 
   return files.map(str => JSON.parse(str));
