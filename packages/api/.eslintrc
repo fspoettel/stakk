@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "../../.eslintrc"
+  ],
+  "env": {
+    "node": true
+  },
+  "globals": {
+    "SpotifyApi": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  }
+}

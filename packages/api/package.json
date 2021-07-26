@@ -1,0 +1,37 @@
+{
+  "name": "@stakk/api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Felix Spöttel <1682504+fspoettel@users.noreply.github.com>",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc && (tsc -w & nodemon dist/server.js)",
+    "start": "node dist/server.js",
+    "lint": "eslint src",
+    "test": "yarn build"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.953.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "cuid": "^2.1.8",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "got": "^11.8.2",
+    "sharp": "^0.28.3",
+    "slugify": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/node": "^16.4.2",
+    "@types/sharp": "^0.28.4",
+    "@types/spotify-api": "^0.0.11",
+    "@typescript-eslint/eslint-plugin": "^4.28.4",
+    "@typescript-eslint/parser": "^4.28.4",
+    "eslint": "^7.31.0",
+    "nodemon": "^2.0.12",
+    "typescript": "^4.3.5"
+  }
+}
