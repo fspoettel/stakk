@@ -12,7 +12,7 @@ import css from './Stack.module.css';
 import { isSpring } from './helpers/constants';
 import springToInnerTransform from './helpers/springToInnerTransform';
 import springToOuterTransform from './helpers/springToOuterTransform';
-import { getCoverPath } from '../../helpers/getCoverPath';
+import getCoverPath from '../../helpers/getCoverPath';
 
 type StackMemberProps = {
   // eslint-disable-next-line no-unused-vars

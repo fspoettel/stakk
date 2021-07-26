@@ -13,7 +13,7 @@ export type ShowResponse = {
   tags: ShowTag[];
   created_time: string;
   pictures: {
-    extra_large: string;
+    '1024wx1024h': string;
   },
   slug: string;
   description: string;

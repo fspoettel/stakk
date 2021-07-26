@@ -22,7 +22,6 @@ export async function getDataForAllMixes(): Promise<Stack[]> {
   const dir = path.join(
     process.cwd(),
     'content',
-    'data',
   );
 
   const paths = await scan(dir, []);
@@ -38,7 +37,6 @@ export async function getDataForAllUserMixes(user: string): Promise<Stack[]> {
   const dir = path.join(
     process.cwd(),
     'content',
-    'data',
     user,
   );
 
@@ -55,7 +53,6 @@ export async function getMixData(user: string, name: string): Promise<Stack> {
   const filePath = path.join(
     process.cwd(),
     'content',
-    'data',
     user,
     `${name}.json`,
   );

@@ -22,7 +22,6 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^11.0.1",
-    "@squoosh/cli": "^0.7.2",
     "@types/decompress": "^4.2.4",
     "@types/minimist": "^1.2.2",
     "@types/node": "^16.4.0",
@@ -42,8 +41,7 @@
   },
   "scripts": {
     "analyze": "ANALYZE=true next build",
-    "assets:generate": "./scripts/generateAssets.sh",
-    "build:ci": "yarn content:sync && yarn assets:generate && yarn build",
+    "build:ci": "yarn content:sync && yarn build",
     "build": "next build",
     "content:sync": "ts-node --project ./scripts/scripts.tsconfig.json ./scripts/syncContent.ts",
     "cue:generate": "ts-node --project ./scripts/scripts.tsconfig.json ./scripts/generateCueSheet.ts",

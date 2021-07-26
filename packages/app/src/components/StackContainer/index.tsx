@@ -9,7 +9,7 @@ import { Stack as StackData } from '@stakk/types/Stack';
 import { HiddenState } from '../../types/HiddenState';
 import preloadImage from '../../helpers/preloadImage';
 import getMixCloudUrl from './helpers/getMixcloudUrl';
-import { getCoverPath } from '../../helpers/getCoverPath';
+import getCoverPath from '../../helpers/getCoverPath';
 import Details from '../Details';
 import Footer from '../Footer';
 import Header from '../Header';
@@ -40,8 +40,8 @@ function keyPredicate(key: string): KeyFilter {
 }
 
 interface StackContainerStyle extends React.CSSProperties {
-  '--color': string;
-  '--background-color': string;
+  '--color'?: string;
+  '--background-color'?: string;
 }
 
 function StackContainer({ data, hideDragIndicator, hideInitialAnimation }: StackContainerProps) {
@@ -109,8 +109,8 @@ function StackContainer({ data, hideDragIndicator, hideInitialAnimation }: Stack
   useKey(keyPredicate('ArrowLeft'), onPrev, {}, [onPrev]);
 
   const stackContainerStyle: StackContainerStyle = {
-    '--color': data?.theme?.text ?? 'var(--color)',
-    '--background-color': data?.theme?.background ?? 'var(--background-color)',
+    '--color': data?.theme?.text ?? undefined,
+    '--background-color': data?.theme?.background ?? undefined,
   };
 
   return (

@@ -1,4 +1,5 @@
 import cuid from 'cuid';
+import FileType from 'file-type';
 import sharp from 'sharp';
 import { Readable, PassThrough, pipeline as _pipeline } from 'stream';
 import { promisify } from 'util';
@@ -20,14 +21,19 @@ function makeVersion(id: string, version: string) {
 }
 
 async function storeImage(image: Buffer): Promise<string> {
+  const fileType = await FileType.fromBuffer(image);
+  if (!fileType?.mime.startsWith('image')) throw new TypeError('not an image');
+
   const sourceStream = Readable.from(image);
 
-  const imageId = cuid();
+  const imageId = `${process.env.STAKK_ENV}/${cuid()}`;
 
-  const original = makeVersion(imageId, 'source.jpg');
+  const original = makeVersion(imageId, `source.${fileType.ext}`);
   const optimized = makeVersion(imageId, '600x.webp');
 
-  const processor = sharp().resize(600).webp();
+  const processor = sharp()
+    .resize(600)
+    .webp({ quality: 85 });
 
   await Promise.all([
     pipeline(sourceStream, original.writableStream),

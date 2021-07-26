@@ -16,5 +16,5 @@ export function toStackItem(show: ShowResponse): StackItem {
 }
 
 export function toImageUrl(show: ShowResponse): string|null {
-  return show.pictures.extra_large;
+  return show.pictures['1024wx1024h'];
 }

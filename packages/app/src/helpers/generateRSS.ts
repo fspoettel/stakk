@@ -1,7 +1,7 @@
 import { SITE_OPERATOR, SITE_URL } from '../constants';
 import { Stack } from '@stakk/types/Stack';
 import { StackItem } from '@stakk/types/StackItem';
-import { getCoverPath } from './getCoverPath';
+import getCoverPath from './getCoverPath';
 import getArtistString from './getArtistString';
 import getStackMetadata, { StackMetadata } from './getStackMetadata';
 
