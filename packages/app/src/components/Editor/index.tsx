@@ -11,6 +11,7 @@ import getInitialState from './reducer/getInitialState';
 
 import css from './Editor.module.css';
 import Button from '../Button';
+import { useCopyToClipboard } from 'react-use';
 
 function Editor() {
   const [state, dispatch] = useReducer(reducer, getInitialState());
@@ -38,16 +39,25 @@ function Editor() {
     dispatch({ type: 'author-change', value: evt.target.value, key });
   };
 
+  const [clipboardState, copyToClipboard] = useCopyToClipboard();
+
   const onFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    console.log(state.stack);
+    copyToClipboard(JSON.stringify(state.stack, null, 4));
     return false;
   };
 
   return (
     <main className={css['editor']}>
       <Form
-        footer={<Button type='submit'>Get Code</Button>}
+        footer={(
+          <>
+            <Button type='submit'>Get Code</Button>
+            {clipboardState.error
+              ? <p>Unable to copy value: {clipboardState.error.message}</p>
+              : clipboardState.value && <p>Copied to clipboard!</p>}
+          </>
+        )}
         onSubmit={onFormSubmit}
         title='Stack Editor'
       >

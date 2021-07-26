@@ -15,7 +15,7 @@ app.set('port', process.env.PORT || 3000);
 app.use(bodyParser.json());
 
 app.use(cors({
-  origin: process.env.APP_URL
+  origin: process.env.APP_ORIGIN
 }));
 
 app.post('/api/v1/spotify_playlist', asyncHandler(postSpotifyUrl));
