@@ -29,10 +29,7 @@ function SortableItem({ item, renderItem }: SortableItemProps) {
       {...attributes}
       style={style}
     >
-      {renderItem({
-        item,
-        listeners
-      })}
+      {renderItem({ item, listeners })}
     </div>
   );
 }

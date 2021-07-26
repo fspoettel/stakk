@@ -4,7 +4,6 @@ import {
   DragOverlay,
   closestCenter,
   PointerSensor,
-  TouchSensor,
   useSensor,
   useSensors,
   DragEndEvent,
@@ -16,7 +15,7 @@ import {
 } from '@dnd-kit/sortable';
 import {
   restrictToVerticalAxis,
-  restrictToWindowEdges,
+  restrictToParentElement
 } from '@dnd-kit/modifiers';
 import SortableItem from './SortableItem';
 import { RenderProps, SortableItemData, SortCallback } from './interfaces';
@@ -30,10 +29,7 @@ type SortableListProps = {
 function SortableList({ items, onSort, children }: SortableListProps) {
   const [activeId, setActiveId] = useState<string|null>(null);
 
-  const sensors = useSensors(
-    useSensor(PointerSensor),
-    useSensor(TouchSensor)
-  );
+  const sensors = useSensors(useSensor(PointerSensor));
 
   const handleDragStart = (event: DragStartEvent) => {
     setActiveId(event.active.id);
@@ -65,7 +61,7 @@ function SortableList({ items, onSort, children }: SortableListProps) {
           />
         ))}
       </SortableContext>
-      <DragOverlay modifiers={[restrictToWindowEdges]}>
+      <DragOverlay modifiers={[restrictToParentElement]}>
         {activeId ? children({
           item: items.find(item => item.id === activeId),
           dragging: true,

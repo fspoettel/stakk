@@ -26,7 +26,7 @@ function EditorItems({ items, onItemAdd, onItemDelete, onSort }: EditorItemsProp
   const [fetching, setFetching] = useState(false);
 
   const isSpotifyUrl = /https:\/\/open\.spotify\.com\/playlist\/.*/.test(url);
-  const isMixcloudUrl = /https:\/\/www\.mixcloud\.com\/.*/.test(url);
+  const isMixcloudUrl = /https:\/\/(www|m)\.mixcloud\.com\/.*/.test(url);
 
   const isUrlValid = isSpotifyUrl || isMixcloudUrl;
 
@@ -52,10 +52,7 @@ function EditorItems({ items, onItemAdd, onItemDelete, onSort }: EditorItemsProp
 
   return (
     <div className={css['editoritems']}>
-      <SortableList
-        items={items}
-        onSort={onSort}
-      >
+      <SortableList items={items} onSort={onSort}>
         {({ item, dragging, listeners }) => {
           if (!item || typeof item.title === undefined) return null;
 
@@ -76,7 +73,7 @@ function EditorItems({ items, onItemAdd, onItemDelete, onSort }: EditorItemsProp
                   tooltip='delete item'
                 />
                 <Button
-                  {...listeners}
+                  {...(listeners ?? {})}
                   icon={faGripVertical}
                   style={{ cursor: 'grab' }}
                 />
