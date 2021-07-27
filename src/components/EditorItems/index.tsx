@@ -1,18 +1,16 @@
 import { ChangeEvent, MouseEventHandler, useCallback, useState } from 'react';
-import cx from 'classnames';
-import { faGripVertical, faSave, faSpinner, faTrash } from '@fortawesome/pro-solid-svg-icons';
+import { faSave, faSpinner } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import fetchSpotifyPlaylist from '../../helpers/fetchSpotifyPlaylist';
 import { StackItem } from '@stakk/types/StackItem';
-import ButtonGroup from '../ButtonGroup';
 import ButtonWithTooltip from '../ButtonWithTooltip';
 import Field from '../Form/Field';
 
 import css from './EditorItems.module.css';
 import fetchMixcloudShow from '../../helpers/fetchMixcloudShow';
 import SortableList from '../SortableList';
-import Button from '../Button';
 import { SortCallback } from '../SortableList/interfaces';
+import EditorItem from './EditorItem';
 
 type EditorItemsProps = {
   items: StackItem[],
@@ -53,34 +51,7 @@ function EditorItems({ items, onItemAdd, onItemDelete, onSort }: EditorItemsProp
   return (
     <div className={css['editoritems']}>
       <SortableList items={items} onSort={onSort}>
-        {({ item, dragging, listeners }) => {
-          if (!item || typeof item.title === undefined) return null;
-
-          return (
-            <div
-              className={cx([
-                css['editoritem'],
-                { [css.dragging]: dragging }
-              ])}
-              key={item.id}
-            >
-              <span>{typeof item.title === 'string' ? item.title : item.id}</span>
-              <ButtonGroup className={css['editoritem-actions']}>
-                <ButtonWithTooltip
-                  data-id={item.id}
-                  icon={faTrash}
-                  onClick={onItemDelete}
-                  tooltip='delete item'
-                />
-                <Button
-                  className={css['editoritem-handle']}
-                  {...(listeners ?? {})}
-                  icon={faGripVertical}
-                />
-              </ButtonGroup>
-            </div>
-          );
-        }}
+        {props => <EditorItem {...props} key={props.item?.id} onItemDelete={onItemDelete} />}
       </SortableList>
 
       <div className={css['editoritems-add']}>

@@ -16,8 +16,10 @@ function LoadStackModal({ open, onConfirmLoad, onClose }: LoadStackModalProps) {
 
   const load = useCallback(() => {
     try {
+      // TODO: add type check here
       const parsed: Stack = JSON.parse(value);
       onConfirmLoad(parsed);
+      setValue('');
     } catch (err) {
       console.warn('not a stack');
     }
