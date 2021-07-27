@@ -46,7 +46,7 @@ a.button {
 
 .button svg {
   display: inline-block;
-  color: var(--color);
+  color: currentColor;
 }
 
 .button.icon {

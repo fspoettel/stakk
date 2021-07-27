@@ -15,6 +15,7 @@ export type ButtonProps = {
 
 function Button({
   children,
+  className,
   href,
   icon,
   popperRef,
@@ -33,7 +34,8 @@ function Button({
       href={href}
       className={cx([
         css.button,
-        { [css[cssVariant]]: cssVariant !== '' }
+        { [css[cssVariant]]: cssVariant !== '' },
+        { [className ?? '']: className }
       ])}
       ref={popperRef}
       type={Tag === 'button' ? (rest.type ?? 'button') : undefined}

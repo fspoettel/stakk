@@ -59,13 +59,13 @@ function EditorItems({ items, onItemAdd, onItemDelete, onSort }: EditorItemsProp
           return (
             <div
               className={cx([
-                css['editoritems-item'],
+                css['editoritem'],
                 { [css.dragging]: dragging }
               ])}
               key={item.id}
             >
               <span>{typeof item.title === 'string' ? item.title : item.id}</span>
-              <ButtonGroup className={css['editoritems-item-actions']}>
+              <ButtonGroup className={css['editoritem-actions']}>
                 <ButtonWithTooltip
                   data-id={item.id}
                   icon={faTrash}
@@ -73,9 +73,9 @@ function EditorItems({ items, onItemAdd, onItemDelete, onSort }: EditorItemsProp
                   tooltip='delete item'
                 />
                 <Button
+                  className={css['editoritem-handle']}
                   {...(listeners ?? {})}
                   icon={faGripVertical}
-                  style={{ cursor: 'grab' }}
                 />
               </ButtonGroup>
             </div>
