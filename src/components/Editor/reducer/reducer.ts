@@ -1,47 +1,64 @@
 import { DragEndEvent } from '@dnd-kit/core';
 import { arrayMove } from '@dnd-kit/sortable';
 import slugify from 'slugify';
-import { AuthorKey, ColorKey } from '@stakk/types/Stack';
+import { AuthorKey, ColorKey, Stack } from '@stakk/types/Stack';
 import { StackItem } from '@stakk/types/StackItem';
 import { EditorState } from './getInitialState';
 
-type TitleChangeAction = {
-  type: 'title-change';
+export type TitleChangeAction = {
+  type: 'titleChange';
   value: string;
 };
 
-type ColorChangeAction = {
-  type: 'color-change';
+export type ColorChangeAction = {
+  type: 'colorChange';
   value: string;
   key: ColorKey;
 };
 
-type AuthorChangeAction = {
-  type: 'author-change';
+export type AuthorChangeAction = {
+  type: 'authorChange';
   value: string;
   key: AuthorKey;
 };
 
-type ItemDeleteAction = {
-  type: 'item-delete',
+export type ItemDeleteAction = {
+  type: 'itemDelete',
   id?: string,
 };
 
-type ItemAddAction = {
-  type: 'item-add',
+export type ItemAddAction = {
+  type: 'itemAdd',
   item: StackItem
 };
 
-type ItemsSortAction = {
-  type: 'items-sort',
+export type ItemsSortAction = {
+  type: 'itemsSort',
   event: DragEndEvent
 };
 
-type AnyAction = TitleChangeAction|ColorChangeAction|AuthorChangeAction|ItemDeleteAction|ItemAddAction|ItemsSortAction;
+export type StackLoadAction = {
+  type: 'loadStack',
+  stack: Stack
+};
 
-function reducer(state: EditorState, action: AnyAction) {
+export type StackLoaderOpenAction = { type: 'stackLoaderOpen' };
+
+export type StackLoaderCloseAction = { type: 'stackLoaderClose' };
+
+export type AnyAction = TitleChangeAction
+  | ColorChangeAction
+  | AuthorChangeAction
+  | ItemDeleteAction
+  | ItemAddAction
+  | ItemsSortAction
+  | StackLoadAction
+  | StackLoaderCloseAction
+  | StackLoaderOpenAction;
+
+function reducer(state: EditorState, action: AnyAction): EditorState {
   switch (action.type) {
-    case 'title-change': {
+    case 'titleChange': {
       return {
         ...state,
         stack: {
@@ -52,7 +69,7 @@ function reducer(state: EditorState, action: AnyAction) {
       };
     }
 
-    case 'color-change': {
+    case 'colorChange': {
       return {
         ...state,
         stack: {
@@ -62,11 +79,12 @@ function reducer(state: EditorState, action: AnyAction) {
       };
     }
 
-    case 'author-change': {
+    case 'authorChange': {
       const isSlugEdit = action.key === 'slug';
 
       if (isSlugEdit) {
         return {
+          ...state,
           slugEdited: true,
           stack: {
             ...state.stack,
@@ -93,7 +111,7 @@ function reducer(state: EditorState, action: AnyAction) {
       };
     }
 
-    case 'item-delete': {
+    case 'itemDelete': {
       if (!action.id) return state;
 
       const index = state.stack.items.findIndex(item => item.id === action.id);
@@ -108,14 +126,14 @@ function reducer(state: EditorState, action: AnyAction) {
       };
     }
 
-    case 'item-add': {
+    case 'itemAdd': {
       return {
         ...state,
         stack: { ...state.stack, items: [...state.stack.items, action.item] },
       };
     }
 
-    case 'items-sort': {
+    case 'itemsSort': {
       const { active, over } = action.event;
       if (!over?.id) return state;
 
@@ -132,8 +150,20 @@ function reducer(state: EditorState, action: AnyAction) {
       };
     }
 
-    default: {
-      return state;
+    case 'stackLoaderOpen': {
+      return { ...state, stackLoaderOpen: true };
+    }
+
+    case 'stackLoaderClose': {
+      return { ...state, stackLoaderOpen: false };
+    }
+
+    case 'loadStack': {
+      return {
+        ...state,
+        stackLoaderOpen: false,
+        stack: action.stack,
+      };
     }
   }
 }

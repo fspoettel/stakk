@@ -1,4 +1,4 @@
-import { FormEventHandler, ReactNode } from 'react';
+import { ChangeEventHandler, ReactNode } from 'react';
 import cx from 'classnames';
 
 import css from './Form.module.css';
@@ -9,7 +9,7 @@ type FieldProps = {
   hideLabel?: boolean,
   label: string;
   name: string;
-  onChange?: FormEventHandler<HTMLInputElement>;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
   placeholder?: string;
   required?: boolean;
   size?: 'small';

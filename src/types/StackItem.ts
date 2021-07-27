@@ -1,5 +1,5 @@
 import { ExternalLink } from './ExternalLink';
-import { Tracklist } from './Tracklist';
+import { Track } from './Track';
 
 export type StackItem = {
   id: string,
@@ -8,7 +8,7 @@ export type StackItem = {
   title: string,
   tags: string[],
   links?: (ExternalLink|string)[],
-  tracklist: Tracklist,
+  tracklist: Track[],
   createdAt: string
 };
 

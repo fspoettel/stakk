@@ -1,5 +1,5 @@
 import { StackItem } from '@stakk/types/StackItem';
-import exceedsDragThreshold from '../components/Stack/helpers/exceedsDragThreshold';
+import exceedsDragThreshold from '../../../components/Stack/helpers/exceedsDragThreshold';
 import { StackState } from './getInitialState';
 
 export function getActiveIndex(state: StackState): number {

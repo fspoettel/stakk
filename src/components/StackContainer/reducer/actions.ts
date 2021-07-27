@@ -1,7 +1,7 @@
 import { Dispatch } from 'react';
 import { StackItem } from '@stakk/types/StackItem';
-import { DragState } from '../types/DragState';
-import { HiddenState } from '../types/HiddenState';
+import { DragState } from '@stakk/types/DragState';
+import { HiddenState } from '@stakk/types/HiddenState';
 import {
   ClearAction,
   DragStateAction,

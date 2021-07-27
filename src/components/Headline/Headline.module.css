@@ -10,6 +10,11 @@
   color: var(--background-color);
 }
 
+.headline.bare {
+  color: var(--color);
+  background: none;
+}
+
 @media screen and (min-width: 45rem) {
   .headline {
     font-size: 2rem;

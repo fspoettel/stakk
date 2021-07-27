@@ -3,12 +3,14 @@ import { Stack } from '@stakk/types/Stack';
 
 export type EditorState = {
   slugEdited: boolean;
+  stackLoaderOpen: boolean;
   stack: Stack;
 };
 
-function getInitialState() {
-  return {
+function getInitialState(): EditorState {
+  const state: EditorState = {
     slugEdited: false,
+    stackLoaderOpen: false,
     stack: {
       id: cuid(),
       title: 'New Stack',
@@ -25,6 +27,8 @@ function getInitialState() {
       items: [],
     },
   };
+
+  return state;
 }
 
 export default getInitialState;

@@ -8,9 +8,9 @@ export type Stack = {
     slug: string,
     url?: string,
   },
-  theme: {
-    background: string|null,
-    text: string|null,
+  theme?: {
+    background?: string,
+    text?: string,
   },
   title: string,
   items: StackItem[],

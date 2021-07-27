@@ -1,6 +1,5 @@
 import React,{ useCallback, useEffect, useReducer } from 'react';
 import { useKey } from 'react-use';
-import { KeyFilter } from 'react-use/lib/useKey';
 import cx from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronSquareLeft, faChevronSquareRight, faSpinner, faStop, faUndo } from '@fortawesome/pro-solid-svg-icons';
@@ -16,11 +15,13 @@ import Header from '../Header';
 import Player from '../Player';
 import Stack from '../Stack';
 
-import * as actions from '../../reducer/actions';
-import * as selectors from '../../reducer/selectors';
-import getInitialState from '../../reducer/getInitialState';
-import stackReducer from '../../reducer/reducer';
+import * as actions from './reducer/actions';
+import * as selectors from './reducer/selectors';
+import getInitialState from './reducer/getInitialState';
+import stackReducer from './reducer/reducer';
 import css from './StackContainer.module.css';
+import { getAuthorName, getAuthorUrl, getBackgroundColor, getItems, getTextColor, getTitle } from '../../helpers/stackSelectors';
+import matchShortcutKey from '../../helpers/matchShortcutKey';
 
 type StackContainerProps = {
   data: StackData;
@@ -28,24 +29,13 @@ type StackContainerProps = {
   hideInitialAnimation?: boolean;
 };
 
-function keyPredicate(key: string): KeyFilter {
-  return (event: KeyboardEvent): boolean => {
-    if (event.key !== key) return false;
-    if (event.target instanceof Element) {
-      return event.target.tagName !== 'INPUT';
-    } else {
-      return true;
-    }
-  };
-}
-
 interface StackContainerStyle extends React.CSSProperties {
   '--color'?: string;
   '--background-color'?: string;
 }
 
 function StackContainer({ data, hideDragIndicator, hideInitialAnimation }: StackContainerProps) {
-  const [state, dispatch] = useReducer(stackReducer, getInitialState(data.items));
+  const [state, dispatch] = useReducer(stackReducer, getInitialState(getItems(data)));
 
   const items = data.items;
 
@@ -71,7 +61,7 @@ function StackContainer({ data, hideDragIndicator, hideInitialAnimation }: Stack
   const playbackIndex = selectors.getPlaybackIndex(state);
   const playbackProgress = selectors.getPlaybackProgress(state);
   const isPlaying = playbackIndex != null;
-  const isStatic = items.length === 1;
+  const isStatic = items.length <= 1;
 
   const onPrev = useCallback(() => {
     actions.prev(dispatch);
@@ -105,12 +95,12 @@ function StackContainer({ data, hideDragIndicator, hideInitialAnimation }: Stack
     actions.setTrackProgress(dispatch, { progress });
   }, []);
 
-  useKey(keyPredicate('ArrowRight'), onNextGeneric, {}, [onNext]);
-  useKey(keyPredicate('ArrowLeft'), onPrev, {}, [onPrev]);
+  useKey(matchShortcutKey('ArrowRight'), onNextGeneric, {}, [onNext]);
+  useKey(matchShortcutKey('ArrowLeft'), onPrev, {}, [onPrev]);
 
   const stackContainerStyle: StackContainerStyle = {
-    '--color': data?.theme?.text ?? undefined,
-    '--background-color': data?.theme?.background ?? undefined,
+    '--color': getTextColor(data) ?? undefined,
+    '--background-color': getBackgroundColor(data) ?? undefined,
   };
 
   return (
@@ -157,9 +147,9 @@ function StackContainer({ data, hideDragIndicator, hideInitialAnimation }: Stack
         }
       </main>
       <Header
-        authorName={data.author.name}
-        authorUrl={data.author.url}
-        title={data.title}
+        authorName={getAuthorName(data)}
+        authorUrl={getAuthorUrl(data)}
+        title={getTitle(data)}
         actions={isStatic ? [] : [
           {
             key: 'stopPlayback',

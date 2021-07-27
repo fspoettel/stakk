@@ -1,57 +1,48 @@
-import { ChangeEvent, FormEvent, MouseEvent, useReducer } from 'react';
-import { StackItem } from '@stakk/types/StackItem';
-import { AuthorKey, ColorKey } from '@stakk/types/Stack';
+import { FormEvent, useCallback, useReducer } from 'react';
+import ButtonGroup from '../ButtonGroup';
 import EditorItems from '../EditorItems';
 import EditorPreview from '../EditorPreview';
 import Field from '../Form/Field';
 import FieldGroup from '../Form/FieldGroup';
 import Form from '../Form/Form';
 import reducer from './reducer/reducer';
-import getInitialState from './reducer/getInitialState';
+import * as stackSelectors from '../../helpers/stackSelectors';
 
 import css from './Editor.module.css';
 import Button from '../Button';
 import { useCopyToClipboard } from 'react-use';
-import ButtonGroup from '../ButtonGroup';
-import { SortCallback } from '../SortableList/interfaces';
+import getInitialState from './reducer/getInitialState';
+import * as actions from './reducer/actions';
+import * as selectors from './reducer/selectors';
+import LoadStackModal from '../LoadStackModal';
 
 function Editor() {
   const [state, dispatch] = useReducer(reducer, getInitialState());
-
-  const onItemAdd = (item: StackItem) => {
-    dispatch({ type: 'item-add', item });
-  };
-
-  const onItemDelete = (evt: MouseEvent) => {
-    if (evt.currentTarget instanceof HTMLButtonElement) {
-      const id = evt.currentTarget.dataset.id;
-      dispatch({ type: 'item-delete', id });
-    }
-  };
-
-  const onItemsSort: SortCallback = (event) => {
-    dispatch({ type: 'items-sort', event });
-  };
-
-  const onTitleChange = (evt: ChangeEvent<HTMLInputElement>) => {
-    dispatch({ type: 'title-change', value: evt.target.value });
-  };
-
-  const makeOnColorChange = (key: ColorKey) => (evt: ChangeEvent<HTMLInputElement>) => {
-    dispatch({ type: 'color-change', value: evt.target.value, key });
-  };
-
-  const makeOnAuthorChange = (key: AuthorKey) => (evt: ChangeEvent<HTMLInputElement>) => {
-    dispatch({ type: 'author-change', value: evt.target.value, key });
-  };
-
   const [clipboardState, copyToClipboard] = useCopyToClipboard();
 
-  const onFormSubmit = (evt: FormEvent<HTMLFormElement>) => {
+  const stack = selectors.getStack(state);
+
+  const onFormSubmit = useCallback((evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    copyToClipboard(JSON.stringify(state.stack, null, 4));
+    copyToClipboard(JSON.stringify(stack, null, 4));
     return false;
-  };
+  }, [copyToClipboard, stack]);
+
+  const onTitleChange = useCallback(evt => actions.changeTitle(dispatch, evt), []);
+  const onColorBgChange = useCallback(evt => actions.makeChangeColor('background')(dispatch, evt), []);
+  const onColorTextChange = useCallback(evt => actions.makeChangeColor('text')(dispatch, evt), []);
+
+  const onAuthorNameChange = useCallback(evt => actions.makeChangeAuthor('name')(dispatch, evt), []);
+  const onAuthorSlugChange = useCallback(evt => actions.makeChangeAuthor('slug')(dispatch, evt), []);
+  const onAuthorUrlChange = useCallback(evt => actions.makeChangeAuthor('url')(dispatch, evt), []);
+
+  const onItemAdd = useCallback(item => actions.addItem(dispatch, item), []);
+  const onItemDelete = useCallback(id => actions.deleteItem(dispatch, id), []);
+  const onItemsSort = useCallback(evt => actions.sortItems(dispatch, evt), []);
+
+  const onLoadStack = useCallback((stack) => actions.loadStack(dispatch, stack), []);
+  const onOpenLoader = useCallback(() => actions.openStackLoader(dispatch), []);
+  const onCloseLoader = useCallback(() => actions.closeStackLoader(dispatch), []);
 
   return (
     <main className={css['editor']}>
@@ -61,7 +52,7 @@ function Editor() {
           <>
             <ButtonGroup>
               <Button type='submit'>Get Code</Button>
-              <Button disabled>Load Stack</Button>
+              <Button onClick={onOpenLoader}>Load Stack</Button>
             </ButtonGroup>
             {clipboardState.error
               ? <p>Unable to copy value: {clipboardState.error.message}</p>
@@ -73,10 +64,10 @@ function Editor() {
       >
         <Field
           name='title'
-          label="Title"
+          label='Title'
           required
           onChange={onTitleChange}
-          value={state.stack.title}
+          value={stackSelectors.getTitle(stack)}
         >
           {(props) => <input {...props} type='text' />}
         </Field>
@@ -85,18 +76,18 @@ function Editor() {
           <Field
             name='background-color'
             label='Background'
-            onChange={makeOnColorChange('background')}
+            onChange={onColorBgChange}
             required
-            value={state.stack.theme.background ?? ''}
+            value={stackSelectors.getBackgroundColor(stack) ?? ''}
           >
             {props => <input {...props} type='color' />}
           </Field>
           <Field
             name='text-color'
             label='Text'
-            onChange={makeOnColorChange('text')}
+            onChange={onColorTextChange}
             required
-            value={state.stack.theme.text ?? ''}
+            value={stackSelectors.getTextColor(stack) ?? ''}
           >
             {props => <input {...props} type='color' />}
           </Field>
@@ -106,27 +97,27 @@ function Editor() {
           <Field
             name='author-name'
             label='Display Name'
-            onChange={makeOnAuthorChange('name')}
+            onChange={onAuthorNameChange}
             required
-            value={state.stack.author.name ?? ''}
+            value={stackSelectors.getAuthorName(stack)}
           >
             {props => <input {...props} type='text' />}
           </Field>
           <Field
             name='author-slug'
             label='User Name'
-            onChange={makeOnAuthorChange('slug')}
+            onChange={onAuthorSlugChange}
             required
-            value={state.stack.author.slug ?? ''}
+            value={stackSelectors.getAuthorSlug(stack)}
           >
             {props => <input {...props} type='text' />}
           </Field>
           <Field
-            name='author-name'
+            name='author-url'
             label='Profile URL'
             placeholder='your website / insta / tik-tok'
-            onChange={makeOnAuthorChange('url')}
-            value={state.stack.author.url ?? ''}
+            onChange={onAuthorUrlChange}
+            value={stackSelectors.getAuthorUrl(stack) ?? ''}
           >
             {props => <input {...props} type='text' />}
           </Field>
@@ -134,7 +125,7 @@ function Editor() {
 
         <FieldGroup title='Items' full>
           <EditorItems
-            items={state.stack.items}
+            items={stackSelectors.getItems(stack)}
             onItemAdd={onItemAdd}
             onItemDelete={onItemDelete}
             onSort={onItemsSort}
@@ -142,7 +133,13 @@ function Editor() {
         </FieldGroup>
       </Form>
 
-      <EditorPreview data={state.stack} />
+      <EditorPreview data={stack} />
+
+      <LoadStackModal
+        open={selectors.getStackLoaderOpen(state)}
+        onConfirmLoad={onLoadStack}
+        onClose={onCloseLoader}
+      />
     </main>
   );
 }
