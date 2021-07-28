@@ -1,6 +1,6 @@
-import { Tracklist } from '@stakk/types/Tracklist';
+import { Track } from '@stakk/types/Track';
 
-function getArtistString(tracklist: Tracklist, count = 3): string {
+function getArtistString(tracklist: Track[], count = 3): string {
   if (!Array.isArray(tracklist)) return '';
 
   const uniqArtists = new Set(tracklist.map(t => t.artist));

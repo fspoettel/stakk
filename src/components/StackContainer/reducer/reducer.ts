@@ -1,6 +1,6 @@
 import { StackItem } from '@stakk/types/StackItem';
-import { DragState } from '../types/DragState';
-import { HiddenState } from '../types/HiddenState';
+import { DragState } from '../../../types/DragState';
+import { HiddenState } from '../../../types/HiddenState';
 import getInitialState, { StackState } from './getInitialState';
 import { getActiveIndex, getIsFirstItem, getIsLastItem, getPlaybackIndex } from './selectors';
 
