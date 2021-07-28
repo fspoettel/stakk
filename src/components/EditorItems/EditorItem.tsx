@@ -9,12 +9,12 @@ import ButtonGroup from '../ButtonGroup';
 import ButtonWithTooltip from '../ButtonWithTooltip';
 import Button from '../Button';
 
-type EditorItemProps = { onItemDelete: MouseEventHandler } & RenderProps;
+type EditorItemProps = {
+  onItemDelete: MouseEventHandler;
+} & RenderProps;
 
 function EditorItem({ item, dragging, listeners, onItemDelete }: EditorItemProps) {
   if (!item || typeof item.title === undefined) return null;
-
-  console.log('rendering');
 
   return (
     <div
@@ -24,18 +24,20 @@ function EditorItem({ item, dragging, listeners, onItemDelete }: EditorItemProps
       ])}
       key={item.id}
     >
+        <Button
+          className={css['editoritem-handle']}
+          {...(listeners ?? {})}
+          size='sm'
+          icon={faGripVertical}
+        />
       <span>{typeof item.title === 'string' ? item.title : item.id}</span>
       <ButtonGroup className={css['editoritem-actions']}>
         <ButtonWithTooltip
           data-id={item.id}
           icon={faTrash}
           onClick={onItemDelete}
+          size='sm'
           tooltip='delete item'
-        />
-        <Button
-          className={css['editoritem-handle']}
-          {...(listeners ?? {})}
-          icon={faGripVertical}
         />
       </ButtonGroup>
     </div>

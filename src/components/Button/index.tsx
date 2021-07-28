@@ -10,6 +10,7 @@ export type ButtonProps = {
   href?: string,
   icon?: IconProp,
   popperRef?: React.Dispatch<React.SetStateAction<HTMLElement | null>>,
+  size?: 'sm'|'md'|'lg',
   variant?: string,
 } & React.ComponentPropsWithoutRef<'button'> & React.ComponentPropsWithoutRef<'a'>;
 
@@ -19,6 +20,7 @@ function Button({
   href,
   icon,
   popperRef,
+  size,
   variant,
   ...rest
 }: ButtonProps) {
@@ -34,6 +36,7 @@ function Button({
       href={href}
       className={cx([
         css.button,
+        css[size ?? 'md'],
         { [css[cssVariant]]: cssVariant !== '' },
         { [className ?? '']: className }
       ])}

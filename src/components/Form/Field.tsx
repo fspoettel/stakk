@@ -9,7 +9,7 @@ type FieldProps = {
   hideLabel?: boolean,
   label: string;
   name: string;
-  onChange?: ChangeEventHandler<HTMLInputElement>;
+  onChange?: ChangeEventHandler<HTMLInputElement|HTMLTextAreaElement>;
   placeholder?: string;
   required?: boolean;
   size?: 'small';

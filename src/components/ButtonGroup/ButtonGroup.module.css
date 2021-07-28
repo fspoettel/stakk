@@ -5,5 +5,5 @@
 
 .buttongroup > button:not(:last-child),
 .buttongroup > a:not(:last-child) {
-  margin-right: 0.5rem;
+  margin-right: 0.25rem;
 }
