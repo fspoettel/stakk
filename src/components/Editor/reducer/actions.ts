@@ -2,7 +2,18 @@ import { DragEndEvent } from '@dnd-kit/core';
 import { AuthorKey, ColorKey, Stack } from '@stakk/types/Stack';
 import { StackItem } from '@stakk/types/StackItem';
 import { ChangeEvent, Dispatch, MouseEvent } from 'react';
-import { AuthorChangeAction, ColorChangeAction, ItemAddAction, ItemDeleteAction, ItemsSortAction, StackLoadAction, StackLoaderCloseAction, StackLoaderOpenAction, TitleChangeAction } from './reducer';
+import {
+  AuthorChangeAction,
+  ColorChangeAction,
+  ItemAddAction,
+  ItemDeleteAction,
+  ItemEditAction,
+  ItemsSortAction,
+  StackLoadAction,
+  StackLoaderCloseAction,
+  StackLoaderOpenAction,
+  TitleChangeAction
+} from './reducer';
 
 export function sortItems(dispatch: Dispatch<ItemsSortAction>, event: DragEndEvent) {
   dispatch({ type: 'itemsSort', event });
@@ -17,6 +28,17 @@ export function deleteItem(dispatch: Dispatch<ItemDeleteAction>, evt: MouseEvent
     const id = evt.currentTarget.dataset.id;
     dispatch({ type: 'itemDelete', id });
   }
+}
+
+export function editItem(dispatch: Dispatch<ItemEditAction>, evt: MouseEvent) {
+  if (evt.currentTarget instanceof HTMLButtonElement) {
+    const id = evt.currentTarget.dataset.id;
+    dispatch({ type: 'itemEdit', id });
+  }
+}
+
+export function cancelEdit(dispatch: Dispatch<ItemEditAction>) {
+    dispatch({ type: 'itemEdit', id: undefined });
 }
 
 export function changeTitle(dispatch: Dispatch<TitleChangeAction>, evt: ChangeEvent<HTMLInputElement>) {

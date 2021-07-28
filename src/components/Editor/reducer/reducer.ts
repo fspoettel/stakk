@@ -27,6 +27,11 @@ export type ItemDeleteAction = {
   id?: string,
 };
 
+export type ItemEditAction = {
+  type: 'itemEdit',
+  id?: string,
+};
+
 export type ItemAddAction = {
   type: 'itemAdd',
   item: StackItem
@@ -50,6 +55,7 @@ export type AnyAction = TitleChangeAction
   | ColorChangeAction
   | AuthorChangeAction
   | ItemDeleteAction
+  | ItemEditAction
   | ItemAddAction
   | ItemsSortAction
   | StackLoadAction
@@ -124,6 +130,15 @@ function reducer(state: EditorState, action: AnyAction): EditorState {
         ...state,
         stack: { ...state.stack, items: nextItems }
       };
+    }
+
+    case 'itemEdit': {
+      if (!action.id) return { ...state, editItem: undefined};
+
+      const editItem = state.stack.items.find(item => item.id === action.id);
+      if (!editItem) return { ...state, editItem: undefined };
+
+      return { ...state, editItem };
     }
 
     case 'itemAdd': {

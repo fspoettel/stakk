@@ -15,6 +15,7 @@ import getInitialState from './reducer/getInitialState';
 import * as actions from './reducer/actions';
 import * as selectors from './reducer/selectors';
 import LoadStackModal from '../LoadStackModal';
+import EditItemModal from '../EditItemModal';
 
 function Editor() {
   const [state, dispatch] = useReducer(reducer, getInitialState());
@@ -38,6 +39,7 @@ function Editor() {
 
   const onItemAdd = useCallback(item => actions.addItem(dispatch, item), []);
   const onItemDelete = useCallback(id => actions.deleteItem(dispatch, id), []);
+  const onItemEdit = useCallback(evt => actions.editItem(dispatch, evt), []);
   const onItemsSort = useCallback(evt => actions.sortItems(dispatch, evt), []);
 
   const onLoadStack = useCallback((stack) => actions.loadStack(dispatch, stack), []);
@@ -128,12 +130,18 @@ function Editor() {
             items={stackSelectors.getItems(stack)}
             onItemAdd={onItemAdd}
             onItemDelete={onItemDelete}
+            onItemEdit={onItemEdit}
             onSort={onItemsSort}
           />
         </FieldGroup>
       </Form>
 
       <EditorPreview data={stack} />
+
+      <EditItemModal
+        item={state.editItem}
+        onClose={() => actions.cancelEdit(dispatch)}
+      />
 
       <LoadStackModal
         open={selectors.getStackLoaderOpen(state)}

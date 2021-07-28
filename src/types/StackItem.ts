@@ -2,14 +2,13 @@ import { ExternalLink } from './ExternalLink';
 import { Track } from './Track';
 
 export type StackItem = {
+  createdAt: string,
+  description?: string,
   id: string,
-  slug: string,
   imageId?: string,
-  title: string,
-  tags: string[],
   links?: (ExternalLink|string)[],
+  slug: string,
+  tags: string[],
+  title: string,
   tracklist: Track[],
-  createdAt: string
 };
-
-export type StackItemFull = StackItem & { index: number };

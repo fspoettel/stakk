@@ -16,10 +16,11 @@ type EditorItemsProps = {
   items: StackItem[],
   onItemAdd: (item: StackItem) => void,
   onItemDelete: MouseEventHandler;
+  onItemEdit: MouseEventHandler;
   onSort: SortCallback
 };
 
-function EditorItems({ items, onItemAdd, onItemDelete, onSort }: EditorItemsProps) {
+function EditorItems({ items, onItemAdd, onItemDelete, onItemEdit, onSort }: EditorItemsProps) {
   const [url, setUrl] = useState('');
   const [fetching, setFetching] = useState(false);
 
@@ -51,7 +52,14 @@ function EditorItems({ items, onItemAdd, onItemDelete, onSort }: EditorItemsProp
   return (
     <div className={css['editoritems']}>
       <SortableList items={items} onSort={onSort}>
-        {props => <EditorItem {...props} key={props.item?.id} onItemDelete={onItemDelete} />}
+        {props => (
+          <EditorItem
+            {...props}
+            key={props.item?.id}
+            onItemDelete={onItemDelete}
+            onItemEdit={onItemEdit}
+          />
+        )}
       </SortableList>
 
       <div className={css['editoritems-add']}>

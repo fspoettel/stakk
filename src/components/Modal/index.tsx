@@ -10,11 +10,12 @@ type ModalProps = {
   children: ReactNode,
   open?: boolean,
   title: string,
+  confirmLabel: string,
   onConfirm: MouseEventHandler,
   onClose: MouseEventHandler
 };
 
-function Modal({ children, onClose, onConfirm, open, title }: ModalProps) {
+function Modal({ children, confirmLabel, onClose, onConfirm, open, title }: ModalProps) {
   return (
     <Overlay open={open} onClose={onClose}>
       <article className={css['modal']}>
@@ -26,7 +27,7 @@ function Modal({ children, onClose, onConfirm, open, title }: ModalProps) {
         </div>
         <footer className={css['modal-footer']}>
           <ButtonGroup>
-            <Button onClick={onConfirm}>Load</Button>
+            <Button onClick={onConfirm}>{confirmLabel}</Button>
             <Button onClick={onClose} variant='secondary'>Cancel</Button>
           </ButtonGroup>
         </footer>

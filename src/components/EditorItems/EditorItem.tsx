@@ -1,6 +1,6 @@
 import React, { MouseEventHandler } from 'react';
 import cx from 'classnames';
-import { faGripVertical, faTrash } from '@fortawesome/pro-solid-svg-icons';
+import { faGripVertical, faPencil, faTrash } from '@fortawesome/pro-solid-svg-icons';
 
 import css from './EditorItems.module.css';
 
@@ -11,9 +11,10 @@ import Button from '../Button';
 
 type EditorItemProps = {
   onItemDelete: MouseEventHandler;
+  onItemEdit: MouseEventHandler;
 } & RenderProps;
 
-function EditorItem({ item, dragging, listeners, onItemDelete }: EditorItemProps) {
+function EditorItem({ item, dragging, listeners, onItemDelete, onItemEdit }: EditorItemProps) {
   if (!item || typeof item.title === undefined) return null;
 
   return (
@@ -32,6 +33,13 @@ function EditorItem({ item, dragging, listeners, onItemDelete }: EditorItemProps
         />
       <span>{typeof item.title === 'string' ? item.title : item.id}</span>
       <ButtonGroup className={css['editoritem-actions']}>
+      <ButtonWithTooltip
+        data-id={item.id}
+        icon={faPencil}
+        onClick={onItemEdit}
+        size='sm'
+        tooltip='edit item'
+        />
         <ButtonWithTooltip
           data-id={item.id}
           icon={faTrash}
