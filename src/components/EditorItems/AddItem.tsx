@@ -58,7 +58,7 @@ function AddItem({ onItemAdd }: AddItemProps) {
 
 
   return (
-    <>
+    <div className={css['editoradd-container']}>
       <div className={css['editoradd']}>
         <Field
           disabled={fetching}
@@ -100,7 +100,7 @@ function AddItem({ onItemAdd }: AddItemProps) {
           </li>
         </ul>
       </article>
-    </>
+    </div>
   );
 }
 

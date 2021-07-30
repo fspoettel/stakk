@@ -55,4 +55,3 @@ function generateRSS(data: Stack): string {
 }
 
 export default generateRSS;
-

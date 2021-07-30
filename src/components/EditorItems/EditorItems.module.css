@@ -51,6 +51,10 @@
   visibility: hidden;
 }
 
+.editoradd-container {
+  margin-bottom: 1rem;
+}
+
 .editoradd {
   display: flex;
   flex-flow: row nowrap;
