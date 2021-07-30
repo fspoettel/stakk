@@ -7,15 +7,15 @@ import { StackItem } from '@stakk/types/StackItem';
 
 import { DragDirection, DragState } from '../../types/DragState';
 import { HiddenState } from '../../types/HiddenState';
-import useDidMountEffect from '../../helpers/useDidMountEffect';
+import useDidMountEffect from '../../lib/useDidMountEffect';
 import css from './Stack.module.css';
 
-import exceedsDragThreshold from './helpers/exceedsDragThreshold';
-import getDirectionFromDelta from './helpers/getDirectionFromDelta';
-import getStackCSSVariables from './helpers/getStackCSSVariables';
-import { updateDraggingSpring, updateRestingSpring } from './helpers/updateSprings';
-import { toSpringStacked } from './helpers/springs/springStacked';
+import getDirectionFromDelta from './lib/getDirectionFromDelta';
+import getStackCSSVariables from './lib/getStackCSSVariables';
+import { updateDraggingSpring, updateRestingSpring } from './lib/updateSprings';
+import { toSpringStacked } from './lib/springs/springStacked';
 import StackMember from './StackMember';
+import exceedsDragThreshold from '../Cover/exceedsDragThreshold';
 
 type StackProps = {
   activeIndex: number,

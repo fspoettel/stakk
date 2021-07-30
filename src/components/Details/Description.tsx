@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWaveform } from '@fortawesome/pro-regular-svg-icons';
 import { StackItem } from '@stakk/types/StackItem';
 
-import formatDateString from '../../helpers/formatDateString';
-import getArtistString from '../../helpers/getArtistString';
-import getCurrentTrack from './helpers/getCurrentTrack';
+import formatDateString from '../../lib/formatDateString';
+import getArtistString from '../../lib/getArtistString';
+import getCurrentTrack from './lib/getCurrentTrack';
 import css from './Details.module.css';
 
 type DetailsProps = {

@@ -1,14 +1,16 @@
-export type JsonObject = {[Key in string]?: JsonValue};
-export type JsonArray = Array<JsonValue>
-export type JsonValue = string | number | boolean | null | JsonObject | JsonArray;
+import { StackItem } from '@stakk/types/StackItem';
 
-export async function makeRequest<T>(
-  path: string,
+type JsonObject = {[Key in string]?: JsonValue};
+type JsonArray = Array<JsonValue>
+type JsonValue = string | number | boolean | null | JsonObject | JsonArray;
+
+async function makeRequest(
+  type: string,
   body: JsonObject
-): Promise<T> {
+): Promise<StackItem> {
   const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/v1`;
 
-  const res = await fetch(`${baseUrl}${path}`, {
+  const res = await fetch(`${baseUrl}/${type}`, {
     headers: {
       'Content-Type': 'application/json'
     },
@@ -21,7 +23,7 @@ export async function makeRequest<T>(
 
   if (res.status === 200) {
     const item = resBody;
-    return item as unknown as T;
+    return item as unknown as StackItem;
   }
 
   throw new Error(
@@ -30,3 +32,5 @@ export async function makeRequest<T>(
       : 'Internal Server Error'
     );
 }
+
+export default makeRequest;

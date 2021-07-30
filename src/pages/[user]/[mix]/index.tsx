@@ -1,8 +1,8 @@
 import { Stack } from '@stakk/types/Stack';
-import { getMixData, getDataForAllMixes } from '../../../helpers/getMixData';
-import getStackMetadata from '../../../helpers/getStackMetadata';
-import generateRSS from '../../../helpers/generateRSS';
-import writeRSSToFile from '../../../helpers/writeRSSToFile';
+import { getMixData, getDataForAllMixes } from '../../../lib/getMixData';
+import getStackMetadata from '../../../lib/getStackMetadata';
+import generateRSS from '../../../lib/generateRSS';
+import writeRSSToFile from '../../../lib/writeRSSToFile';
 import HtmlHead from '../../../components/HtmlHead';
 import StackContainer from '../../../components/StackContainer';
 

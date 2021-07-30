@@ -6,7 +6,7 @@ import Field from '../Form/Field';
 import FieldGroup from '../Form/FieldGroup';
 import Form from '../Form/Form';
 import reducer from './reducer/reducer';
-import * as stackSelectors from '../../helpers/stackSelectors';
+import * as stackSelectors from '../../lib/stackSelectors';
 
 import css from './Editor.module.css';
 import Button from '../Button';

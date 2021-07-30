@@ -8,9 +8,7 @@ import css from './EditorItems.module.css';
 import { StackItem } from '@stakk/types/StackItem';
 import Headline from '../Headline';
 import { faMixcloud, faSpotify } from '@fortawesome/free-brands-svg-icons';
-import fetchSpotifyPlaylist from '../../services/backend/fetchSpotifyPlaylist';
-import fetchSpotifyAlbum from '../../services/backend/fetchSpotifyAlbum';
-import fetchMixcloudShow from '../../services/backend/fetchMixcloudShow';
+import fetchStackItem from '../../services/api/fetchStackItem';
 
 type AddItemProps = {
   onItemAdd: (item: StackItem) => void,
@@ -32,11 +30,11 @@ function AddItem({ onItemAdd }: AddItemProps) {
       let item;
 
       if (isSpotifyPlaylist) {
-        item = await fetchSpotifyPlaylist(url);
+        item = await fetchStackItem('spotify_playlist', { url });
       } else if (isSpotifyAlbum) {
-        item = await fetchSpotifyAlbum(url);
+        item = await fetchStackItem('spotify_album', { url });
       } else if (isMixcloud) {
-        item = await fetchMixcloudShow(url);
+        item = await fetchStackItem('mixcloud_show', { url });
       }
 
       if (item) onItemAdd(item);
@@ -98,7 +96,7 @@ function AddItem({ onItemAdd }: AddItemProps) {
           </li>
           <li>
             <FontAwesomeIcon icon={faMixcloud} />
-            Mixcloud Shows
+            Mixcloud shows
           </li>
         </ul>
       </article>

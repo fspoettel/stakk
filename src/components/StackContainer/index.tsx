@@ -6,9 +6,9 @@ import { faChevronSquareLeft, faChevronSquareRight, faSpinner, faStop, faUndo } 
 import { Stack as StackData } from '@stakk/types/Stack';
 
 import { HiddenState } from '../../types/HiddenState';
-import preloadImage from '../../helpers/preloadImage';
-import getMixCloudUrl from './helpers/getMixcloudUrl';
-import getCoverPath from '../../helpers/getCoverPath';
+import preloadImage from '../../lib/preloadImage';
+import getMixCloudUrl from './lib/getMixcloudUrl';
+import getCoverPath from '../../lib/getCoverPath';
 import Details from '../Details';
 import Footer from '../Footer';
 import Header from '../Header';
@@ -20,8 +20,8 @@ import * as selectors from './reducer/selectors';
 import getInitialState from './reducer/getInitialState';
 import stackReducer from './reducer/reducer';
 import css from './StackContainer.module.css';
-import { getAuthorName, getAuthorUrl, getBackgroundColor, getItems, getTextColor, getTitle } from '../../helpers/stackSelectors';
-import matchShortcutKey from '../../helpers/matchShortcutKey';
+import { getAuthorName, getAuthorUrl, getBackgroundColor, getItems, getTextColor, getTitle } from '../../lib/stackSelectors';
+import matchShortcutKey from '../../lib/matchShortcutKey';
 
 type StackContainerProps = {
   data: StackData;

@@ -1,4 +1,4 @@
-import { DragState } from '../../../types/DragState';
+import { DragState } from '@stakk/types/DragState';
 
 function getRootFontSize(): number {
   let fontSize;
