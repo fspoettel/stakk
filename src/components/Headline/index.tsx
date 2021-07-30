@@ -4,7 +4,7 @@ import css from './Headline.module.css';
 
 type HeadlineProps = {
   children: React.ReactNode,
-  size?: 'sm'|'md'|'lg',
+  size?: 'xs'|'sm'|'md'|'lg',
   tag?: 'h1'|'h2'|'h3'|'h4'|'h5'|'h6',
   variant?: string
 };

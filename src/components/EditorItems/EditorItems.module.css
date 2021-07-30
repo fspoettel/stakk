@@ -3,16 +3,6 @@
   margin: 0;
 }
 
-.editoritems-add {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-}
-
-.editoritems-add-spinner {
-margin-left: 0.5rem;
-}
-
 .editoritem {
   position: relative;
   list-style: none;
@@ -60,3 +50,30 @@ margin-left: 0.5rem;
 [aria-pressed="true"] .editoritem-actions {
   visibility: hidden;
 }
+
+.editoradd {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.editoradd-supported-list {
+  list-style: none;
+  margin: 0;
+  margin-top: 0.5rem;
+  padding: 0;
+}
+
+.editoradd-supported-list li {
+  list-style: none;
+  padding: 0;
+}
+
+.editoradd-supported-list svg {
+  margin-right: 0.5rem;
+}
+
+.editoradd-spinner {
+  margin-left: 0.5rem;
+  }

@@ -10,6 +10,10 @@
   color: var(--background-color);
 }
 
+.headline.xs {
+  font-size: 1rem;
+}
+
 .headline.bare {
   color: var(--color);
   background: none;
@@ -17,13 +21,33 @@
 
 @media screen and (min-width: 45rem) {
   .headline {
-    font-size: 2rem;
-    padding: 0 0.25em;
+    font-size: 1.5rem;
+  }
+
+  .headline.xs {
+    font-size: 1rem;
   }
 
   .headline.sm {
     font-size: 1.5rem;
-    padding: 0 0.25em;
+  }
+  
+  .headline.lg {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (min-width: 62.5rem) {
+  .headline {
+    font-size: 2rem;
+  }
+
+  .headline.xs {
+    font-size: 1rem;
+  }
+
+  .headline.sm {
+    font-size: 1.5rem;
   }
   
   .headline.lg {
