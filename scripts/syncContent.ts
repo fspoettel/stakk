@@ -26,7 +26,7 @@ const rimraf = promisify(_rimraf);
 
   console.debug('downloading content repository...');
 
-  const request = got.stream(`https://api.github.com/repos/${process.env.GH_REPO}/zipball/${process.env.GH_BRANCH ?? 'master'}`);
+  const request = got.stream(`https://api.github.com/repos/${process.env.CONTENT_GH_REPO}/zipball/${process.env.CONTENT_GH_BRANCH ?? 'master'}`);
 
   await pipeline(request, fs.createWriteStream(zipPath));
 
