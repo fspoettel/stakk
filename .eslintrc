@@ -15,17 +15,15 @@
     "node": true
   },
   "rules": {
-    "quotes": [
-      "warn",
-      "single"
-    ],
-    "semi": [
-      "warn",
-      "always"
-    ],
-    "no-undef": "error",
-    "@next/next/no-img-element": "off",
+    "no-undef": "warn",
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
     "@typescript-eslint/no-explicit-any": "error",
-    "@typescript-eslint/explicit-module-boundary-types": "off"
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-inferrable-types": [
+      "warn", { "ignoreParameters": true }
+    ],
+    "@typescript-eslint/no-unused-vars": "warn"
   }
 }

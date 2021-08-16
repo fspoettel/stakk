@@ -8,7 +8,7 @@
 
 import { EOL } from 'os';
 import minimist from 'minimist';
-import { Stack } from '../src/types/Stack';
+import { Stack } from '@stakk/types/Stack';
 
 (async () => {
   const { user, mix, item } = minimist(process.argv.slice(2));

@@ -1,5 +1,5 @@
-import { Stack } from '../../types/Stack';
-import { getDataForAllMixes, getDataForAllUserMixes } from '../../helpers/getMixData';
+import { Stack } from '@stakk/types/Stack';
+import { getDataForAllMixes, getDataForAllUserMixes } from '../../lib/getMixData';
 import HtmlHead from '../../components/HtmlHead';
 import StackContainer from '../../components/StackContainer';
 

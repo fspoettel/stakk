@@ -17,9 +17,11 @@ class MyDocument extends Document {
           <link rel="manifest" href="/manifest.json" />
           <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
           <link rel="icon" type="image/png" href="/favicon.png" />
+          <link rel="preconnect" href={process.env.NEXT_PUBLIC_ASSET_URL} />
         </Head>
         <body>
           <Main />
+          <div id="modal" />
           <NextScript />
         </body>
       </Html>

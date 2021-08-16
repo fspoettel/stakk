@@ -1,18 +1,18 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { animated } from '@react-spring/web';
+import { StackItem } from '@stakk/types/StackItem';
+import { useEvent } from 'react-use';
+import { ReactEventHandlers } from 'react-use-gesture/dist/types';
 
 import TagSticker from '../TagSticker';
 import Cover from '../Cover';
 
 import css from './Stack.module.css';
 
-import { isSpring } from './helpers/constants';
-import springToInnerTransform from './helpers/springToInnerTransform';
-import springToOuterTransform from './helpers/springToOuterTransform';
-import { StackItem } from '../../types/StackItem';
-import { ReactEventHandlers } from 'react-use-gesture/dist/types';
-import { useEvent } from 'react-use';
-import { getCoverPath } from '../../helpers/getCoverPath';
+import { isSpring } from './lib/constants';
+import springToInnerTransform from './lib/springToInnerTransform';
+import springToOuterTransform from './lib/springToOuterTransform';
+import getCoverPath from '../../lib/getCoverPath';
 
 type StackMemberProps = {
   // eslint-disable-next-line no-unused-vars

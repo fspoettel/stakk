@@ -1,5 +1,5 @@
 import React from 'react';
-import loadScript from '../../helpers/loadScript';
+import loadScript from '../../lib/loadScript';
 import { MixcloudPlayer } from '../../types/MixcloudPlayer';
 
 interface CustomWindow extends Window {

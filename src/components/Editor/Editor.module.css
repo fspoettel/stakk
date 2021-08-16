@@ -1,0 +1,28 @@
+.editor {
+  --background-color: #fefefe;
+  background: var(--background-color);
+  color: var(--color);
+}
+
+.editor-form {
+  padding: 2rem;
+}
+
+@media screen and (min-width: 62.5rem) {
+  .editor {
+    display: flex;
+    flex-flow: row nowrap;
+    height: 100%;
+    width: 100%;
+  }
+
+  .editor-form {
+    flex: 0 0 auto;
+    max-width: 50ch;
+    width: 50%;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    height: 100%;
+    overflow-y: auto;
+    z-index: 2;
+  }
+}

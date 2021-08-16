@@ -9,15 +9,12 @@
   margin-bottom: 0.5rem;
 }
 
-.details-actions {
-  margin-bottom: 0.5rem;
-}
-
 .details-artists {
   display: inline-block;
   max-width: 60ch;
-  font-size: 0.875rem;
+  font-size: 1rem;
   margin: 0;
+  margin-bottom: 0 0 0.5rem;
 }
 
 .details-artists svg {
@@ -34,6 +31,7 @@
   }
 
   .details-artists {
-    font-size: 1rem;
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
   }
 }

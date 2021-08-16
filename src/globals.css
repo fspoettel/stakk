@@ -104,5 +104,9 @@ h6 a {
   flex-direction: column;
   padding: 0.25rem;
   transition: opacity 0.3s;
-  z-index: 9999;
+  z-index: 999;
+}
+
+body.modal-open {
+  overflow: hidden;
 }

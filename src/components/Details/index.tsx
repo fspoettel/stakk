@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { animated, useTransition } from '@react-spring/web';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpotify } from '@fortawesome/free-brands-svg-icons';
 import { faLink } from '@fortawesome/pro-solid-svg-icons';
-import { faWaveform } from '@fortawesome/pro-regular-svg-icons';
+import { StackItem } from '@stakk/types/StackItem';
 import ButtonGroup from '../ButtonGroup';
-import formatDateString from '../../helpers/formatDateString';
-import getArtistString from '../../helpers/getArtistString';
 
 import css from './Details.module.css';
-import { StackItem } from '../../types/StackItem';
-import getCurrentTrack from './helpers/getCurrentTrack';
 import Headline from '../Headline';
 import MixcloudButton from './MixcloudButton';
 import LinkButton from './SpotifyButton';
+import Description from './Description';
 
 type DetailsProps = {
+  hideInitialAnimation?: boolean,
+  index: number,
   item: StackItem,
   playbackIndex?: number,
   playbackProgress: number,
@@ -23,36 +21,29 @@ type DetailsProps = {
 };
 
 function Details({
+  hideInitialAnimation,
   item,
+  index,
   playbackIndex,
   playbackProgress,
   onTogglePlayback,
 }: DetailsProps) {
   const [initial, setInitial] = useState(true);
-  const [artists, setArtists] = useState(getArtistString(item.tracklist));
   
   useEffect(() => {
     setInitial(false);
   }, []);
-
-  useEffect(() => {
-    setArtists(getArtistString(item.tracklist));
-  }, [item]);
-
+  
   const transitions = useTransition(item, {
     from: { opacity: 0, transform: 'translateY(1rem)' },
     enter: { opacity: 1, transform: 'translateY(0)' },
     config: {
       duration: 325
     },
-    delay: initial ? 500 : undefined,
+    delay: initial && !hideInitialAnimation ? 500 : undefined,
   });
 
-  const playing = item.index === playbackIndex;
-
-  const currentTrack = playing && item.tracklist && playbackProgress > 0
-    ? getCurrentTrack(item.tracklist, playbackProgress)
-    : null;
+  const playing = index === playbackIndex;
 
   return transitions(
     (styles, item) => item && (
@@ -60,6 +51,12 @@ function Details({
         <header className={css['details-header']}>
           <Headline size='lg'>{item.title}</Headline>
         </header>
+
+        <Description
+          item={item}
+          playing={playing}
+          playbackProgress={playbackProgress}
+        />
 
         <nav className={css['details-actions']}>
           <ButtonGroup>
@@ -80,7 +77,14 @@ function Details({
               }
 
               if (link.includes('spotify')) {
-                return <LinkButton url={link} title={'Follow'} icon={faSpotify} key={i} />;
+                return (
+                  <LinkButton
+                    url={link}
+                    title={link.includes('album') ? 'Listen' : 'Follow'}
+                    icon={faSpotify}
+                    key={i}
+                  />
+                );
               }
 
               return (
@@ -94,15 +98,6 @@ function Details({
             })}
           </ButtonGroup>
         </nav>
-        {!playing && item.tracklist && (
-          <p className={css['details-artists']}>{formatDateString(item.createdAt)} / with {artists}</p>
-        )}
-        {currentTrack && (
-          <p className={css['details-artists']}>
-            <FontAwesomeIcon icon={faWaveform} />
-            Current Track: <strong>{currentTrack.artist} - {currentTrack.title}</strong>
-          </p>
-        )}
       </animated.article>
   ));
 }

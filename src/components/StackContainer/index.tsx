@@ -3,41 +3,43 @@ import { useKey } from 'react-use';
 import cx from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronSquareLeft, faChevronSquareRight, faSpinner, faStop, faUndo } from '@fortawesome/pro-solid-svg-icons';
+import { Stack as StackData } from '@stakk/types/Stack';
 
 import { HiddenState } from '../../types/HiddenState';
-import { Stack as StackData } from '../../types/Stack';
-import { rafPromise } from '../../helpers/rafPromise';
-import setRootCSSVariable from '../../helpers/setRootCSSVariable';
-import preloadImage from '../../helpers/preloadImage';
-import getMixCloudUrl from './helpers/getMixcloudUrl';
+import preloadImage from '../../lib/preloadImage';
+import getMixCloudUrl from './lib/getMixcloudUrl';
+import getCoverPath from '../../lib/getCoverPath';
 import Details from '../Details';
 import Footer from '../Footer';
 import Header from '../Header';
 import Player from '../Player';
 import Stack from '../Stack';
 
-import * as actions from '../../reducer/actions';
-import * as selectors from '../../reducer/selectors';
-import getInitialState from '../../reducer/getInitialState';
-import stackReducer from '../../reducer/reducer';
-
+import * as actions from './reducer/actions';
+import * as selectors from './reducer/selectors';
+import getInitialState from './reducer/getInitialState';
+import stackReducer from './reducer/reducer';
 import css from './StackContainer.module.css';
-import { getCoverPath } from '../../helpers/getCoverPath';
+import { getAuthorName, getAuthorUrl, getBackgroundColor, getItems, getTextColor, getTitle } from '../../lib/stackSelectors';
+import matchShortcutKey from '../../lib/matchShortcutKey';
 
 type StackContainerProps = {
   data: StackData;
+  hideDragIndicator?: boolean;
+  hideInitialAnimation?: boolean;
 };
 
-function StackContainer({ data }: StackContainerProps) {
-  const [state, dispatch] = useReducer(stackReducer, getInitialState(data));
+interface StackContainerStyle extends React.CSSProperties {
+  '--color'?: string;
+  '--background-color'?: string;
+}
 
-  const items = selectors.getItems(state);
+function StackContainer({ data, hideDragIndicator, hideInitialAnimation }: StackContainerProps) {
+  const [state, dispatch] = useReducer(stackReducer, getInitialState(getItems(data)));
+
+  const items = data.items;
+
   const loading = selectors.getIsLoading(state);
-
-  useEffect(() => {
-    setRootCSSVariable('--color', data?.theme?.text);
-    setRootCSSVariable('--background-color', data?.theme?.background);
-  }, [data]);
 
   useEffect(() => {
     function run() {
@@ -45,10 +47,10 @@ function StackContainer({ data }: StackContainerProps) {
         preloadImage('/assets/overlay-600px.webp'),
         ...items.map(item => preloadImage(getCoverPath(item)).catch(err => console.error(err))),
       ])
-      .then(rafPromise)
       .then(() => actions.load(dispatch));
     }
 
+    actions.reinit(dispatch, items);
     run();
   }, [items]);
 
@@ -59,7 +61,7 @@ function StackContainer({ data }: StackContainerProps) {
   const playbackIndex = selectors.getPlaybackIndex(state);
   const playbackProgress = selectors.getPlaybackProgress(state);
   const isPlaying = playbackIndex != null;
-  const isStatic = items.length === 1;
+  const isStatic = items.length <= 1;
 
   const onPrev = useCallback(() => {
     actions.prev(dispatch);
@@ -74,8 +76,8 @@ function StackContainer({ data }: StackContainerProps) {
   }, [activeIndex]);
 
   const onReset = useCallback(() => {
-    actions.reset(dispatch, { data, playbackIndex });
-  }, [data, playbackIndex]);
+    actions.reset(dispatch, { items, playbackIndex });
+  }, [items, playbackIndex]);
 
   const onSetDrageState = useCallback((dragState) => {
     actions.setDragState(dispatch, { dragState });
@@ -93,8 +95,13 @@ function StackContainer({ data }: StackContainerProps) {
     actions.setTrackProgress(dispatch, { progress });
   }, []);
 
-  useKey('ArrowRight', onNextGeneric, {}, [onNext]);
-  useKey('ArrowLeft', onPrev, {}, [onPrev]);
+  useKey(matchShortcutKey('ArrowRight'), onNextGeneric, {}, [onNext]);
+  useKey(matchShortcutKey('ArrowLeft'), onPrev, {}, [onPrev]);
+
+  const stackContainerStyle: StackContainerStyle = {
+    '--color': getTextColor(data) ?? undefined,
+    '--background-color': getBackgroundColor(data) ?? undefined,
+  };
 
   return (
     <div
@@ -102,6 +109,7 @@ function StackContainer({ data }: StackContainerProps) {
         css.stackcontainer,
         { [css['playing']]: isPlaying }
       ])}
+      style={stackContainerStyle}
     >
       <main className={css.content}>
         {loading
@@ -116,17 +124,22 @@ function StackContainer({ data }: StackContainerProps) {
             <>
               <Stack
                 {...state.stack}
+                hasInteraction={!!hideDragIndicator || state.stack.hasInteraction}
+                hideInitialAnimation={hideInitialAnimation}
+                isStatic={isStatic}
                 items={items}
-                playbackIndex={playbackIndex}
-                onDragCommit={onNext}
                 onDrag={onSetDrageState}
+                onDragCommit={onNext}
+                playbackIndex={playbackIndex}
               />
               {activeItem && (
                 <Details
+                  hideInitialAnimation={hideInitialAnimation}
+                  index={activeIndex}
                   item={selectors.getActiveOrNextItem(state)}
+                  onTogglePlayback={onTogglePlayback}
                   playbackIndex={playbackIndex}
                   playbackProgress={playbackProgress}
-                  onTogglePlayback={onTogglePlayback}
                 />
               )}
             </>
@@ -134,9 +147,9 @@ function StackContainer({ data }: StackContainerProps) {
         }
       </main>
       <Header
-        authorName={selectors.getAuthorName(state)}
-        authorUrl={selectors.getAuthorUrl(state)}
-        title={selectors.getTitle(state)}
+        authorName={getAuthorName(data)}
+        authorUrl={getAuthorUrl(data)}
+        title={getTitle(data)}
         actions={isStatic ? [] : [
           {
             key: 'stopPlayback',

@@ -3,28 +3,29 @@ import { useSprings } from '@react-spring/web';
 import { useDrag } from 'react-use-gesture';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandPaper, faUndo } from '@fortawesome/pro-solid-svg-icons';
+import { StackItem } from '@stakk/types/StackItem';
 
 import { DragDirection, DragState } from '../../types/DragState';
 import { HiddenState } from '../../types/HiddenState';
-import useDidMountEffect from '../../helpers/useDidMountEffect';
+import useDidMountEffect from '../../lib/useDidMountEffect';
 import css from './Stack.module.css';
 
-
-import exceedsDragThreshold from './helpers/exceedsDragThreshold';
-import getDirectionFromDelta from './helpers/getDirectionFromDelta';
-import getStackCSSVariables from './helpers/getStackCSSVariables';
-import { updateDraggingSpring, updateRestingSpring } from './helpers/updateSprings';
-import { toSpringStacked } from './helpers/springs/springStacked';
+import getDirectionFromDelta from './lib/getDirectionFromDelta';
+import getStackCSSVariables from './lib/getStackCSSVariables';
+import { updateDraggingSpring, updateRestingSpring } from './lib/updateSprings';
+import { toSpringStacked } from './lib/springs/springStacked';
 import StackMember from './StackMember';
-import { StackItem } from '../../types/StackItem';
+import exceedsDragThreshold from '../Cover/exceedsDragThreshold';
 
 type StackProps = {
   activeIndex: number,
   animationLock: boolean,
   hasInteraction: boolean,
+  hideInitialAnimation?: boolean,
   hiddenItems: Record<string, HiddenState>,
   dragState: DragState,
   items: StackItem[],
+  isStatic: boolean,
   playbackIndex?: number,
   // eslint-disable-next-line no-unused-vars
   onDragCommit: (payload: { direction: DragDirection, index: number }) => void,
@@ -46,6 +47,8 @@ function Stack({
   animationLock,
   hasInteraction,
   hiddenItems,
+  hideInitialAnimation,
+  isStatic,
   dragState,
   items,
   playbackIndex,
@@ -53,11 +56,10 @@ function Stack({
   onDrag,
 }: StackProps) {
   const stackSize = items.length;
-  const [springs, api] = useSprings(items.length, toSpringStacked(stackSize, true));
+  const [springs, api] = useSprings(items.length, toSpringStacked(stackSize, !hideInitialAnimation));
 
   const isFirstItem = activeIndex === items.length - 1;
   const isLastItem = activeIndex === 0;
-  const isStatic = items.length === 1;
 
   const shouldAnimateChanges = !dragState.dragging
     && isFirstItem

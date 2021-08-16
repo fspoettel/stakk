@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { StackItem } from '../../types/StackItem';
+import { StackItem } from '@stakk/types/StackItem';
 import css from './TagSticker.module.css';
 
 type TagStickerProps = {

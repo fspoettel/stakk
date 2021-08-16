@@ -5,13 +5,16 @@ export type Stack = {
   slug: string,
   author: {
     name: string,
-    url: string,
     slug: string,
+    url?: string,
   },
-  theme: {
-    background: string|null,
-    text: string|null,
+  theme?: {
+    background?: string,
+    text?: string,
   },
   title: string,
-  items: Omit<StackItem, 'index'>[],
+  items: StackItem[],
 };
+
+export type ColorKey = 'background'|'text';
+export type AuthorKey = 'url'|'name'|'slug';

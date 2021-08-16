@@ -1,0 +1,83 @@
+.editoritems-listing {
+  padding: 0;
+  margin: 0;
+}
+
+.editoritem {
+  position: relative;
+  list-style: none;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color);
+  margin-bottom: 1rem;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--background-color);
+  user-select: none;
+}
+
+.editoritem-row {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.editoritem-actions * {
+  touch-action: none;
+}
+
+.editoritem-handle {
+  position: absolute;
+  top: 50%;
+  left: -2rem;
+  transform: translateY(-50%);
+}
+
+.editoritem-handle {
+  color: #888;
+}
+
+.editoritem.dragging {
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.25);
+}
+
+[aria-pressed="true"] .editoritem {
+  opacity: 0.5;
+}
+
+[aria-pressed="true"] .editoritem-actions {
+  visibility: hidden;
+}
+
+.editoradd-container {
+  margin-bottom: 1rem;
+}
+
+.editoradd {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.editoradd-supported-list {
+  list-style: none;
+  margin: 0;
+  margin-top: 0.5rem;
+  padding: 0;
+}
+
+.editoradd-supported-list li {
+  list-style: none;
+  padding: 0;
+}
+
+.editoradd-supported-list svg {
+  margin-right: 0.5rem;
+}
+
+.editoradd-spinner {
+  margin-left: 0.5rem;
+  }
