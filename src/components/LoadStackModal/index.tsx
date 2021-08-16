@@ -1,7 +1,7 @@
-import { Stack } from '@stakk/types/Stack';
 import React, { MouseEventHandler, useCallback, useState } from 'react';
-import Modal from '../Modal';
-import ModalPortal from '../ModalPortal';
+import { Stack } from '@stakk/types/Stack';
+import Modal from '@stakk/components/Modal';
+import ModalPortal from '@stakk/components/ModalPortal';
 
 import css from './LoadStackModal.module.css';
 

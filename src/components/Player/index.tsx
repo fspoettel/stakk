@@ -1,6 +1,6 @@
 import React from 'react';
-import loadScript from '../../lib/loadScript';
-import { MixcloudPlayer } from '../../types/MixcloudPlayer';
+import { MixcloudPlayer } from '@stakk/types/MixcloudPlayer';
+import loadScript from '@stakk/lib/loadScript';
 
 interface CustomWindow extends Window {
   Mixcloud: {

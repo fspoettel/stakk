@@ -1,5 +1,5 @@
-import Button from '../Button';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import Button from '@stakk/components/Button';
 
 type LinkButtonProps = {
   icon: IconProp,

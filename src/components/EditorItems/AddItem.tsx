@@ -1,14 +1,14 @@
 import { ChangeEvent, useCallback, useState } from 'react';
 import { faSave, faSpinner } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ButtonWithTooltip from '../ButtonWithTooltip';
-import Field from '../Form/Field';
+import { faMixcloud, faSpotify } from '@fortawesome/free-brands-svg-icons';
+import ButtonWithTooltip from '@stakk/components/ButtonWithTooltip';
+import Field from '@stakk/components/Form/Field';
+import Headline from '@stakk/components/Headline';
+import fetchStackItem from '../../services/client/fetchStackItem';
+import { StackItem } from '@stakk/types/StackItem';
 
 import css from './EditorItems.module.css';
-import { StackItem } from '@stakk/types/StackItem';
-import Headline from '../Headline';
-import { faMixcloud, faSpotify } from '@fortawesome/free-brands-svg-icons';
-import fetchStackItem from '../../services/api/fetchStackItem';
 
 type AddItemProps = {
   onItemAdd: (item: StackItem) => void,

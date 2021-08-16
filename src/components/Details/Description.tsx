@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWaveform } from '@fortawesome/pro-regular-svg-icons';
-import { StackItem } from '@stakk/types/StackItem';
 
-import formatDateString from '../../lib/formatDateString';
-import getArtistString from '../../lib/getArtistString';
+import { StackItem } from '@stakk/types/StackItem';
+import formatDateString from '@stakk/lib/formatDateString';
+import getArtistString from '@stakk/lib/getArtistString';
+
 import getCurrentTrack from './lib/getCurrentTrack';
+
 import css from './Details.module.css';
 
 type DetailsProps = {

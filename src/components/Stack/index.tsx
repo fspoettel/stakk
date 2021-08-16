@@ -5,17 +5,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandPaper, faUndo } from '@fortawesome/pro-solid-svg-icons';
 import { StackItem } from '@stakk/types/StackItem';
 
-import { DragDirection, DragState } from '../../types/DragState';
-import { HiddenState } from '../../types/HiddenState';
-import useDidMountEffect from '../../lib/useDidMountEffect';
+import { DragDirection, DragState } from '@stakk/types/DragState';
+import { HiddenState } from '@stakk/types/HiddenState';
+import useDidMountEffect from '@stakk/lib/useDidMountEffect';
 import css from './Stack.module.css';
+
+// TODO: move to /lib
+import exceedsDragThreshold from '@stakk/components/Cover/exceedsDragThreshold';
 
 import getDirectionFromDelta from './lib/getDirectionFromDelta';
 import getStackCSSVariables from './lib/getStackCSSVariables';
 import { updateDraggingSpring, updateRestingSpring } from './lib/updateSprings';
 import { toSpringStacked } from './lib/springs/springStacked';
 import StackMember from './StackMember';
-import exceedsDragThreshold from '../Cover/exceedsDragThreshold';
 
 type StackProps = {
   activeIndex: number,

@@ -1,5 +1,5 @@
-import ContentBlock from '../components/ContentBlock';
-import PageLayout from '../components/PageLayout';
+import ContentBlock from '@stakk/components/ContentBlock';
+import PageLayout from '@stakk/components/PageLayout';
 
 function About() {
   return (

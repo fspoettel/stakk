@@ -8,14 +8,14 @@ async function makeRequest(
   type: string,
   body: JsonObject
 ): Promise<StackItem> {
-  const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/v1`;
+  const baseUrl = '/api/v1';
 
   const res = await fetch(`${baseUrl}/${type}`, {
     headers: {
       'Content-Type': 'application/json'
     },
     method: 'POST',
-    mode: 'cors',
+    mode: 'no-cors',
     body: JSON.stringify(body),
   });
 

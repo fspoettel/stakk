@@ -1,6 +1,6 @@
 import { MouseEventHandler } from 'react';
 import { faPlay, faStop } from '@fortawesome/pro-solid-svg-icons';
-import Button from '../Button';
+import Button from '@stakk/components/Button';
 
 type MixcloudButtonProps = {
   onClick: MouseEventHandler,

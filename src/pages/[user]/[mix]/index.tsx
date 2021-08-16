@@ -1,10 +1,10 @@
 import { Stack } from '@stakk/types/Stack';
-import { getMixData, getDataForAllMixes } from '../../../lib/getMixData';
-import getStackMetadata from '../../../lib/getStackMetadata';
-import generateRSS from '../../../lib/generateRSS';
-import writeRSSToFile from '../../../lib/writeRSSToFile';
-import HtmlHead from '../../../components/HtmlHead';
-import StackContainer from '../../../components/StackContainer';
+import { getMixData, getDataForAllMixes } from '@stakk/lib/getMixData';
+import getStackMetadata from '@stakk/lib/getStackMetadata';
+import generateRSS from '@stakk/lib/generateRSS';
+import writeRSSToFile from '@stakk/lib/writeRSSToFile';
+import HtmlHead from '@stakk/components/HtmlHead';
+import StackContainer from '@stakk/components/StackContainer';
 
 export async function getStaticPaths() {
   const mixes = await getDataForAllMixes();

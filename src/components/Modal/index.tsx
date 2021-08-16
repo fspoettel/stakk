@@ -1,7 +1,7 @@
 import { MouseEventHandler, ReactNode } from 'react';
-import Button from '../Button';
-import ButtonGroup from '../ButtonGroup';
-import Headline from '../Headline';
+import Button from '@stakk/components/Button';
+import ButtonGroup from '@stakk/components/ButtonGroup';
+import Headline from '@stakk/components/Headline';
 import Overlay from './Overlay';
 
 import css from './Modal.module.css';
