@@ -1,6 +1,6 @@
 import cuid from 'cuid';
 import slugify from 'slugify';
-import { StackItem } from '../../types/StackItem';
+import { StackItem } from '@stakk/types/StackItem';
 
 export function toStackItem(album: SpotifyApi.AlbumObjectFull): StackItem {
   const albumArtists = album.artists.map(a => a.name).join(', ');

@@ -5,7 +5,7 @@ import { faMixcloud, faSpotify } from '@fortawesome/free-brands-svg-icons';
 import ButtonWithTooltip from '@stakk/components/ButtonWithTooltip';
 import Field from '@stakk/components/Form/Field';
 import Headline from '@stakk/components/Headline';
-import fetchStackItem from '../../services/client/fetchStackItem';
+import fetchStackItem from '@stakk/services/client/fetchStackItem';
 import { StackItem } from '@stakk/types/StackItem';
 
 import css from './EditorItems.module.css';

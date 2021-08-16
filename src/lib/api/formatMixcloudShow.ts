@@ -1,6 +1,6 @@
 import cuid from 'cuid';
 import { StackItem } from '@stakk/types/StackItem';
-import { ShowResponse } from '../../services/mixcloud/getShow';
+import { ShowResponse } from '@stakk/services/api/mixcloud/getShow';
 
 export function toStackItem(show: ShowResponse): StackItem {
   return {
