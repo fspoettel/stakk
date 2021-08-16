@@ -1,7 +1,7 @@
 import { Stack } from '@stakk/types/Stack';
-import HtmlHead from '../../../components/HtmlHead';
-import StackContainer from '../../../components/StackContainer';
-import { getMixData, getDataForAllMixes } from '../../../lib/getMixData';
+import HtmlHead from '@stakk/components/HtmlHead';
+import StackContainer from '@stakk/components/StackContainer';
+import { getMixData, getDataForAllMixes } from '@stakk/lib/getMixData';
 
 export async function getStaticPaths() {
   const mixes = await getDataForAllMixes();

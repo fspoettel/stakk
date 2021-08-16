@@ -3,13 +3,14 @@ import { animated, useTransition } from '@react-spring/web';
 import { faSpotify } from '@fortawesome/free-brands-svg-icons';
 import { faLink } from '@fortawesome/pro-solid-svg-icons';
 import { StackItem } from '@stakk/types/StackItem';
-import ButtonGroup from '../ButtonGroup';
+import ButtonGroup from '@stakk/components/ButtonGroup';
+import Headline from '@stakk/components/Headline';
 
-import css from './Details.module.css';
-import Headline from '../Headline';
 import MixcloudButton from './MixcloudButton';
 import LinkButton from './SpotifyButton';
 import Description from './Description';
+
+import css from './Details.module.css';
 
 type DetailsProps = {
   hideInitialAnimation?: boolean,

@@ -1,5 +1,6 @@
 import { StackItem } from '@stakk/types/StackItem';
-import exceedsDragThreshold from '../../Cover/exceedsDragThreshold';
+// TODO: move to /lib
+import exceedsDragThreshold from '@stakk/components/Cover/exceedsDragThreshold';
 import { StackState } from './getInitialState';
 
 export function getActiveIndex(state: StackState): number {

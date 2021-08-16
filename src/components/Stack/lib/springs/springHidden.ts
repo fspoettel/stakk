@@ -1,5 +1,5 @@
 import { config } from '@react-spring/web';
-import { DragDirection } from '../../../../types/DragState';
+import { DragDirection } from '@stakk/types/DragState';
 import { Spring } from '../constants';
 import getOffscreenX from '../getOffscreenX';
 

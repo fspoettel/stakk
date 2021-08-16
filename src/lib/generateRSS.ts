@@ -1,4 +1,4 @@
-import { SITE_OPERATOR, SITE_URL } from '../constants';
+import { SITE_OPERATOR, SITE_URL } from '@stakk/constants';
 import { Stack } from '@stakk/types/Stack';
 import { StackItem } from '@stakk/types/StackItem';
 import getCoverPath from './getCoverPath';

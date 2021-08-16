@@ -2,12 +2,12 @@ import React, { MouseEventHandler } from 'react';
 import cx from 'classnames';
 import { faGripVertical, faTrash } from '@fortawesome/pro-solid-svg-icons';
 
-import css from './EditorItems.module.css';
+import { RenderProps } from '@stakk/components/SortableList/interfaces';
+import ButtonGroup from '@stakk/components/ButtonGroup';
+import ButtonWithTooltip from '@stakk/components/ButtonWithTooltip';
+import Button from '@stakk/components/Button';
 
-import { RenderProps } from '../SortableList/interfaces';
-import ButtonGroup from '../ButtonGroup';
-import ButtonWithTooltip from '../ButtonWithTooltip';
-import Button from '../Button';
+import css from './EditorItems.module.css';
 
 type EditorItemProps = {
   onItemDelete: MouseEventHandler;

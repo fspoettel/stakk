@@ -1,10 +1,10 @@
 import React from 'react';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
-import ButtonWithTooltip from '../ButtonWithTooltip';
-import ButtonGroup from '../ButtonGroup';
+import ButtonWithTooltip from '@stakk/components/ButtonWithTooltip';
+import ButtonGroup from '@stakk/components/ButtonGroup';
+import Logo from '@stakk/components/Logo';
 import css from './Header.module.css';
-import Logo from '../Logo';
 
 type Action = {
   key: string,

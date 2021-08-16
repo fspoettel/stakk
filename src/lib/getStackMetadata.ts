@@ -1,4 +1,4 @@
-import { SITE_URL } from '../constants';
+import { SITE_URL } from '@stakk/constants';
 import { Stack } from '@stakk/types/Stack';
 
 export type StackMetadata = {

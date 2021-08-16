@@ -1,4 +1,4 @@
-import Footer from '../Footer';
+import Footer from '@stakk/components/Footer';
 import css from './PageLayout.module.css';
 
 function PageFooter() {

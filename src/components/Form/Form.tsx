@@ -1,6 +1,6 @@
 import { FormEventHandler, ReactNode } from 'react';
 import cx from 'classnames';
-import Headline from '../Headline';
+import Headline from '@stakk/components/Headline';
 
 import css from './Form.module.css';
 

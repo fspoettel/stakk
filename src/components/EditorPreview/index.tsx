@@ -1,5 +1,5 @@
 import { Stack } from '@stakk/types/Stack';
-import StackContainer from '../StackContainer';
+import StackContainer from '@stakk/components/StackContainer';
 
 import css from './EditorPreview.module.css';
 

@@ -1,11 +1,12 @@
 import { MouseEventHandler } from 'react';
 import { StackItem } from '@stakk/types/StackItem';
 
-import css from './EditorItems.module.css';
-import SortableList from '../SortableList';
-import { SortCallback } from '../SortableList/interfaces';
+import SortableList from '@stakk/components/SortableList';
+import { SortCallback } from '@stakk/components/SortableList/interfaces';
 import EditorItem from './EditorItem';
 import AddItem from './AddItem';
+
+import css from './EditorItems.module.css';
 
 type EditorItemsProps = {
   items: StackItem[],

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { usePopper } from 'react-popper';
 import { useClickAway } from 'react-use';
-import Button, { ButtonProps } from '../Button';
+import Button, { ButtonProps } from '@stakk/components/Button';
 
 type ButtonWithTooltipProps = Omit<ButtonProps, 'popperRef'> & { tooltip: string };
 

@@ -1,20 +1,22 @@
 import { FormEvent, useCallback, useReducer } from 'react';
-import ButtonGroup from '../ButtonGroup';
-import EditorItems from '../EditorItems';
-import EditorPreview from '../EditorPreview';
-import Field from '../Form/Field';
-import FieldGroup from '../Form/FieldGroup';
-import Form from '../Form/Form';
-import reducer from './reducer/reducer';
-import * as stackSelectors from '../../lib/stackSelectors';
-
-import css from './Editor.module.css';
-import Button from '../Button';
 import { useCopyToClipboard } from 'react-use';
+import * as stackSelectors from '@stakk/lib/stackSelectors';
+
+import ButtonGroup from '@stakk/components/ButtonGroup';
+import EditorItems from '@stakk/components/EditorItems';
+import EditorPreview from '@stakk/components/EditorPreview';
+import Field from '@stakk/components/Form/Field';
+import FieldGroup from '@stakk/components/Form/FieldGroup';
+import Form from '@stakk/components/Form/Form';
+import reducer from './reducer/reducer';
+import Button from '@stakk/components/Button';
+import LoadStackModal from '@stakk/components/LoadStackModal';
+
 import getInitialState from './reducer/getInitialState';
 import * as actions from './reducer/actions';
 import * as selectors from './reducer/selectors';
-import LoadStackModal from '../LoadStackModal';
+
+import css from './Editor.module.css';
 
 function Editor() {
   const [state, dispatch] = useReducer(reducer, getInitialState());

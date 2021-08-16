@@ -4,24 +4,25 @@ import cx from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronSquareLeft, faChevronSquareRight, faSpinner, faStop, faUndo } from '@fortawesome/pro-solid-svg-icons';
 import { Stack as StackData } from '@stakk/types/Stack';
+import { HiddenState } from '@stakk/types/HiddenState';
 
-import { HiddenState } from '../../types/HiddenState';
-import preloadImage from '../../lib/preloadImage';
+import preloadImage from '@stakk/lib/preloadImage';
+import getCoverPath from '@stakk/lib/getCoverPath';
+import { getAuthorName, getAuthorUrl, getBackgroundColor, getItems, getTextColor, getTitle } from '@stakk/lib/stackSelectors';
+import matchShortcutKey from '@stakk/lib/matchShortcutKey';
+
+import Details from '@stakk/components/Details';
+import Footer from '@stakk/components/Footer';
+import Header from '@stakk/components/Header';
+import Player from '@stakk/components/Player';
+import Stack from '@stakk/components/Stack';
+
 import getMixCloudUrl from './lib/getMixcloudUrl';
-import getCoverPath from '../../lib/getCoverPath';
-import Details from '../Details';
-import Footer from '../Footer';
-import Header from '../Header';
-import Player from '../Player';
-import Stack from '../Stack';
-
 import * as actions from './reducer/actions';
 import * as selectors from './reducer/selectors';
 import getInitialState from './reducer/getInitialState';
 import stackReducer from './reducer/reducer';
 import css from './StackContainer.module.css';
-import { getAuthorName, getAuthorUrl, getBackgroundColor, getItems, getTextColor, getTitle } from '../../lib/stackSelectors';
-import matchShortcutKey from '../../lib/matchShortcutKey';
 
 type StackContainerProps = {
   data: StackData;

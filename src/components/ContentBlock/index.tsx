@@ -1,6 +1,6 @@
 
 import { ReactNode } from 'react';
-import Headline from '../Headline';
+import Headline from '@stakk/components/Headline';
 
 import css from './ContentBlock.module.css';
 
