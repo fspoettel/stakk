@@ -13,8 +13,7 @@
   display: inline-block;
   max-width: 60ch;
   font-size: 1rem;
-  margin: 0;
-  margin-bottom: 0 0 0.5rem;
+  margin: 0 0 0.5rem;
 }
 
 .details-artists svg {
