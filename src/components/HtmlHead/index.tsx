@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { Stack } from '@stakk/types/Stack';
-import { SITE_URL } from '@stakk/constants';
 import getStackMetadata from '@stakk/lib/getStackMetadata';
+import getCoverPath from '@stakk/lib/getCoverPath';
 
 type HtmlHeadProps = {
   data: Stack,
@@ -14,14 +14,12 @@ export default function HtmlHead({ data, targetItemSlug }: HtmlHeadProps) {
   const mixUrl = metadata.canonicalUrl;
   const canonicalUrl = targetItemSlug ? `${mixUrl}/${targetItemSlug}` : mixUrl;
 
-  const slug = targetItemSlug ?? data.items[data.items.length - 1].slug;
-
   return (
     <Head>
       <title>stakk &middot; {metadata.title}</title>
       <meta name='description' content={metadata.description} />
 
-      <meta property='og:image' content={`${SITE_URL}/assets/og/${slug}.jpg`} />
+      <meta property='og:image' content={getCoverPath(data.items[0])} />
       <meta property='og:title' content={metadata.title} />
       <meta property='og:description' content={metadata.description} />
       <meta property='og:url' content={canonicalUrl} />
