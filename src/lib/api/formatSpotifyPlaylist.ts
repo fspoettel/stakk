@@ -1,5 +1,6 @@
 import cuid from 'cuid';
 import slugify from 'slugify';
+import xss from 'xss';
 import { StackItem } from '@stakk/types/StackItem';
 
 export function toStackItem(playlist: SpotifyApi.PlaylistObjectFull): StackItem {
@@ -7,7 +8,9 @@ export function toStackItem(playlist: SpotifyApi.PlaylistObjectFull): StackItem 
 
   return {
     createdAt: new Date().toISOString(),
-    description: playlist.description ?? '',
+    description: playlist.description
+      ? xss(playlist.description)
+      : '',
     id: cuid(),
     title: playlist.name,
     slug: slugify(playlist.name).toLowerCase(),

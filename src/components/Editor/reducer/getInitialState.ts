@@ -13,8 +13,8 @@ function getInitialState(): EditorState {
     stackLoaderOpen: false,
     stack: {
       id: cuid(),
-      title: 'New Stack',
-      slug: 'new-stack',
+      title: 'New Stakk',
+      slug: 'new-stakk',
       author: {
         name: 'user',
         slug: 'user',

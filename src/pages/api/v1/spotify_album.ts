@@ -1,6 +1,6 @@
 import _debug from 'debug';
 import { NextApiRequest, NextApiResponse } from 'next';
-import storeImage from '@stakk/services/api/backblaze/storeImage';
+import storeImage from '@stakk/services/api/aws/storeImage';
 import getAccessToken from '@stakk/services/api/spotify/getAccessToken';
 import getAlbum from '@stakk/services/api/spotify/getAlbum';
 import getImage from '@stakk/lib/api/getImage';

@@ -28,7 +28,7 @@ function LoadStackModal({ open, onConfirmLoad, onClose }: LoadStackModalProps) {
   return (
     <ModalPortal>
       <Modal
-        title='Load Stack'
+        title='Import Stack'
         open={open}
         onClose={onClose}
         onConfirm={load}

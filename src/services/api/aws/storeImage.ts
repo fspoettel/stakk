@@ -18,21 +18,21 @@ async function storeImage(image: Buffer): Promise<string> {
   const fileType = await FileType.fromBuffer(image);
   if (!fileType?.mime.startsWith('image')) throw new TypeError('not an image');
 
-  const original = makeVersionKey(imageId, `source.${fileType.ext}`);
-  const optimized = makeVersionKey(imageId, '600x.webp');
-
   debug(`[${imageId}] generating optimized version...`);
 
-  const processed = await sharp(image)
-    .resize(600)
-    .webp({ quality: 85 })
-    .toBuffer();
+  const resized = await sharp(image).resize(600);
 
-  debug(`[${imageId}] uploading to B2...`);
+  const [webp, jpeg] = await Promise.all([
+    resized.webp({ quality: 85 }).toBuffer(),
+    resized.jpeg({ quality: 85 }).toBuffer(),
+  ]);
+
+  debug(`[${imageId}] uploading to AWS...`);
 
   await Promise.all([
-    upload(original, image),
-    upload(optimized, processed)
+    upload(makeVersionKey(imageId, `source.${fileType.ext}`), image),
+    upload(makeVersionKey(imageId, '600x.webp'), webp),
+    upload(makeVersionKey(imageId, '600x.jpg'), jpeg),
   ]);
 
   debug(`[${imageId}] successfully stored!`);

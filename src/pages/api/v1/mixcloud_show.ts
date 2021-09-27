@@ -1,6 +1,6 @@
 import _debug from 'debug';
 import { NextApiRequest, NextApiResponse } from 'next';
-import storeImage from '@stakk/services/api/backblaze/storeImage';
+import storeImage from '@stakk/services/api/aws/storeImage';
 import getShow from '@stakk/services/api/mixcloud/getShow';
 import getImage from '@stakk/lib/api/getImage';
 import { ValidationError } from '@stakk/lib/api/errors';

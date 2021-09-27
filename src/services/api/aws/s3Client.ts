@@ -4,11 +4,15 @@ function getS3Client(): AWS.S3 {
   const {
     API_AWS_ACCESS_KEY_ID,
     API_AWS_SECRET_ACCESS_KEY,
-    B2_ENDPOINT
+    API_AWS_REGION
   } = process.env;
 
-  if (!B2_ENDPOINT || !API_AWS_ACCESS_KEY_ID || !API_AWS_SECRET_ACCESS_KEY) {
-    throw new Error('bad b2 environment');
+  if (
+    !API_AWS_ACCESS_KEY_ID ||
+    !API_AWS_SECRET_ACCESS_KEY ||
+    !API_AWS_REGION
+  ) {
+    throw new Error('bad AWS environment');
   }
 
   const credentials = new AWS.Credentials({
@@ -17,12 +21,11 @@ function getS3Client(): AWS.S3 {
   });
 
   AWS.config.credentials = credentials;
-
-  const region =  B2_ENDPOINT.split('.')[1];
   AWS.config.signatureVersion = 'v4';
 
-  const endpoint = new AWS.Endpoint(B2_ENDPOINT);
-  return new AWS.S3({ endpoint, region });
+  return new AWS.S3({
+    region: API_AWS_REGION
+  });
 }
 
 export default getS3Client();

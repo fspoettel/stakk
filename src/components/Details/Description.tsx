@@ -43,7 +43,10 @@ function Description({ item, playing, playbackProgress }: DetailsProps) {
 
   if (item.description && !(isMixcloud && hasTracklist)) {
     return (
-      <p className={css['details-artists']}>{item.description}</p>
+      <p
+        className={css['details-artists']}
+        dangerouslySetInnerHTML={{ __html: item.description }}
+      />
     );
   }
 

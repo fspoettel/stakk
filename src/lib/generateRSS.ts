@@ -8,7 +8,7 @@ import getStackMetadata, { StackMetadata } from './getStackMetadata';
 function generateRSSItem(item: StackItem, metadata: StackMetadata): string {
   const content = `
         <![CDATA[ 
-        <p><img src="${getCoverPath(item, 'og', 'jpg')}" /></p>
+        <p><img src="${getCoverPath(item, 'source.jpg')}" /></p>
         <p>with ${getArtistString(item.tracklist)}</p>
         ]]>
       `;
