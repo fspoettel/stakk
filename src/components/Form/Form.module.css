@@ -52,8 +52,8 @@
   color: var(--color);
 }
 
-.field.small input,
-.field.small textarea {
+.field.sm input,
+.field.sm textarea {
   padding: 0.25rem 0.5rem;
 }
 

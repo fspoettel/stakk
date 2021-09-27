@@ -33,8 +33,13 @@
 }
 
 :root {
+  /* colors */
   --color: #25292c;
   --background-color: #ffd700;
+  /* stacking contexts */
+  --z-floating: 100;
+  --z-tooltip: 200;
+  --z-overlay: 300;
 }
 
 html,
@@ -86,15 +91,6 @@ h6 a {
   text-decoration: none;
 }
 
-.tooltip {
-  background: #333;
-  color: white;
-  font-weight: bold;
-  padding: 4px 8px;
-  font-size: 13px;
-  border-radius: 4px;
-}
-
 .tooltip-container {
   background-color: var(--color);
   border-radius: 3px;
@@ -104,7 +100,7 @@ h6 a {
   flex-direction: column;
   padding: 0.25rem;
   transition: opacity 0.3s;
-  z-index: 999;
+  z-index: var(--z-tooltip);
 }
 
 body.modal-open {

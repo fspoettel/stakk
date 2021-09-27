@@ -17,6 +17,7 @@ import * as actions from './reducer/actions';
 import * as selectors from './reducer/selectors';
 
 import css from './Editor.module.css';
+import { faDownload, faUpload } from '@fortawesome/pro-solid-svg-icons';
 
 function Editor() {
   const [state, dispatch] = useReducer(reducer, getInitialState());
@@ -53,8 +54,21 @@ function Editor() {
         footer={(
           <>
             <ButtonGroup>
-              <Button type='submit'>Get Code</Button>
-              <Button onClick={onOpenLoader}>Load Stack</Button>
+              <Button
+                type='submit'
+                size='sm'
+                icon={faDownload}
+              >
+                Export
+              </Button>
+              <Button
+                icon={faUpload}
+                onClick={onOpenLoader}
+                size='sm'
+                variant='secondary'
+              >
+                Import
+              </Button>
             </ButtonGroup>
             {clipboardState.error
               ? <p>Unable to copy value: {clipboardState.error.message}</p>
@@ -62,7 +76,7 @@ function Editor() {
           </>
         )}
         onSubmit={onFormSubmit}
-        title='Stack Editor'
+        title='Stakk Editor'
       >
         <Field
           name='title'

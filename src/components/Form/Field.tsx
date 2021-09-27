@@ -12,7 +12,7 @@ type FieldProps = {
   onChange?: ChangeEventHandler<HTMLInputElement|HTMLTextAreaElement>;
   placeholder?: string;
   required?: boolean;
-  size?: 'small';
+  size?: 'sm';
   value?: string;
 };
 

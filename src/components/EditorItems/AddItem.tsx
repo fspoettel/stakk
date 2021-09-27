@@ -84,7 +84,10 @@ function AddItem({ onItemAdd }: AddItemProps) {
             icon={faSave}
             onClick={onItemSubmit}
             tooltip='add item'
-          />
+            variant='secondary'
+          >
+            Save
+          </ButtonWithTooltip>
         )}
       </div>
       <article className={css['editoradd-supported']}>
