@@ -2,7 +2,7 @@ import { MouseEventHandler } from 'react';
 import { StackItem } from '@stakk/types/StackItem';
 
 import SortableList from '@stakk/components/shared/SortableList';
-import { SortCallback } from '@stakk/components/SortableList/interfaces';
+import { SortCallback } from '@stakk/components/shared/SortableList/interfaces';
 import EditorItem from './EditorItem';
 import AddItem from './AddItem';
 

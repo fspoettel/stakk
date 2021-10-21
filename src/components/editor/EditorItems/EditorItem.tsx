@@ -2,7 +2,7 @@ import React, { MouseEventHandler } from 'react';
 import cx from 'classnames';
 import { faGripVertical, faTrash } from '@fortawesome/pro-solid-svg-icons';
 
-import { RenderProps } from '@stakk/components/SortableList/interfaces';
+import { RenderProps } from '@stakk/components/shared/SortableList/interfaces';
 import ButtonGroup from '@stakk/components/shared/ButtonGroup';
 import ButtonWithTooltip from '@stakk/components/shared/ButtonWithTooltip';
 import Button from '@stakk/components/shared/Button';
