@@ -3,8 +3,8 @@ import { getMixData, getDataForAllMixes } from '@stakk/lib/getMixData';
 import getStackMetadata from '@stakk/lib/getStackMetadata';
 import generateRSS from '@stakk/lib/generateRSS';
 import writeRSSToFile from '@stakk/lib/writeRSSToFile';
-import HtmlHead from '@stakk/components/HtmlHead';
-import StackContainer from '@stakk/components/StackContainer';
+import HtmlHead from '@stakk/components/stack/HtmlHead';
+import StackContainer from '@stakk/components/stack/StackContainer';
 
 export async function getStaticPaths() {
   const mixes = await getDataForAllMixes();

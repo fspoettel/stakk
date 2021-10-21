@@ -1,6 +1,6 @@
 import { Stack } from '@stakk/types/Stack';
-import HtmlHead from '@stakk/components/HtmlHead';
-import StackContainer from '@stakk/components/StackContainer';
+import HtmlHead from '@stakk/components/stack/HtmlHead';
+import StackContainer from '@stakk/components/stack/StackContainer';
 import { getMixData, getDataForAllMixes } from '@stakk/lib/getMixData';
 
 export async function getStaticPaths() {

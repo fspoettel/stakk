@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { faGhost } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import css from '@stakk/components/PageLayout/PageLayout.module.css';
+import css from '@stakk/components/shared/PageLayout/PageLayout.module.css';
 
 export default function Custom404() {
   return (

@@ -1,5 +1,5 @@
-import ContentBlock from '@stakk/components/ContentBlock';
-import PageLayout from '@stakk/components/PageLayout';
+import ContentBlock from '@stakk/components/shared/ContentBlock';
+import PageLayout from '@stakk/components/shared/PageLayout';
 
 function Privacy() {
   return (

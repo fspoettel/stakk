@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Editor from '@stakk/components/Editor';
+import Editor from '@stakk/components/editor/Editor';
 
 function EditorPage() {
   return (
