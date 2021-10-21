@@ -99,6 +99,14 @@ function StackContainer({ data, hideDragIndicator, hideInitialAnimation }: Stack
   useKey(matchShortcutKey('ArrowRight'), onNextGeneric, {}, [onNext]);
   useKey(matchShortcutKey('ArrowLeft'), onPrev, {}, [onPrev]);
 
+    // TODO: move this to `getInitialProps` once we query items from a database.
+    // We currently implement this way to avoid rehydration problems with SSR.
+  const [isEmbed, setIsEmbed] = React.useState(false);
+
+  useEffect(() => {
+    setIsEmbed(typeof window !== 'undefined' && window.location.search.includes('embed'));
+  }, []);
+
   const stackContainerStyle: StackContainerStyle = {
     '--color': getTextColor(data) ?? undefined,
     '--background-color': getBackgroundColor(data) ?? undefined,
@@ -126,7 +134,7 @@ function StackContainer({ data, hideDragIndicator, hideInitialAnimation }: Stack
               <Stack
                 {...state.stack}
                 hasInteraction={!!hideDragIndicator || state.stack.hasInteraction}
-                hideInitialAnimation={hideInitialAnimation}
+                hideInitialAnimation={isEmbed || hideInitialAnimation}
                 isStatic={isStatic}
                 items={items}
                 onDrag={onSetDrageState}
@@ -135,7 +143,7 @@ function StackContainer({ data, hideDragIndicator, hideInitialAnimation }: Stack
               />
               {activeItem && (
                 <Details
-                  hideInitialAnimation={hideInitialAnimation}
+                  hideInitialAnimation={isEmbed || hideInitialAnimation}
                   index={activeIndex}
                   item={selectors.getActiveOrNextItem(state)}
                   onTogglePlayback={onTogglePlayback}
@@ -188,7 +196,9 @@ function StackContainer({ data, hideDragIndicator, hideInitialAnimation }: Stack
         ]}
       />
 
-      <Footer isPlaying={isPlaying} />
+      {!isEmbed && (
+        <Footer isPlaying={isPlaying} />
+      )}
 
       {!loading && hasPlayer && (
         <div className={css.audioplayer}>

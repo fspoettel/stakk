@@ -14,6 +14,7 @@ function EditorPreview({ data }: PreviewProps) {
         data={data}
         hideDragIndicator
         hideInitialAnimation
+        isEmbed={false}
       />
     </section>
   );
