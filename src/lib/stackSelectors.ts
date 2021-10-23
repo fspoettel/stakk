@@ -25,5 +25,5 @@ export function getAuthorUrl(stack: Stack) {
 }
 
 export function getItems(stack: Stack) {
-  return stack.items;
+  return stack.sort.map(id => stack.data[id]);
 }

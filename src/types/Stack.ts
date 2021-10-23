@@ -12,8 +12,9 @@ export type Stack = {
     background?: string,
     text?: string,
   },
+  data: Record<string, StackItem>,
+  sort: string[],
   title: string,
-  items: StackItem[],
 };
 
 export type ColorKey = 'background'|'text';

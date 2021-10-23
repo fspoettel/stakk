@@ -1,11 +1,11 @@
+import { Stack } from '@stakk/types/Stack';
 import { StackItem } from '@stakk/types/StackItem';
 import { DragState } from '@stakk/types/DragState';
 import { HiddenState } from '@stakk/types/HiddenState';
+import { getItems } from '@stakk/lib/stackSelectors';
 
 export type StackState = {
-  // todo: try to get rid of this
   items: StackItem[],
-  loading: boolean,
   stack: {
     activeIndex: number,
     animationLock: boolean,
@@ -19,15 +19,16 @@ export type StackState = {
   }
 };
 
-const getInitialState = (items: StackItem[]): StackState => {
+const getInitialState = (stack: Stack, initialAnimationLock: boolean): StackState => {
+  const items = getItems(stack);
+
   return {
     /** global state */
     items,
-    loading: true,
     /** stack state */
     stack: {
       activeIndex: items.length - 1,
-      animationLock: false,
+      animationLock: initialAnimationLock,
       dragState: { dragging: false },
       hasInteraction: false,
       hiddenItems: {},

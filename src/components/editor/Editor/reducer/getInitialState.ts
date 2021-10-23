@@ -24,7 +24,8 @@ function getInitialState(): EditorState {
         background: '#ffd700',
         text: '#25292c'
       },
-      items: [],
+      data: {},
+      sort: [],
     },
   };
 

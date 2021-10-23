@@ -1,4 +1,4 @@
-import { StackItem } from '@stakk/types/StackItem';
+import { Stack } from '@stakk/types/Stack';
 import { DragState } from '@stakk/types/DragState';
 import { HiddenState } from '@stakk/types/HiddenState';
 import getInitialState, { StackState } from './getInitialState';
@@ -6,11 +6,8 @@ import { getActiveIndex, getIsFirstItem, getIsLastItem, getPlaybackIndex } from 
 
 export type ReinitAction = {
   type: 'reinit',
-  data: StackItem[]
-};
-
-export type LoadAction = {
-  type: 'load',
+  data: Stack,
+  hideInitialAnimation: boolean,
 };
 
 export type NextAction = {
@@ -24,7 +21,7 @@ export type PrevAction = {
 
 export type ResetAction = {
   type: 'reset',
-  items: StackItem[],
+  data: Stack
 };
 
 export type ToAction = {
@@ -54,32 +51,26 @@ export type TrackProgressAction = {
   progress: number,
 };
 
-type AnyAction = ReinitAction|LoadAction|NextAction|PrevAction|ResetAction|ToAction|ClearAction|DragStateAction|TogglePlaybackAction|StopPlaybackAction|TrackProgressAction;
+type AnyAction = ReinitAction|NextAction|PrevAction|ResetAction|ToAction|ClearAction|DragStateAction|TogglePlaybackAction|StopPlaybackAction|TrackProgressAction;
 
 export default function reducer(state: StackState, action: AnyAction): StackState {
   switch (action.type) {
     case 'reset': {
-      const initialState = getInitialState(action.items);
+      // when resetting, we always want to animate.
+      const initialState = getInitialState(action.data, false);
+
       return {
         ...initialState,
         stack: {
           ...initialState.stack,
           hasInteraction: true,
         },
-        loading: false,
       };
     }
 
     case 'reinit': {
-      const initialState = getInitialState(action.data);
+      const initialState = getInitialState(action.data, action.hideInitialAnimation);
       return initialState;
-    }
-
-    case 'load': {
-      return {
-        ...state,
-        loading: false,
-      };
     }
 
     case 'togglePlayback': {
@@ -140,7 +131,6 @@ export default function reducer(state: StackState, action: AnyAction): StackStat
             hiddenItems: {},
           },
           playback: state.playback,
-          loading: false
         };
       }
 
