@@ -1,20 +1,18 @@
 import cuid from 'cuid';
-import xss from 'xss';
 import { StackItem } from '@stakk/types/StackItem';
 import { ShowResponse } from '@stakk/services/api/mixcloud/getShow';
+import { stripHtml } from './stripHtml';
 
 export function toStackItem(show: ShowResponse): StackItem {
   return {
     createdAt: new Date().toISOString(),
-    description: show.description
-      ? xss(show.description)
-      : '',
+    description: stripHtml(show.description),
     id: cuid(),
     links: [show.url],
     title: show.name,
     slug: show.slug,
     tags: show.tags.slice(1).map(t => t.name),
-    // TODO
+    // TODO: pull tracklist from mixcloud
     tracklist: [],
   };
 }
