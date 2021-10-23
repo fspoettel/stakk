@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWaveform } from '@fortawesome/pro-regular-svg-icons';
 
 import { StackItem } from '@stakk/types/StackItem';
-import formatDateString from '@stakk/lib/formatDateString';
-import getArtistString from '@stakk/lib/getArtistString';
 
 import getCurrentTrack from './lib/getCurrentTrack';
 
@@ -17,12 +15,6 @@ type DetailsProps = {
 };
 
 function Description({ item, playing, playbackProgress }: DetailsProps) {
-  const [artists, setArtists] = useState(getArtistString(item.tracklist));
-
-  useEffect(() => {
-    setArtists(getArtistString(item.tracklist));
-  }, [item]);
-
   const currentTrack = playing && item.tracklist && playbackProgress > 0
     ? getCurrentTrack(item.tracklist, playbackProgress)
     : null;
@@ -36,23 +28,12 @@ function Description({ item, playing, playbackProgress }: DetailsProps) {
     );
   }
 
-  const hasTracklist = item.tracklist && item.tracklist.length > 0;
-
-  const isMixcloud = typeof item.links?.[0] === 'string'
-    && item.links[0].includes('mixcloud');
-
-  if (item.description && !(isMixcloud && hasTracklist)) {
+  if (item.description) {
     return (
       <p
         className={css['details-artists']}
         dangerouslySetInnerHTML={{ __html: item.description }}
       />
-    );
-  }
-
-  if (hasTracklist) {
-    return (
-      <p className={css['details-artists']}>{formatDateString(item.createdAt)} / with {artists}</p>
     );
   }
 
