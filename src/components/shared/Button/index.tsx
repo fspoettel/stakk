@@ -6,13 +6,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import css from './Button.module.css';
 
 export type ButtonProps = {
-  children?: React.ReactNode,
-  href?: string,
-  icon?: IconProp,
-  popperRef?: React.Dispatch<React.SetStateAction<HTMLElement | null>>,
-  size?: 'sm'|'md'|'lg',
-  variant?: string,
-} & React.ComponentPropsWithoutRef<'button'> & React.ComponentPropsWithoutRef<'a'>;
+  children?: React.ReactNode;
+  className?: string;
+  icon?: IconProp;
+  popperRef?: React.Dispatch<React.SetStateAction<HTMLElement | null>>;
+  size?: 'sm' | 'md' | 'lg';
+  variant?: string;
+  // TODO: don't cheat the type system here
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+} & React.ComponentPropsWithoutRef<any>;
 
 function Button({
   children,
@@ -26,9 +28,7 @@ function Button({
 }: ButtonProps) {
   const Tag = href ? 'a' : 'button';
 
-  const cssVariant = (icon && !children)
-    ? 'icon'
-    : variant ?? '';
+  const cssVariant = icon && !children ? 'icon' : variant ?? '';
 
   return (
     <Tag
@@ -38,20 +38,13 @@ function Button({
         css.button,
         css[size ?? 'md'],
         { [css[cssVariant]]: cssVariant !== '' },
-        { [className ?? '']: className }
+        { [className ?? '']: className },
       ])}
       ref={popperRef}
-      type={Tag === 'button' ? (rest.type ?? 'button') : undefined}
+      type={Tag === 'button' ? rest.type ?? 'button' : undefined}
     >
-      {icon && (
-        <FontAwesomeIcon
-          className={css['button-icon']}
-          icon={icon}
-        />
-      )}
-      {children && (
-        <span className={css['button-content']}>{children}</span>
-      )}
+      {icon && <FontAwesomeIcon className={css['button-icon']} icon={icon} />}
+      {children && <span className={css['button-content']}>{children}</span>}
     </Tag>
   );
 }

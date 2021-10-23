@@ -1,11 +1,11 @@
 import { DragEndEvent, DraggableSyntheticListeners } from '@dnd-kit/core';
 
-export type SortableItemData = { id: string } & Record<string, unknown>;
+export type SortableItemData<T> = { id: string } & T;
 
-export interface RenderProps {
-  item?: SortableItemData;
+export interface RenderProps<T> {
+  item: SortableItemData<T>;
   dragging?: boolean;
-  listeners?: DraggableSyntheticListeners
+  listeners?: DraggableSyntheticListeners;
 }
 
 export type SortCallback = (event: DragEndEvent) => void;

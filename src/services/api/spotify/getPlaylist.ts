@@ -9,18 +9,15 @@ function parsePlaylistId(url: string): string {
 
 function getPlaylist(
   accessToken: string,
-  playlistUrl: string
+  playlistUrl: string,
 ): Promise<SpotifyApi.PlaylistObjectFull> {
-  return apiClient<SpotifyApi.PlaylistObjectFull>(
-    `playlists/${parsePlaylistId(playlistUrl)}`,
-    {
-      headers: {
-        Authorization: authTokenBearer(accessToken),
-      },
-      resolveBodyOnly: true,
-      responseType: 'json'
-    }
-  );
+  return apiClient<SpotifyApi.PlaylistObjectFull>(`playlists/${parsePlaylistId(playlistUrl)}`, {
+    headers: {
+      Authorization: authTokenBearer(accessToken),
+    },
+    resolveBodyOnly: true,
+    responseType: 'json',
+  });
 }
 
 export default getPlaylist;

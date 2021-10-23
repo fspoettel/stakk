@@ -1,14 +1,14 @@
 import { ExternalLink } from '@stakk/types/ExternalLink';
 import { StackItem } from '@stakk/types/StackItem';
 
-function isMixcloudUrl(url: ExternalLink|string): url is string {
+function isMixcloudUrl(url: ExternalLink | string): url is string {
   return typeof url === 'string' && url.includes('mixcloud');
 }
 
 function getMixCloudUrl(playbackItem?: StackItem): string {
-  if (!playbackItem || !playbackItem.links) return '';
+  if (!playbackItem || !playbackItem.primaryUrl || !isMixcloudUrl(playbackItem.primaryUrl)) return '';
 
-  const mixcloudUrl = playbackItem.links.find(isMixcloudUrl);
+  const mixcloudUrl = playbackItem.primaryUrl;
   if (!mixcloudUrl) return '';
 
   const mixcloudURL = new URL(mixcloudUrl);

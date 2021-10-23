@@ -8,10 +8,10 @@ import { StackItem } from '@stakk/types/StackItem';
 import { DragDirection, DragState } from '@stakk/types/DragState';
 import { HiddenState } from '@stakk/types/HiddenState';
 import useDidMountEffect from '@stakk/lib/useDidMountEffect';
+import exceedsDragThreshold from '@stakk/lib/exceedsDragThreshold';
 import css from './Stack.module.css';
 
 // TODO: move to /lib
-import exceedsDragThreshold from '@stakk/components/stack/Cover/exceedsDragThreshold';
 
 import getDirectionFromDelta from './lib/getDirectionFromDelta';
 import getStackCSSVariables from './lib/getStackCSSVariables';
@@ -20,19 +20,19 @@ import { toSpringStacked } from './lib/springs/springStacked';
 import StackMember from './StackMember';
 
 type StackProps = {
-  activeIndex: number,
-  animationLock: boolean,
-  hasInteraction: boolean,
-  hideInitialAnimation?: boolean,
-  hiddenItems: Record<string, HiddenState>,
-  dragState: DragState,
-  items: StackItem[],
-  isStatic: boolean,
-  playbackIndex?: number,
+  activeIndex: number;
+  animationLock: boolean;
+  hasInteraction: boolean;
+  hideInitialAnimation?: boolean;
+  hiddenItems: Record<string, HiddenState>;
+  dragState: DragState;
+  items: StackItem[];
+  isStatic: boolean;
+  playbackIndex?: number;
   // eslint-disable-next-line no-unused-vars
-  onDragCommit: (payload: { direction: DragDirection, index: number }) => void,
+  onDragCommit: (payload: { direction: DragDirection; index: number }) => void;
   // eslint-disable-next-line no-unused-vars
-  onDrag: (payload: DragState) => void,
+  onDrag: (payload: DragState) => void;
 };
 
 /**
@@ -58,68 +58,55 @@ function Stack({
   onDrag,
 }: StackProps) {
   const stackSize = items.length;
-  const [springs, api] = useSprings(items.length, toSpringStacked(stackSize, !hideInitialAnimation));
+  const [springs, api] = useSprings(
+    items.length,
+    toSpringStacked(stackSize, !hideInitialAnimation),
+  );
 
   const isFirstItem = activeIndex === items.length - 1;
   const isLastItem = activeIndex === 0;
 
-  const shouldAnimateChanges = !dragState.dragging
-    && isFirstItem
-    && !animationLock;
+  const shouldAnimateChanges = !dragState.dragging && isFirstItem && !animationLock;
 
   useDidMountEffect(() => {
     const { index } = dragState;
 
-    api.start(i => {
-      const hiddenItem = i > activeIndex
-        ? hiddenItems[i] ?? { direction: 1, index: i }
-        : undefined;
+    api.start((i) => {
+      const hiddenItem = i > activeIndex ? hiddenItems[i] ?? { direction: 1, index: i } : undefined;
 
       return index === i && dragState.dragging
         ? updateDraggingSpring({ hiddenItem, dragState })
         : updateRestingSpring({
-          hiddenItem,
-          index: i,
-          isPlaying: playbackIndex === i,
-          shouldAnimate: shouldAnimateChanges,
-          stackSize,
-        });
+            hiddenItem,
+            index: i,
+            isPlaying: playbackIndex === i,
+            shouldAnimate: shouldAnimateChanges,
+            stackSize,
+          });
     });
-  }, [
-    activeIndex,
-    api,
-    hiddenItems,
-    playbackIndex,
-    dragState,
-    stackSize,
-    shouldAnimateChanges,
-  ]);
+  }, [activeIndex, api, hiddenItems, playbackIndex, dragState, stackSize, shouldAnimateChanges]);
 
-  const bind = useDrag(({
-    args: [index],
-    dragging,
-    down: mouseDown,
-    movement: [xDelta],
-    velocity
-  }) => {
-    if (index !== activeIndex || isStatic) return;
+  const bind = useDrag(
+    ({ args: [index], dragging, down: mouseDown, movement: [xDelta], velocity }) => {
+      if (index !== activeIndex || isStatic) return;
 
-    const dragState = {
-      dragging,
-      index,
-      mouseDown,
-      velocity,
-      xDelta,
-    };
-
-    onDrag(dragState);
-    if (!dragging && (velocity > 0.5 || exceedsDragThreshold(dragState))) {
-      onDragCommit({
-        direction: getDirectionFromDelta(xDelta),
+      const dragState = {
+        dragging,
         index,
-      });
-    }
-  });
+        mouseDown,
+        velocity,
+        xDelta,
+      };
+
+      onDrag(dragState);
+      if (!dragging && (velocity > 0.5 || exceedsDragThreshold(dragState))) {
+        onDragCommit({
+          direction: getDirectionFromDelta(xDelta),
+          index,
+        });
+      }
+    },
+  );
 
   return (
     <section className={css['stack']} style={getStackCSSVariables(items.length)}>
@@ -144,11 +131,7 @@ function Stack({
       )}
 
       {!hasInteraction && !isStatic && (
-        <FontAwesomeIcon
-          className={css['stack-drag-indicator']}
-          icon={faHandPaper}
-          size='3x'
-        />
+        <FontAwesomeIcon className={css['stack-drag-indicator']} icon={faHandPaper} size="3x" />
       )}
     </section>
   );

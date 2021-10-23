@@ -6,9 +6,9 @@ import ModalPortal from '@stakk/components/shared/ModalPortal';
 import css from './LoadStackModal.module.css';
 
 type LoadStackModalProps = {
-  open?: boolean,
-  onClose: MouseEventHandler,
-  onConfirmLoad: (value: Stack) => void,
+  open?: boolean;
+  onClose: MouseEventHandler;
+  onConfirmLoad: (value: Stack) => void;
 };
 
 function LoadStackModal({ open, onConfirmLoad, onClose }: LoadStackModalProps) {
@@ -27,15 +27,10 @@ function LoadStackModal({ open, onConfirmLoad, onClose }: LoadStackModalProps) {
 
   return (
     <ModalPortal>
-      <Modal
-        title='Import Stack'
-        open={open}
-        onClose={onClose}
-        onConfirm={load}
-      >
+      <Modal title="Import Stack" open={open} onClose={onClose} onConfirm={load}>
         <textarea
           className={css['loadstackinput']}
-          onChange={evt => setValue(evt.target.value)}
+          onChange={(evt) => setValue(evt.target.value)}
           value={value}
         ></textarea>
       </Modal>

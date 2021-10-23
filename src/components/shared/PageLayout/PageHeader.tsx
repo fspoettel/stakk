@@ -7,8 +7,10 @@ function PageHeader() {
   return (
     <header className={css['page-header']}>
       <h1 className={css['page-title']}>
-        <Link href='/'>
-          <a><Logo /></a>
+        <Link href="/">
+          <a>
+            <Logo />
+          </a>
         </Link>
       </h1>
     </header>

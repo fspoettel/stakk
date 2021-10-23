@@ -1,4 +1,3 @@
-
 import { useRef, useEffect, useState, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 
@@ -7,7 +6,7 @@ type ModalPortalProps = {
 };
 
 function ModalPortal({ children }: ModalPortalProps) {
-  const ref = useRef<Element|null>();
+  const ref = useRef<Element | null>();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -15,9 +14,7 @@ function ModalPortal({ children }: ModalPortalProps) {
     setMounted(true);
   }, []);
 
-  return mounted && ref.current
-    ? createPortal(children, ref.current)
-    : null;
+  return mounted && ref.current ? createPortal(children, ref.current) : null;
 }
 
 export default ModalPortal;

@@ -1,14 +1,8 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "@typescript-eslint"
-  ],
-  "extends": [
-    "eslint:recommended",
-    "next",
-    "plugin:@typescript-eslint/recommended"
-  ],
+  "plugins": ["@typescript-eslint"],
+  "extends": ["eslint:recommended", "next", "plugin:@typescript-eslint/recommended", "prettier"],
   "env": {
     "browser": true,
     "es6": true,
@@ -24,9 +18,7 @@
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/no-inferrable-types": [
-      "warn", { "ignoreParameters": true }
-    ],
+    "@typescript-eslint/no-inferrable-types": ["warn", { "ignoreParameters": true }],
     "@typescript-eslint/no-unused-vars": "warn"
   }
 }

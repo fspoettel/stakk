@@ -5,53 +5,63 @@ import getInitialState, { StackState } from './getInitialState';
 import { getActiveIndex, getIsFirstItem, getIsLastItem, getPlaybackIndex } from './selectors';
 
 export type ReinitAction = {
-  type: 'reinit',
-  data: Stack,
-  hideInitialAnimation: boolean,
+  type: 'reinit';
+  data: Stack;
+  hideInitialAnimation: boolean;
 };
 
 export type NextAction = {
-  type: 'stackNext',
-  item: HiddenState,
+  type: 'stackNext';
+  item: HiddenState;
 };
 
 export type PrevAction = {
-  type: 'stackPrev',
+  type: 'stackPrev';
 };
 
 export type ResetAction = {
-  type: 'reset',
-  data: Stack
+  type: 'reset';
+  data: Stack;
 };
 
 export type ToAction = {
-  type: 'stackTo',
-  index: number,
+  type: 'stackTo';
+  index: number;
 };
 
 export type ClearAction = {
-  type: 'stackClear',
+  type: 'stackClear';
 };
 
 export type DragStateAction = {
-  type: 'stackDragState',
-  dragState: DragState,
+  type: 'stackDragState';
+  dragState: DragState;
 };
 
 export type TogglePlaybackAction = {
-  type: 'togglePlayback',
+  type: 'togglePlayback';
 };
 
 export type StopPlaybackAction = {
-  type: 'stopPlayback',
+  type: 'stopPlayback';
 };
 
 export type TrackProgressAction = {
-  type: 'playbackProgress',
-  progress: number,
+  type: 'playbackProgress';
+  progress: number;
 };
 
-type AnyAction = ReinitAction|NextAction|PrevAction|ResetAction|ToAction|ClearAction|DragStateAction|TogglePlaybackAction|StopPlaybackAction|TrackProgressAction;
+type AnyAction =
+  | ReinitAction
+  | NextAction
+  | PrevAction
+  | ResetAction
+  | ToAction
+  | ClearAction
+  | DragStateAction
+  | TogglePlaybackAction
+  | StopPlaybackAction
+  | TrackProgressAction;
 
 export default function reducer(state: StackState, action: AnyAction): StackState {
   switch (action.type) {
@@ -70,13 +80,25 @@ export default function reducer(state: StackState, action: AnyAction): StackStat
 
     case 'reinit': {
       const initialState = getInitialState(action.data, action.hideInitialAnimation);
+
+      // the reinit case currently is only relevant in the editor where the user might be editing an individual item.
+      // to avoid the preview jumping back to the first item, we reinit the new stack to the previous stack state.
+      // TODO: the first check is a bit naive here - if stacks can change arbitrarily, it needs to be more exhaustive.
+      if (
+        state.items.length === initialState.items.length &&
+        state.stack.activeIndex !== -1 &&
+        state.stack.activeIndex !== state.items.length - 1
+      ) {
+        initialState.stack = state.stack;
+      }
+
       return initialState;
     }
 
     case 'togglePlayback': {
       const activeIndex = getActiveIndex(state);
       const playbackIndex = getPlaybackIndex(state);
-      
+
       return {
         ...state,
         stack: {
@@ -84,9 +106,10 @@ export default function reducer(state: StackState, action: AnyAction): StackStat
           animationLock: true,
           hasInteraction: true,
         },
-        playback: playbackIndex === activeIndex
-          ? { ...state.playback, index: undefined }
-          : { index: activeIndex, progress: 0 }
+        playback:
+          playbackIndex === activeIndex
+            ? { ...state.playback, index: undefined }
+            : { index: activeIndex, progress: 0 },
       };
     }
 
@@ -100,7 +123,7 @@ export default function reducer(state: StackState, action: AnyAction): StackStat
     case 'playbackProgress': {
       return {
         ...state,
-        playback: { ...state.playback, progress: action.progress }
+        playback: { ...state.playback, progress: action.progress },
       };
     }
 
@@ -112,7 +135,7 @@ export default function reducer(state: StackState, action: AnyAction): StackStat
           animationLock: true,
           hasInteraction: true,
           dragState: action.dragState,
-        }
+        },
       };
     }
 
@@ -143,8 +166,8 @@ export default function reducer(state: StackState, action: AnyAction): StackStat
           hasInteraction: true,
           hiddenItems: {
             ...state.stack.hiddenItems,
-            [activeIndex]: action.item ?? { direction: 1 }
-          }
+            [activeIndex]: action.item ?? { direction: 1 },
+          },
         },
       };
     }
@@ -180,7 +203,7 @@ export default function reducer(state: StackState, action: AnyAction): StackStat
           hiddenItems: Object.entries(state.stack.hiddenItems)
             .filter(([key]) => Number.parseInt(key, 10) < action.index)
             .reduce((acc, curr) => ({ ...acc, curr }), {}),
-        }
+        },
       };
     }
 

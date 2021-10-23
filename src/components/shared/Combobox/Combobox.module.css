@@ -1,0 +1,14 @@
+.combobox-input {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.combobox-input > button {
+  margin-left: 0.25rem;
+}
+
+.combobox-input-spinner {
+  margin-left: 0.5rem;
+}

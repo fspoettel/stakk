@@ -5,18 +5,18 @@ import { HiddenState } from '@stakk/types/HiddenState';
 import { getItems } from '@stakk/lib/stackSelectors';
 
 export type StackState = {
-  items: StackItem[],
+  items: StackItem[];
   stack: {
-    activeIndex: number,
-    animationLock: boolean,
-    dragState: DragState,
-    hasInteraction: boolean,
-    hiddenItems: Record<string, HiddenState>,
-  },
+    activeIndex: number;
+    animationLock: boolean;
+    dragState: DragState;
+    hasInteraction: boolean;
+    hiddenItems: Record<string, HiddenState>;
+  };
   playback: {
-    index?: number,
-    progress: number,
-  }
+    index?: number;
+    progress: number;
+  };
 };
 
 const getInitialState = (stack: Stack, initialAnimationLock: boolean): StackState => {

@@ -6,7 +6,7 @@ config.autoAddCss = false;
 
 import '@stakk/globals.css';
 
-function MyApp ({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />;
 }
 

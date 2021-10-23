@@ -6,20 +6,20 @@ interface CustomWindow extends Window {
   Mixcloud: {
     // eslint-disable-next-line no-unused-vars
     PlayerWidget(ref: HTMLIFrameElement): MixcloudPlayer;
-  }
+  };
 }
 
 declare let window: CustomWindow;
 
 type PlayerProps = {
-  url: string,
+  url: string;
   // eslint-disable-next-line no-unused-vars
-  onProgress: (progress: number) => void,
-  onEnded: () => void,
+  onProgress: (progress: number) => void;
+  onEnded: () => void;
 };
 
 type PlayerState = {
-  loaded: boolean,
+  loaded: boolean;
 };
 
 class Player extends React.Component<PlayerProps, PlayerState> {
@@ -49,20 +49,19 @@ class Player extends React.Component<PlayerProps, PlayerState> {
   componentDidUpdate() {
     if (!this.state.loaded && this.props.url !== '') {
       loadScript('https://widget.mixcloud.com/media/js/widgetApi.js', window.Mixcloud)
-      .then(() => {
-        this.setState({ loaded: true });
-      })
-      .catch(err => {
-        console.error(err);
-      });
+        .then(() => {
+          this.setState({ loaded: true });
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     } else if (this.state.loaded && this.props.url === '') {
       this.cleanup();
     }
   }
 
   shouldComponentUpdate(nextProps: PlayerProps, nextState: PlayerState) {
-    return nextProps.url !== this.props.url
-      || nextState.loaded !== this.state.loaded;
+    return nextProps.url !== this.props.url || nextState.loaded !== this.state.loaded;
   }
 
   cleanup() {
@@ -82,11 +81,7 @@ class Player extends React.Component<PlayerProps, PlayerState> {
   onFrameLoad() {
     const { url } = this.props;
 
-    if (
-      window.Mixcloud
-        && url !== ''
-        && this.iframeRef.current
-    ) {
+    if (window.Mixcloud && url !== '' && this.iframeRef.current) {
       const instance = window.Mixcloud.PlayerWidget(this.iframeRef.current);
 
       instance.ready.then(() => {
@@ -103,16 +98,16 @@ class Player extends React.Component<PlayerProps, PlayerState> {
 
     return (
       <iframe
-        allow='autoplay'
-        id='mixcloud-player'
+        allow="autoplay"
+        id="mixcloud-player"
         key={this.props.url}
         onLoad={this.onFrameLoad}
         ref={this.iframeRef}
-        width='100%'
-        height='60'
-        frameBorder='0'
+        width="100%"
+        height="60"
+        frameBorder="0"
         src={this.props.url}
-        title='mixcloud-player'
+        title="mixcloud-player"
       />
     );
   }

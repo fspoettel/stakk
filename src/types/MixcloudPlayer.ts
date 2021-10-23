@@ -6,10 +6,10 @@ export type MixcloudPlayer = {
     ended: {
       on(cb: () => void): void;
       off(cb: () => void): void;
-    },
+    };
     progress: {
       on(cb: (progress: number) => void): void;
       off(cb: (progress: number) => void): void;
-    },
-  },
+    };
+  };
 };

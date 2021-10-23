@@ -9,7 +9,7 @@
   cursor: pointer;
   display: inline-block;
   font-family: inherit;
-  font-size: 1rem;
+  font-size: 1em;
   line-height: 1;
   font-weight: 700;
   border: 2px solid currentColor;
@@ -50,7 +50,8 @@ a.button {
 }
 
 .button.icon {
-  font-size: 1.25rem;
+  color: currentColor;
+  font-size: 1.25em;
 }
 
 .button-icon + .button-content {
@@ -58,12 +59,12 @@ a.button {
 }
 
 .button.sm {
-  font-size: 1.125rem;
+  font-size: 1.125em;
   padding: 0.375rem 0.5rem;
 }
 
 .button.sm.icon {
-  font-size: 1rem;
+  font-size: 1em;
 }
 
 .button.secondary,
@@ -73,6 +74,6 @@ a.button {
 
 @media screen and (min-width: 30rem) {
   .button {
-    font-size: 1.25rem;
+    font-size: 1.25em;
   }
 }

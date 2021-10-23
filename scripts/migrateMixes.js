@@ -16,23 +16,35 @@ async function* getFiles(dir) {
 function migrate(stakk) {
   const items = stakk.items;
 
-  const data = items.reduce((acc, curr) => ({
-    ...acc,
-    [curr.id]: curr,
-  }), {});
+  const data = items.reduce((acc, curr) => {
+    const item = { ...curr };
+    const [primary, ...rest] = item.links;
+    item.primaryUrl = primary;
 
-  const sort = items.map(i => i.id);
+    item.secondaryUrls = rest.map((l) => {
+      return typeof l === 'string' ? { url: l, title: 'Follow' } : l;
+    });
+
+    delete item.links;
+
+    return {
+      ...acc,
+      [curr.id]: item,
+    };
+  }, {});
+
+  const sortOrder = items.map((i) => i.id);
 
   delete stakk.items;
 
   return {
     ...stakk,
     data,
-    sort,
+    sortOrder,
   };
 }
 
-;(async () => {
+(async () => {
   for await (const f of getFiles('./content')) {
     if (f.endsWith('json')) {
       const content = JSON.parse(await readFile(f, 'utf-8'));

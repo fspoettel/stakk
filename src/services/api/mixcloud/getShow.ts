@@ -7,16 +7,16 @@ type ShowTag = {
 };
 
 export type ShowResponse = {
-  created_time: string,
-  description?: string,
-  key: string,
+  created_time: string;
+  description?: string;
+  key: string;
   name: string;
-  tags: ShowTag[],
-  url: string,
+  tags: ShowTag[];
+  url: string;
   pictures: {
-    '1024wx1024h': string,
-  },
-  slug: string,
+    '1024wx1024h': string;
+  };
+  slug: string;
 };
 
 function getShow(url: string): Promise<ShowResponse> {
@@ -25,7 +25,7 @@ function getShow(url: string): Promise<ShowResponse> {
 
   return got<ShowResponse>(`https://api.mixcloud.com${mixcloudId}`, {
     headers: {
-      Accept: 'application/json'
+      Accept: 'application/json',
     },
     responseType: 'json',
     resolveBodyOnly: true,

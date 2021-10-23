@@ -4,7 +4,7 @@ import StackContainer from '@stakk/components/stack/StackContainer';
 import { getMixData } from '@stakk/lib/getMixData';
 
 export async function getStaticProps(): Promise<{
-  props: IndexProps
+  props: IndexProps;
 }> {
   const data = await getMixData('felix', 'mixtapes');
   return { props: { data } };

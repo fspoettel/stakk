@@ -11,22 +11,24 @@ import {
   StopPlaybackAction,
   ToAction,
   TogglePlaybackAction,
-  TrackProgressAction
+  TrackProgressAction,
 } from './reducer';
 import { Stack } from '@stakk/types/Stack';
 
-export function reinit(dispatch: Dispatch<ReinitAction>, data: Stack, hideInitialAnimation: boolean) {
+export function reinit(
+  dispatch: Dispatch<ReinitAction>,
+  data: Stack,
+  hideInitialAnimation: boolean,
+) {
   dispatch({ type: 'reinit', data, hideInitialAnimation });
 }
 
 type NextPayload = {
-  activeIndex: number,
-  item?: HiddenState,
+  activeIndex: number;
+  item?: HiddenState;
 };
 
-export function next(
-  dispatch: Dispatch<NextAction>,
-  { activeIndex, item }: NextPayload) {
+export function next(dispatch: Dispatch<NextAction>, { activeIndex, item }: NextPayload) {
   dispatch({
     type: 'stackNext',
     item: item?.direction ? item : { index: activeIndex, direction: 1 },
@@ -38,13 +40,13 @@ export function prev(dispatch: Dispatch<PrevAction>) {
 }
 
 type ResetPayload = {
-  data: Stack,
-  playbackIndex?: number,
+  data: Stack;
+  playbackIndex?: number;
 };
 
 export function reset(
-  dispatch: Dispatch<ResetAction|ToAction|ClearAction>,
-  { data, playbackIndex }: ResetPayload
+  dispatch: Dispatch<ResetAction | ToAction | ClearAction>,
+  { data, playbackIndex }: ResetPayload,
 ) {
   if (playbackIndex != null) {
     dispatch({ type: 'stackTo', index: playbackIndex });
@@ -59,7 +61,7 @@ export function reset(
 
 export function setDragState(
   dispatch: Dispatch<DragStateAction>,
-  { dragState }: { dragState: DragState }
+  { dragState }: { dragState: DragState },
 ) {
   dispatch({ type: 'stackDragState', dragState });
 }
@@ -74,7 +76,7 @@ export function stopPlayback(dispatch: Dispatch<StopPlaybackAction>) {
 
 export function setTrackProgress(
   dispatch: Dispatch<TrackProgressAction>,
-  { progress }: { progress: number }
+  { progress }: { progress: number },
 ) {
   dispatch({ type: 'playbackProgress', progress });
 }

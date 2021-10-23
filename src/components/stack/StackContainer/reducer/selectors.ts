@@ -1,13 +1,12 @@
 import { StackItem } from '@stakk/types/StackItem';
-// TODO: move to /lib
-import exceedsDragThreshold from '@stakk/components/stack/Cover/exceedsDragThreshold';
+import exceedsDragThreshold from '@stakk/lib/exceedsDragThreshold';
 import { StackState } from './getInitialState';
 
 export function getActiveIndex(state: StackState): number {
   return state.stack.activeIndex;
 }
 
-export function getPlaybackIndex(state: StackState): number|undefined {
+export function getPlaybackIndex(state: StackState): number | undefined {
   return state.playback.index;
 }
 
@@ -44,8 +43,7 @@ export function getPlaybackProgress(state: StackState): number {
 }
 
 export function getHasPlayer(state: StackState): boolean {
-  return state.items
-    .some(
-      item => item.links && item.links.some(l => typeof l === 'string' && l.includes('mixcloud'))
-    );
+  return state.items.some(
+    (item) => item.primaryUrl && item.primaryUrl.includes('mixcloud'),
+  );
 }

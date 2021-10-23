@@ -1,20 +1,16 @@
-import { Stack } from '@stakk/types/Stack';
 import StackContainer from '@stakk/components/stack/StackContainer';
 
 import css from './EditorPreview.module.css';
+import { useContext } from 'react';
+import { FormStateContext } from '../reducer/context';
 
-type PreviewProps = {
-  data: Stack
-};
+function EditorPreview() {
+  const state = useContext(FormStateContext);
+  if (!state) return null;
 
-function EditorPreview({ data }: PreviewProps) {
   return (
     <section className={css['preview']}>
-      <StackContainer
-        data={data}
-        hideDragIndicator
-        hideInitialAnimation
-      />
+      <StackContainer data={state.stack} hideDragIndicator hideInitialAnimation />
     </section>
   );
 }

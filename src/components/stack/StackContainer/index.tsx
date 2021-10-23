@@ -1,12 +1,18 @@
-import React,{ useCallback, useEffect, useReducer } from 'react';
+import React, { useCallback, useEffect, useReducer } from 'react';
 import { useKey } from 'react-use';
 import cx from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronSquareLeft, faChevronSquareRight, faSpinner, faStop, faUndo } from '@fortawesome/pro-solid-svg-icons';
+import {
+  faChevronSquareLeft,
+  faChevronSquareRight,
+  faSpinner,
+  faStop,
+  faUndo,
+} from '@fortawesome/pro-solid-svg-icons';
 import { Stack as StackData } from '@stakk/types/Stack';
 import { HiddenState } from '@stakk/types/HiddenState';
 
-import { getAuthorName, getAuthorUrl, getBackgroundColor, getTextColor, getTitle } from '@stakk/lib/stackSelectors';
+import { getAuthor, getColor, getTitle } from '@stakk/lib/stackSelectors';
 import matchShortcutKey from '@stakk/lib/matchShortcutKey';
 
 import Details from '@stakk/components/stack/Details';
@@ -57,9 +63,12 @@ function StackContainer({ data, hideDragIndicator, hideInitialAnimation }: Stack
     actions.prev(dispatch);
   }, []);
 
-  const onNext = useCallback((item?: HiddenState) => {
-    actions.next(dispatch, { activeIndex, item });
-  }, [activeIndex]);
+  const onNext = useCallback(
+    (item?: HiddenState) => {
+      actions.next(dispatch, { activeIndex, item });
+    },
+    [activeIndex],
+  );
 
   const onNextGeneric = useCallback(() => {
     actions.next(dispatch, { activeIndex });
@@ -88,8 +97,8 @@ function StackContainer({ data, hideDragIndicator, hideInitialAnimation }: Stack
   useKey(matchShortcutKey('ArrowRight'), onNextGeneric, {}, [onNext]);
   useKey(matchShortcutKey('ArrowLeft'), onPrev, {}, [onPrev]);
 
-    // TODO: move this to `getInitialProps` once we query items from a database.
-    // We currently implement this way to avoid rehydration problems with SSR.
+  // TODO: move this to `getInitialProps` once we query items from a database.
+  // We currently implement this way to avoid rehydration problems with SSR.
   const [isEmbed, setIsEmbed] = React.useState(false);
 
   useEffect(() => {
@@ -97,97 +106,88 @@ function StackContainer({ data, hideDragIndicator, hideInitialAnimation }: Stack
   }, []);
 
   const stackContainerStyle: StackContainerStyle = {
-    '--color': getTextColor(data) ?? undefined,
-    '--background-color': getBackgroundColor(data) ?? undefined,
+    '--color': getColor(data, 'text') ?? undefined,
+    '--background-color': getColor(data, 'background') ?? undefined,
   };
 
   return (
     <div
-      className={cx([
-        css.stackcontainer,
-        { [css['playing']]: isPlaying }
-      ])}
+      className={cx([css.stackcontainer, { [css['playing']]: isPlaying }])}
       style={stackContainerStyle}
     >
       <main className={css.content}>
-        {loading
-          ? (
-            <FontAwesomeIcon
-              icon={faSpinner}
-              pulse
-              size='4x'
+        {loading ? (
+          <FontAwesomeIcon icon={faSpinner} pulse size="4x" />
+        ) : (
+          <>
+            <Stack
+              {...state.stack}
+              hasInteraction={!!hideDragIndicator || state.stack.hasInteraction}
+              hideInitialAnimation={isEmbed || hideInitialAnimation}
+              isStatic={isStatic}
+              items={items}
+              onDrag={onSetDrageState}
+              onDragCommit={onNext}
+              playbackIndex={playbackIndex}
             />
-          )
-          : (
-            <>
-              <Stack
-                {...state.stack}
-                hasInteraction={!!hideDragIndicator || state.stack.hasInteraction}
+            {activeItem && (
+              <Details
+                animationLock={state.stack.animationLock}
                 hideInitialAnimation={isEmbed || hideInitialAnimation}
-                isStatic={isStatic}
-                items={items}
-                onDrag={onSetDrageState}
-                onDragCommit={onNext}
+                index={activeIndex}
+                item={selectors.getActiveOrNextItem(state)}
+                onTogglePlayback={onTogglePlayback}
                 playbackIndex={playbackIndex}
+                playbackProgress={playbackProgress}
               />
-              {activeItem && (
-                <Details
-                  hideInitialAnimation={isEmbed || hideInitialAnimation}
-                  index={activeIndex}
-                  item={selectors.getActiveOrNextItem(state)}
-                  onTogglePlayback={onTogglePlayback}
-                  playbackIndex={playbackIndex}
-                  playbackProgress={playbackProgress}
-                />
-              )}
-            </>
-          )
-        }
+            )}
+          </>
+        )}
       </main>
       <Header
-        authorName={getAuthorName(data)}
-        authorUrl={getAuthorUrl(data)}
+        authorName={getAuthor(data, 'name') ?? ''}
+        authorUrl={getAuthor(data, 'url')}
         title={getTitle(data)}
-        actions={isStatic ? [] : [
-          {
-            key: 'stopPlayback',
-            visible: playbackIndex != null,
-            disabled: false,
-            onClick: onStopPlayback,
-            icon: faStop,
-            tooltip: 'stop playback',
-          },
-          {
-            key: 'reset',
-            disabled: loading || (
-              isPlaying
-                ? playbackIndex === activeIndex
-                : selectors.getIsFirstItem(state)
-            ),
-            onClick: onReset,
-            icon: faUndo,
-            tooltip: isPlaying ? 'back to playing item' : 'back to first item'
-          },
-          {
-            key: 'prev',
-            disabled: loading || selectors.getIsFirstItem(state),
-            onClick: onPrev,
-            icon: faChevronSquareLeft,
-            tooltip: 'prev. item',
-          },
-          {
-            key: 'next',
-            disabled: loading,
-            onClick: onNextGeneric,
-            icon: faChevronSquareRight,
-            tooltip: 'next item',
-          },
-        ]}
+        actions={
+          isStatic
+            ? []
+            : [
+                {
+                  key: 'stopPlayback',
+                  visible: playbackIndex != null,
+                  disabled: false,
+                  onClick: onStopPlayback,
+                  icon: faStop,
+                  tooltip: 'stop playback',
+                },
+                {
+                  key: 'reset',
+                  disabled:
+                    loading ||
+                    (isPlaying ? playbackIndex === activeIndex : selectors.getIsFirstItem(state)),
+                  onClick: onReset,
+                  icon: faUndo,
+                  tooltip: isPlaying ? 'back to playing item' : 'back to first item',
+                },
+                {
+                  key: 'prev',
+                  disabled: loading || selectors.getIsFirstItem(state),
+                  onClick: onPrev,
+                  icon: faChevronSquareLeft,
+                  tooltip: 'prev. item',
+                },
+                {
+                  key: 'next',
+                  disabled: loading,
+                  onClick: onNextGeneric,
+                  icon: faChevronSquareRight,
+                  tooltip: 'next item',
+                },
+              ]
+        }
       />
 
-      {!isEmbed && (
-        <Footer isPlaying={isPlaying} />
-      )}
+      {!isEmbed && <Footer isPlaying={isPlaying} />}
 
       {!loading && hasPlayer && (
         <div className={css.audioplayer}>
@@ -195,7 +195,7 @@ function StackContainer({ data, hideDragIndicator, hideInitialAnimation }: Stack
             url={getMixCloudUrl(
               isPlaying && playbackIndex != null
                 ? selectors.getItemByIndex(state, playbackIndex)
-                : undefined
+                : undefined,
             )}
             onEnded={onStopPlayback}
             onProgress={onPlaybackProgress}

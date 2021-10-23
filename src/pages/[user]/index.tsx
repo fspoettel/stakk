@@ -5,24 +5,24 @@ import StackContainer from '@stakk/components/stack/StackContainer';
 
 export async function getStaticPaths() {
   const mixes = await getDataForAllMixes();
-  const users = Array.from(new Set(mixes.map(m => m.author.slug)));
+  const users = Array.from(new Set(mixes.map((m) => m.author.slug)));
 
   return {
     paths: users.map((user) => ({
-      params: { user }
+      params: { user },
     })),
     fallback: false,
   };
 }
 
 type UserContext = {
-  params: { user: string },
+  params: { user: string };
 };
 
 type UserProps = { data: Stack };
 
 export async function getStaticProps(ctx: UserContext): Promise<{
-  props: UserProps
+  props: UserProps;
 }> {
   const mixes = await getDataForAllUserMixes(ctx.params.user);
   const data = mixes[0];

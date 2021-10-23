@@ -1,8 +1,8 @@
 import { KeyFilter } from 'react-use/lib/useKey';
 
 function notInputTarget(event: KeyboardEvent): boolean {
-  const inputFocused = event.target instanceof Element
-  && ['INPUT', 'TEXTAREA'].includes(event.target.tagName);
+  const inputFocused =
+    event.target instanceof Element && ['INPUT', 'TEXTAREA'].includes(event.target.tagName);
 
   return !inputFocused;
 }

@@ -3,9 +3,9 @@ import css from './PageLayout.module.css';
 
 function PageFooter() {
   return (
-  <div className={css['page-footer']}>
-    <Footer />
-  </div>
+    <div className={css['page-footer']}>
+      <Footer />
+    </div>
   );
 }
 

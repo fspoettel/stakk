@@ -3,6 +3,7 @@ import { Stack } from '@stakk/types/Stack';
 
 export type EditorState = {
   slugEdited: boolean;
+  editingIds: string[];
   stackLoaderOpen: boolean;
   stack: Stack;
 };
@@ -11,6 +12,7 @@ function getInitialState(): EditorState {
   const state: EditorState = {
     slugEdited: false,
     stackLoaderOpen: false,
+    editingIds: [],
     stack: {
       id: cuid(),
       title: 'New Stakk',
@@ -22,10 +24,10 @@ function getInitialState(): EditorState {
       },
       theme: {
         background: '#ffd700',
-        text: '#25292c'
+        text: '#25292c',
       },
       data: {},
-      sort: [],
+      sortOrder: [],
     },
   };
 

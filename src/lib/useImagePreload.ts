@@ -11,22 +11,20 @@ export function useCoverPreload(items: StackItem[]) {
     function run() {
       const itemPaths = [
         '/assets/overlay-600px.webp',
-        ...items.map(item => getCoverPath(item))
-      ].filter(p => !cache.current.has(p));
-
+        ...items.map((item) => getCoverPath(item)),
+      ].filter((p) => !cache.current.has(p));
 
       if (itemPaths.length > 0) {
         setLoading(true);
       }
 
-      Promise.all(itemPaths.map(preloadImage))
-        .then(() => {
-          setLoading(false);
+      Promise.all(itemPaths.map(preloadImage)).then(() => {
+        setLoading(false);
 
-          itemPaths.forEach((p) => {
-            cache.current.add(p);
-          });
+        itemPaths.forEach((p) => {
+          cache.current.add(p);
         });
+      });
     }
     run();
   }, [items]);

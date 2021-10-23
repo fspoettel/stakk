@@ -9,21 +9,25 @@ import getCurrentTrack from './lib/getCurrentTrack';
 import css from './Details.module.css';
 
 type DetailsProps = {
-  item: StackItem,
-  playing: boolean,
-  playbackProgress: number,
+  item: StackItem;
+  playing: boolean;
+  playbackProgress: number;
 };
 
 function Description({ item, playing, playbackProgress }: DetailsProps) {
-  const currentTrack = playing && item.tracklist && playbackProgress > 0
-    ? getCurrentTrack(item.tracklist, playbackProgress)
-    : null;
+  const currentTrack =
+    playing && item.tracklist && playbackProgress > 0
+      ? getCurrentTrack(item.tracklist, playbackProgress)
+      : null;
 
   if (playing && currentTrack) {
     return (
       <p className={css['details-artists']}>
         <FontAwesomeIcon icon={faWaveform} />
-        Current Track: <strong>{currentTrack.artist} - {currentTrack.title}</strong>
+        Current Track:{' '}
+        <strong>
+          {currentTrack.artist} - {currentTrack.title}
+        </strong>
       </p>
     );
   }
@@ -39,6 +43,5 @@ function Description({ item, playing, playbackProgress }: DetailsProps) {
 
   return null;
 }
-
 
 export default Description;

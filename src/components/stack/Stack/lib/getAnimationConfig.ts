@@ -8,6 +8,6 @@ export default function getAnimationConfig(index: number): AnimationConfig {
       rot: 0,
       scale: 1.1,
       y: -1000,
-    }
+    },
   };
 }

@@ -1,4 +1,4 @@
-function loadScript<T>(src: string, external: T|undefined): Promise<void> {
+function loadScript<T>(src: string, external: T | undefined): Promise<void> {
   return new Promise((resolve, reject) => {
     if (external) return resolve();
 

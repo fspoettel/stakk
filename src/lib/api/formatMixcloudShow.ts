@@ -8,15 +8,16 @@ export function toStackItem(show: ShowResponse): StackItem {
     createdAt: new Date().toISOString(),
     description: stripHtml(show.description),
     id: cuid(),
-    links: [show.url],
+    primaryUrl: show.url,
+    secondaryUrls: [],
     title: show.name,
     slug: show.slug,
-    tags: show.tags.slice(1).map(t => t.name),
+    tags: show.tags.slice(1).map((t) => t.name),
     // TODO: pull tracklist from mixcloud
     tracklist: [],
   };
 }
 
-export function toImageUrl(show: ShowResponse): string|null {
+export function toImageUrl(show: ShowResponse): string | null {
   return show.pictures['1024wx1024h'];
 }
