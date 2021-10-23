@@ -6,9 +6,7 @@ import { faChevronSquareLeft, faChevronSquareRight, faSpinner, faStop, faUndo } 
 import { Stack as StackData } from '@stakk/types/Stack';
 import { HiddenState } from '@stakk/types/HiddenState';
 
-import preloadImage from '@stakk/lib/preloadImage';
-import getCoverPath from '@stakk/lib/getCoverPath';
-import { getAuthorName, getAuthorUrl, getBackgroundColor, getItems, getTextColor, getTitle } from '@stakk/lib/stackSelectors';
+import { getAuthorName, getAuthorUrl, getBackgroundColor, getTextColor, getTitle } from '@stakk/lib/stackSelectors';
 import matchShortcutKey from '@stakk/lib/matchShortcutKey';
 
 import Details from '@stakk/components/stack/Details';
@@ -23,6 +21,7 @@ import * as selectors from './reducer/selectors';
 import getInitialState from './reducer/getInitialState';
 import stackReducer from './reducer/reducer';
 import css from './StackContainer.module.css';
+import { useCoverPreload } from '@stakk/lib/useImagePreload';
 
 type StackContainerProps = {
   data: StackData;
@@ -36,24 +35,14 @@ interface StackContainerStyle extends React.CSSProperties {
 }
 
 function StackContainer({ data, hideDragIndicator, hideInitialAnimation }: StackContainerProps) {
-  const [state, dispatch] = useReducer(stackReducer, getInitialState(getItems(data)));
-
-  const items = data.items;
-
-  const loading = selectors.getIsLoading(state);
+  const [state, dispatch] = useReducer(stackReducer, getInitialState(data, !!hideInitialAnimation));
 
   useEffect(() => {
-    function run() {
-      Promise.all([
-        preloadImage('/assets/overlay-600px.webp'),
-        ...items.map(item => preloadImage(getCoverPath(item)).catch(err => console.error(err))),
-      ])
-      .then(() => actions.load(dispatch));
-    }
+    actions.reinit(dispatch, data, !!hideInitialAnimation);
+  }, [data, hideInitialAnimation]);
 
-    actions.reinit(dispatch, items);
-    run();
-  }, [items]);
+  const { items } = state;
+  const [loading] = useCoverPreload(items);
 
   const activeIndex = selectors.getActiveIndex(state);
   const activeItem = selectors.getActiveItem(state);
@@ -77,8 +66,8 @@ function StackContainer({ data, hideDragIndicator, hideInitialAnimation }: Stack
   }, [activeIndex]);
 
   const onReset = useCallback(() => {
-    actions.reset(dispatch, { items, playbackIndex });
-  }, [items, playbackIndex]);
+    actions.reset(dispatch, { data, playbackIndex });
+  }, [data, playbackIndex]);
 
   const onSetDrageState = useCallback((dragState) => {
     actions.setDragState(dispatch, { dragState });

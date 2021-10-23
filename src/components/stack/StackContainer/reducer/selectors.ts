@@ -11,10 +11,6 @@ export function getPlaybackIndex(state: StackState): number|undefined {
   return state.playback.index;
 }
 
-export function getIsLoading(state: StackState): boolean {
-  return state.loading;
-}
-
 export function getItemByIndex(state: StackState, index: number): StackItem {
   return state.items[index];
 }

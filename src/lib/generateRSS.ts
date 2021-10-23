@@ -4,6 +4,7 @@ import { StackItem } from '@stakk/types/StackItem';
 import getCoverPath from './getCoverPath';
 import getArtistString from './getArtistString';
 import getStackMetadata, { StackMetadata } from './getStackMetadata';
+import { getItems } from './stackSelectors';
 
 function generateRSSItem(item: StackItem, metadata: StackMetadata): string {
   const content = `
@@ -28,10 +29,10 @@ function generateRSS(data: Stack): string {
   const metadata = getStackMetadata(data);
   const date = new Date();
 
-  const latestItem = data.items[data.items.length - 1];
+  const latestItem =  data.data[data.sort[data.sort.length - 1]];
   const pubDate = new Date(latestItem.createdAt).toUTCString();
 
-  const items = data.items
+  const items = getItems(data)
     .map((item) => generateRSSItem(item, metadata))
     .reverse()
     .join('');

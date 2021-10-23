@@ -114,22 +114,33 @@ function reducer(state: EditorState, action: AnyAction): EditorState {
     case 'itemDelete': {
       if (!action.id) return state;
 
-      const index = state.stack.items.findIndex(item => item.id === action.id);
-      if (index === -1) return state;
-
-      const nextItems = Array.from(state.stack.items);
-      nextItems.splice(index, 1);
+      const nextData = { ...state.stack.data };
+      delete nextData[action.id];
 
       return {
         ...state,
-        stack: { ...state.stack, items: nextItems }
+        stack: {
+          ...state.stack,
+          data: nextData,
+          sort: state.stack.sort.filter(id => id === action.id),
+        }
       };
     }
 
+    case 'itemEdit': {
+      if (!action.id) return state;
+      return state;
+    }
+
     case 'itemAdd': {
+
       return {
         ...state,
-        stack: { ...state.stack, items: [...state.stack.items, action.item] },
+        stack: {
+          ...state.stack,
+          data: { ...state.stack.data, [action.item.id]: action.item },
+          sort: [...state.stack.sort, action.item.id],
+        },
       };
     }
 
@@ -137,16 +148,16 @@ function reducer(state: EditorState, action: AnyAction): EditorState {
       const { active, over } = action.event;
       if (!over?.id) return state;
 
-      const items = state.stack.items;
+      const sort = state.stack.sort;
   
-      const oldIndex = items.findIndex(item => item.id === active.id);
-      const newIndex = items.findIndex(item => item.id === over.id);
+      const oldIndex = sort.findIndex(item => item === active.id);
+      const newIndex = sort.findIndex(item => item === over.id);
 
-      const nextItems = arrayMove(items, oldIndex, newIndex);
+      const nextItems = arrayMove(sort, oldIndex, newIndex);
 
       return {
         ...state,
-        stack: { ...state.stack, items: nextItems },
+        stack: { ...state.stack, sort: nextItems },
       };
     }
 

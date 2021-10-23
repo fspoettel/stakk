@@ -10,7 +10,7 @@ export async function getStaticPaths() {
     paths: [
       ...mixes
         .map((data) => [
-          ...data.items.map((item) => ({
+          ...Object.values(data.data).map((item) => ({
             params: {
               item: item.slug,
               mix: data.slug,
@@ -52,8 +52,9 @@ export async function getStaticProps(ctx: ItemContext): Promise<{
 function Item({ data, targetItemSlug }: ItemProps) {
   const sortedData = {
     ...data,
-    items: data.items.sort((a) => {
-      if (a.slug === targetItemSlug) return 1;
+    sort: data.sort.sort((id) => {
+      const item = data.data[id];
+      if (item.slug === targetItemSlug) return 1;
       return 0;
     })
   };

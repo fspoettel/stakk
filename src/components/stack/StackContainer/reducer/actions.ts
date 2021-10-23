@@ -1,11 +1,9 @@
 import { Dispatch } from 'react';
-import { StackItem } from '@stakk/types/StackItem';
 import { DragState } from '@stakk/types/DragState';
 import { HiddenState } from '@stakk/types/HiddenState';
 import {
   ClearAction,
   DragStateAction,
-  LoadAction,
   NextAction,
   PrevAction,
   ReinitAction,
@@ -15,13 +13,10 @@ import {
   TogglePlaybackAction,
   TrackProgressAction
 } from './reducer';
+import { Stack } from '@stakk/types/Stack';
 
-export function load(dispatch: Dispatch<LoadAction>) {
-  dispatch({ type: 'load' });
-}
-
-export function reinit(dispatch: Dispatch<ReinitAction>, data: StackItem[]) {
-  dispatch({ type: 'reinit', data });
+export function reinit(dispatch: Dispatch<ReinitAction>, data: Stack, hideInitialAnimation: boolean) {
+  dispatch({ type: 'reinit', data, hideInitialAnimation });
 }
 
 type NextPayload = {
@@ -43,13 +38,13 @@ export function prev(dispatch: Dispatch<PrevAction>) {
 }
 
 type ResetPayload = {
-  items: StackItem[],
+  data: Stack,
   playbackIndex?: number,
 };
 
 export function reset(
   dispatch: Dispatch<ResetAction|ToAction|ClearAction>,
-  { items, playbackIndex }: ResetPayload
+  { data, playbackIndex }: ResetPayload
 ) {
   if (playbackIndex != null) {
     dispatch({ type: 'stackTo', index: playbackIndex });
@@ -57,7 +52,7 @@ export function reset(
     dispatch({ type: 'stackClear' });
 
     setTimeout(() => {
-      dispatch({ type: 'reset', items });
+      dispatch({ type: 'reset', data });
     }, 200);
   }
 }

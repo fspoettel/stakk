@@ -13,7 +13,8 @@ export default function HtmlHead({ data, targetItemSlug }: HtmlHeadProps) {
 
   const mixUrl = metadata.canonicalUrl;
   const canonicalUrl = targetItemSlug ? `${mixUrl}/${targetItemSlug}` : mixUrl;
-  const canonicalItem = data.items[data.items.length - 1];
+
+  const canonicalItem = data.data[data.sort[data.sort.length - 1]];
 
   return (
     <Head>

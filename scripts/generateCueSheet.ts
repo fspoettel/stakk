@@ -18,7 +18,7 @@ import { Stack } from '@stakk/types/Stack';
 
   const data: Stack = await import(`../content/data/${user}/${mix}.json`);
 
-  const target = data.items.find(m => m.slug === item);
+  const target = Object.values(data.data).find(m => m.slug === item);
   if (!target) throw new Error('could not find the specified --item');
 
   const tracklistStr = target.tracklist

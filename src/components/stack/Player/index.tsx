@@ -106,7 +106,6 @@ class Player extends React.Component<PlayerProps, PlayerState> {
         allow='autoplay'
         id='mixcloud-player'
         key={this.props.url}
-        onClick={evt => { console.log(evt); }}
         onLoad={this.onFrameLoad}
         ref={this.iframeRef}
         width='100%'
