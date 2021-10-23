@@ -7,20 +7,14 @@ function parseAlbumId(url: string): string {
   return id.split('?')[0];
 }
 
-function getAlbum(
-  accessToken: string,
-  albumUrl: string
-) {
-  return apiClient<SpotifyApi.AlbumObjectFull>(
-    `albums/${parseAlbumId(albumUrl)}`,
-    {
-      headers: {
-        Authorization: authTokenBearer(accessToken),
-      },
-      resolveBodyOnly: true,
-      responseType: 'json'
-    }
-  );
+function getAlbum(accessToken: string, albumUrl: string) {
+  return apiClient<SpotifyApi.AlbumObjectFull>(`albums/${parseAlbumId(albumUrl)}`, {
+    headers: {
+      Authorization: authTokenBearer(accessToken),
+    },
+    resolveBodyOnly: true,
+    responseType: 'json',
+  });
 }
 
 export default getAlbum;

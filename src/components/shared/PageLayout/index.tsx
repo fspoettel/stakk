@@ -6,8 +6,8 @@ import PageHeader from './PageHeader';
 import css from './PageLayout.module.css';
 
 type PageLayoutProps = {
-  children: ReactNode,
-  title: string,
+  children: ReactNode;
+  title: string;
 };
 
 function PageLayout({ children, title }: PageLayoutProps) {
@@ -17,9 +17,7 @@ function PageLayout({ children, title }: PageLayoutProps) {
         <title>stakk &middot; {title}</title>
       </Head>
       <PageHeader />
-      <main className={css['page-content']}>
-        {children}
-      </main>
+      <main className={css['page-content']}>{children}</main>
       <PageFooter />
     </div>
   );

@@ -3,21 +3,22 @@ import { usePopper } from 'react-popper';
 import { useClickAway } from 'react-use';
 import Button, { ButtonProps } from '@stakk/components/shared/Button';
 
-type ButtonWithTooltipProps = Omit<ButtonProps, 'popperRef'> & { tooltip: string };
+type ButtonWithTooltipProps = Omit<ButtonProps, 'popperRef'> & {
+  tooltip: string;
+  strategy?: 'fixed' | 'absolute';
+};
 
-function ButtonWithTooltip({
-  tooltip,
-  ...buttonProps
-}: ButtonWithTooltipProps) {
+function ButtonWithTooltip({ strategy, tooltip, ...buttonProps }: ButtonWithTooltipProps) {
   const [visible, setVisible] = useState(false);
   const onHide = () => setVisible(false);
   const onShow = () => setVisible(true);
 
-  const [referenceElement, setReferenceElement] = useState<HTMLElement|null>(null);
-  const [popperElement, setPopperElement] = useState<HTMLElement|null>(null);
+  const [referenceElement, setReferenceElement] = useState<HTMLElement | null>(null);
+  const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
     placement: 'top',
-    modifiers: [{ name: 'offset', options: { offset: [0, 6] }}],
+    modifiers: [{ name: 'offset', options: { offset: [0, 6] } }],
+    strategy: strategy ?? 'absolute',
   });
 
   // 1. hide when button becomes disabled
@@ -32,7 +33,7 @@ function ButtonWithTooltip({
       {!buttonProps.disabled && visible && (
         <div
           {...attributes.popper}
-          className='tooltip-container'
+          className="tooltip-container"
           style={styles.popper}
           ref={setPopperElement}
         >

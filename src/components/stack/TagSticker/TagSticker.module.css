@@ -7,13 +7,15 @@
   color: var(--color);
   font-size: min(min(2vh, 3vw), 1rem);
   font-style: italic;
-  padding: min(1.5rem, 4vh) min(0.5rem, 2vh);
-  border-radius: 50%;
-  white-space: nowrap;
-  text-transform: lowercase;
+  min-width: 10ch;
+  max-width: 100%;
+  padding: min(1.25rem, 4vh) min(0.75rem, 2vh);
+  border-radius: 25%;
   text-align: center;
   user-select: none;
   box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  word-break: break-all;
 }
 
 .tagsticker > li:not(:last-child)::after {

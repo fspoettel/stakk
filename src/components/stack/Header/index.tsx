@@ -7,43 +7,39 @@ import Logo from '@stakk/components/shared/Logo';
 import css from './Header.module.css';
 
 type Action = {
-  key: string,
-  disabled: boolean,
-  icon: IconProp,
-  onClick: () => void,
-  visible?: boolean,
-  tooltip: string,
+  key: string;
+  disabled: boolean;
+  icon: IconProp;
+  onClick: () => void;
+  visible?: boolean;
+  tooltip: string;
 };
 
 type HeaderProps = {
-  authorName: string,
-  authorUrl?: string,
-  actions: Action[],
-  title: string,
+  authorName: string;
+  authorUrl?: string;
+  actions: Action[];
+  title: string;
 };
 
-function Header({
-  authorName,
-  authorUrl,
-  actions,
-  title,
-}: HeaderProps) {
+function Header({ authorName, authorUrl, actions, title }: HeaderProps) {
   return (
     <header className={css.header}>
       <div className={css['header-content']}>
         <h1 className={css['header-title']}>
           <span className={css['header-title-logo']}>
-            <Logo />&nbsp;&middot;&nbsp;{title}
+            <Logo />
+            &nbsp;&middot;&nbsp;{title}
           </span>
           <span className={css['header-stakker']}>
             &nbsp;by&nbsp;
-            {authorUrl
-              ? (
-                <a href={authorUrl} target="_blank" rel="noreferrer nofollow">
-                  {authorName}
-                </a>
-                )
-              : authorName}
+            {authorUrl ? (
+              <a href={authorUrl} target="_blank" rel="noreferrer nofollow">
+                {authorName}
+              </a>
+            ) : (
+              authorName
+            )}
           </span>
         </h1>
       </div>

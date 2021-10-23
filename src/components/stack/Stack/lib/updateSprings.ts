@@ -7,11 +7,11 @@ import springPlaying from './springs/springPlaying';
 import springStacked from './springs/springStacked';
 
 type UpdateSpringPayload = {
-  hiddenItem?: HiddenState,
-  index: number,
-  isPlaying: boolean,
-  shouldAnimate: boolean,
-  stackSize: number,
+  hiddenItem?: HiddenState;
+  index: number;
+  isPlaying: boolean;
+  shouldAnimate: boolean;
+  stackSize: number;
 };
 
 export function updateRestingSpring({
@@ -19,7 +19,7 @@ export function updateRestingSpring({
   index,
   isPlaying,
   shouldAnimate,
-  stackSize
+  stackSize,
 }: UpdateSpringPayload): Partial<Spring> {
   if (hiddenItem) return springHidden({ direction: hiddenItem.direction });
   if (isPlaying) return springPlaying({ index, shouldAnimate });
@@ -27,11 +27,14 @@ export function updateRestingSpring({
 }
 
 type UpdateDraggingSpringPayload = {
-  hiddenItem?: HiddenState,
-  dragState: DragState,
+  hiddenItem?: HiddenState;
+  dragState: DragState;
 };
 
-export function updateDraggingSpring({ hiddenItem, dragState }: UpdateDraggingSpringPayload): Partial<Spring> {
+export function updateDraggingSpring({
+  hiddenItem,
+  dragState,
+}: UpdateDraggingSpringPayload): Partial<Spring> {
   const { xDelta, mouseDown } = dragState;
   const hidden = !!hiddenItem;
   return springDragging({ hidden, xDelta, mouseDown });

@@ -48,7 +48,7 @@
 
   appearance: none;
   border: none;
-  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
   color: var(--color);
 }
 
@@ -57,7 +57,7 @@
   padding: 0.25rem 0.5rem;
 }
 
-.field input[type="color"] {
+.field input[type='color'] {
   min-height: 3rem;
 }
 
@@ -76,4 +76,27 @@
 
 .fieldgroup + .fieldgroup {
   margin-top: 1.5rem;
+}
+
+.tagfield-list {
+  display: flex;
+  flex-flow: row wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tagfield-listitem {
+  background: var(--color);
+  font-size: 0.875rem;
+  color: var(--background-color);
+  padding: 0.125rem 0.125rem 0.125rem 0.25rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.25rem;
+  word-break: break-all;
+}
+
+.tagfield-listitem:not(:last-child) {
+  margin-right: 0.5rem;
 }

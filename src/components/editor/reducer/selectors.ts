@@ -7,3 +7,7 @@ export function getStack(state: EditorState) {
 export function getStackLoaderOpen(state: EditorState) {
   return state.stackLoaderOpen;
 }
+
+export function getIsEditingItem(state: EditorState, id: string) {
+  return state.editingIds.includes(id);
+}

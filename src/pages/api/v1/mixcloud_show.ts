@@ -23,7 +23,7 @@ async function postMixcloudUrl(req: NextApiRequest, res: NextApiResponse) {
 
   debug('retrieving image...');
   const image = await getImage(imageUrl);
-  
+
   debug('storing image...');
   const imageId = await storeImage(image);
 

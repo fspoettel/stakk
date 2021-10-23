@@ -29,7 +29,7 @@ function generateRSS(data: Stack): string {
   const metadata = getStackMetadata(data);
   const date = new Date();
 
-  const latestItem =  data.data[data.sort[data.sort.length - 1]];
+  const latestItem = data.data[data.sortOrder[data.sortOrder.length - 1]];
   const pubDate = new Date(latestItem.createdAt).toUTCString();
 
   const items = getItems(data)

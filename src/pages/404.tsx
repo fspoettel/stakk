@@ -13,11 +13,11 @@ export default function Custom404() {
       </Head>
       <div>
         <div className={css['page_error-icon']}>
-          <FontAwesomeIcon icon={faGhost} size='3x' />
+          <FontAwesomeIcon icon={faGhost} size="3x" />
         </div>
         <h1 className={css['page_error-text']}>page not found</h1>
         <div className={css['page_error-footer']}>
-          <Link href='/'>
+          <Link href="/">
             <a>Back</a>
           </Link>
         </div>

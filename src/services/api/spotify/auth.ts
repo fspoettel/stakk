@@ -3,5 +3,7 @@ export function authTokenBearer(token: string) {
 }
 
 export function authTokenApp() {
-  return `Basic ${Buffer.from(`${process.env.SPOTIFY_APP_KEY}:${process.env.SPOTIFY_APP_SECRET}`).toString('base64')}`;
+  return `Basic ${Buffer.from(
+    `${process.env.SPOTIFY_APP_KEY}:${process.env.SPOTIFY_APP_SECRET}`,
+  ).toString('base64')}`;
 }

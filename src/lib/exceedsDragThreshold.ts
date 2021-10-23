@@ -17,9 +17,8 @@ export default function exceedsDragThreshold(dragState: DragState): boolean {
 
   const fontSize = getRootFontSize();
 
-  const dragCommitThreshold = window.innerWidth > 600
-    ? (32.5 * fontSize / 2) + fontSize * 2
-    : window.innerWidth / 3;
+  const dragCommitThreshold =
+    window.innerWidth > 600 ? (32.5 * fontSize) / 2 + fontSize * 2 : window.innerWidth / 3;
 
   return xDelta > dragCommitThreshold || xDelta < dragCommitThreshold * -1;
 }

@@ -9,25 +9,19 @@ import {
   DragEndEvent,
   DragStartEvent,
 } from '@dnd-kit/core';
-import {
-  SortableContext,
-  verticalListSortingStrategy,
-} from '@dnd-kit/sortable';
-import {
-  restrictToVerticalAxis,
-  restrictToParentElement
-} from '@dnd-kit/modifiers';
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import { restrictToVerticalAxis, restrictToParentElement } from '@dnd-kit/modifiers';
 import SortableItem from './SortableItem';
 import { RenderProps, SortableItemData, SortCallback } from './interfaces';
 
-type SortableListProps = {
-  children: (props: RenderProps) => ReactNode;
-  items: SortableItemData[];
+type SortableListProps<T> = {
+  children: (props: RenderProps<T>) => ReactNode;
+  items: SortableItemData<T>[];
   onSort: SortCallback;
-}
+};
 
-function SortableList({ items, onSort, children }: SortableListProps) {
-  const [activeId, setActiveId] = useState<string|null>(null);
+function SortableList<T>({ items, onSort, children }: SortableListProps<T>) {
+  const [activeId, setActiveId] = useState<string | null>(null);
 
   const sensors = useSensors(useSensor(PointerSensor));
 
@@ -41,31 +35,28 @@ function SortableList({ items, onSort, children }: SortableListProps) {
     if (active.id !== over?.id) onSort(event);
   };
 
+  const activeItem = items.find((item) => item.id === activeId);
+
   return (
-    <DndContext 
+    <DndContext
       sensors={sensors}
       collisionDetection={closestCenter}
       modifiers={[restrictToVerticalAxis]}
       onDragEnd={handleDragEnd}
       onDragStart={handleDragStart}
     >
-      <SortableContext 
-        items={items}
-        strategy={verticalListSortingStrategy}
-      >
-        {items.map(item => (
-          <SortableItem
-            key={item.id}
-            item={item}
-            renderItem={children}
-          />
+      <SortableContext items={items} strategy={verticalListSortingStrategy}>
+        {items.map((item) => (
+          <SortableItem key={item.id} item={item} renderItem={children} />
         ))}
       </SortableContext>
       <DragOverlay modifiers={[restrictToParentElement]}>
-        {activeId ? children({
-          item: items.find(item => item.id === activeId),
-          dragging: true,
-        }) : null}
+        {activeId && activeItem
+          ? children({
+              item: activeItem,
+              dragging: true,
+            })
+          : null}
       </DragOverlay>
     </DndContext>
   );

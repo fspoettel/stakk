@@ -14,7 +14,7 @@ export async function getStaticPaths() {
       params: {
         mix: data.slug,
         user: data.author.slug,
-      }
+      },
     })),
     fallback: false,
   };
@@ -22,15 +22,15 @@ export async function getStaticPaths() {
 
 type MixContext = {
   params: {
-    user: string,
-    mix: string,
-  },
+    user: string;
+    mix: string;
+  };
 };
 
 type MixProps = { data: Stack };
 
 export async function getStaticProps(ctx: MixContext): Promise<{
-  props: MixProps
+  props: MixProps;
 }> {
   const data = await getMixData(ctx.params.user, ctx.params.mix);
   await writeRSSToFile(getStackMetadata(data).rssPath, generateRSS(data));

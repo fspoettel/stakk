@@ -2,10 +2,10 @@ import { SITE_URL } from '@stakk/constants';
 import { Stack } from '@stakk/types/Stack';
 
 export type StackMetadata = {
-  canonicalUrl: string,
-  description: string,
-  rssPath: string,
-  title: string,
+  canonicalUrl: string;
+  description: string;
+  rssPath: string;
+  title: string;
 };
 
 function postfix(str: string) {

@@ -9,7 +9,7 @@ function useDidMountEffect(func: () => void, deps: unknown[] = []): void {
     } else {
       didMount.current = true;
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [func, ...deps]);
 }
 

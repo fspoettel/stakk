@@ -4,9 +4,9 @@ import cx from 'classnames';
 import css from './Modal.module.css';
 
 type OverlayProps = {
-  children: ReactNode,
-  open?: boolean,
-  onClose: MouseEventHandler
+  children: ReactNode;
+  open?: boolean;
+  onClose: MouseEventHandler;
 };
 
 function Overlay({ children, onClose, open }: OverlayProps) {

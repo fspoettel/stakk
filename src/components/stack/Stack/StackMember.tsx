@@ -17,20 +17,14 @@ import springToOuterTransform from './lib/springToOuterTransform';
 
 type StackMemberProps = {
   // eslint-disable-next-line no-unused-vars
-  bind: (i: number) => ReactEventHandlers,
-  spring: unknown,
-  index: number,
-  isPlaying: boolean,
-  item: StackItem,
+  bind: (i: number) => ReactEventHandlers;
+  spring: unknown;
+  index: number;
+  isPlaying: boolean;
+  item: StackItem;
 };
 
-function StackMember({
-  bind,
-  spring,
-  index,
-  isPlaying,
-  item,
-}: StackMemberProps) {
+function StackMember({ bind, spring, index, isPlaying, item }: StackMemberProps) {
   const [w, setW] = useState(0);
   const innerRef = useRef<HTMLDivElement>(null);
 
@@ -43,7 +37,9 @@ function StackMember({
     }
   }, [supportsAspectRatio]);
 
-  useEffect(() => { handleResize(); }, [handleResize]);
+  useEffect(() => {
+    handleResize();
+  }, [handleResize]);
   useEvent('resize', handleResize, window, { passive: true });
 
   if (!isSpring(spring)) return null;
@@ -59,16 +55,12 @@ function StackMember({
         className={css['stack-item-inner']}
         style={{
           transform: springToInnerTransform(spring),
-          width: !supportsAspectRatio ? w : undefined
+          width: !supportsAspectRatio ? w : undefined,
         }}
       >
-          <Cover
-            title={item.title}
-            playing={isPlaying}
-            src={getCoverPath(item)}
-          >
-            <TagSticker item={item} />
-          </Cover>
+        <Cover title={item.title} playing={isPlaying} src={getCoverPath(item)}>
+          <TagSticker item={item} />
+        </Cover>
       </animated.div>
     </animated.div>
   );

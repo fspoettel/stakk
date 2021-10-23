@@ -1,6 +1,6 @@
 import { DragDirection } from './DragState';
 
 export type HiddenState = {
-  index: number,
+  index: number;
   direction: DragDirection;
 };

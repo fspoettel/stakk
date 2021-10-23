@@ -1,29 +1,17 @@
-import { Stack } from '@stakk/types/Stack';
+import { AuthorKey, ColorKey, Stack } from '@stakk/types/Stack';
 
 export function getTitle(stack: Stack) {
   return stack.title;
 }
 
-export function getBackgroundColor(stack: Stack) {
-  return stack?.theme?.background ?? undefined;
+export function getColor(stack: Stack, key: ColorKey) {
+  return stack.theme?.[key] ?? undefined;
 }
 
-export function getTextColor(stack: Stack) {
-  return stack?.theme?.text ?? undefined;
-}
-
-export function getAuthorName(stack: Stack) {
-  return stack.author.name;
-}
-
-export function getAuthorSlug(stack: Stack) {
-  return stack.author.slug;
-}
-
-export function getAuthorUrl(stack: Stack) {
-  return stack.author.url;
+export function getAuthor(stack: Stack, key: AuthorKey) {
+  return stack.author[key];
 }
 
 export function getItems(stack: Stack) {
-  return stack.sort.map(id => stack.data[id]);
+  return stack.sortOrder.map((id) => stack.data[id]);
 }

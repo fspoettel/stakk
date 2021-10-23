@@ -4,8 +4,8 @@ import getStackMetadata from '@stakk/lib/getStackMetadata';
 import getCoverPath from '@stakk/lib/getCoverPath';
 
 type HtmlHeadProps = {
-  data: Stack,
-  targetItemSlug?: string
+  data: Stack;
+  targetItemSlug?: string;
 };
 
 export default function HtmlHead({ data, targetItemSlug }: HtmlHeadProps) {
@@ -14,28 +14,28 @@ export default function HtmlHead({ data, targetItemSlug }: HtmlHeadProps) {
   const mixUrl = metadata.canonicalUrl;
   const canonicalUrl = targetItemSlug ? `${mixUrl}/${targetItemSlug}` : mixUrl;
 
-  const canonicalItem = data.data[data.sort[data.sort.length - 1]];
+  const canonicalItem = data.data[data.sortOrder[data.sortOrder.length - 1]];
 
   return (
     <Head>
       <title>stakk &middot; {metadata.title}</title>
-      <meta name='description' content={metadata.description} />
+      <meta name="description" content={metadata.description} />
 
-      <meta property='og:image' content={getCoverPath(canonicalItem, 'source.jpg')} />
-      <meta property='og:title' content={metadata.title} />
-      <meta property='og:description' content={metadata.description} />
-      <meta property='og:url' content={canonicalUrl} />
+      <meta property="og:image" content={getCoverPath(canonicalItem, 'source.jpg')} />
+      <meta property="og:title" content={metadata.title} />
+      <meta property="og:description" content={metadata.description} />
+      <meta property="og:url" content={canonicalUrl} />
 
       {!targetItemSlug && (
         <link
-          rel='alternate'
-          type='application/rss+xml'
+          rel="alternate"
+          type="application/rss+xml"
           title={`RSS Feed for ${metadata.title}`}
           href={metadata.rssPath}
         />
       )}
 
-      <link rel='canonical' href={canonicalUrl} />
+      <link rel="canonical" href={canonicalUrl} />
     </Head>
   );
 }

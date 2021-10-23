@@ -3,7 +3,7 @@ import { StackItem } from '@stakk/types/StackItem';
 import css from './TagSticker.module.css';
 
 type TagStickerProps = {
-  item: StackItem,
+  item: StackItem;
 };
 
 function TagSticker({ item }: TagStickerProps) {

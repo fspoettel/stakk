@@ -1,11 +1,11 @@
 import { Track } from '@stakk/types/Track';
 
 function timestampToSeconds(str: string): number {
-  const [minutes, seconds] = str.split(':').map(x => Number.parseInt(x));
+  const [minutes, seconds] = str.split(':').map((x) => Number.parseInt(x));
   return minutes * 60 + seconds;
 }
 
-function getCurrentTrack(tracklist: Track[], currentTime: number): Track|null {
+function getCurrentTrack(tracklist: Track[], currentTime: number): Track | null {
   if (!Array.isArray(tracklist) || !tracklist.length) return null;
 
   let foundItem = null;
@@ -15,8 +15,8 @@ function getCurrentTrack(tracklist: Track[], currentTime: number): Track|null {
     const nextItem = tracklist[i + 1];
 
     if (
-      !nextItem
-      || (currentTime >= timestampToSeconds(item.at) && currentTime <= timestampToSeconds(nextItem.at))
+      !nextItem ||
+      (currentTime >= timestampToSeconds(item.at) && currentTime <= timestampToSeconds(nextItem.at))
     ) {
       foundItem = item;
       break;

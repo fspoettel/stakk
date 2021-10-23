@@ -3,11 +3,14 @@ import { ITEM_OFFSET, Spring } from '../constants';
 import getAnimationConfig from '../getAnimationConfig';
 
 type SpringPlayingPayload = {
-  index: number,
-  shouldAnimate: boolean,
+  index: number;
+  shouldAnimate: boolean;
 };
 
-export default function springPlaying({ index, shouldAnimate }: SpringPlayingPayload): Partial<Spring> {
+export default function springPlaying({
+  index,
+  shouldAnimate,
+}: SpringPlayingPayload): Partial<Spring> {
   const to = {
     x: 0,
     y: index * ITEM_OFFSET * -1,
@@ -16,7 +19,5 @@ export default function springPlaying({ index, shouldAnimate }: SpringPlayingPay
     config: config.gentle,
   };
 
-  return shouldAnimate
-    ? { ...to, ...getAnimationConfig(index) }
-    : to;
+  return shouldAnimate ? { ...to, ...getAnimationConfig(index) } : to;
 }
