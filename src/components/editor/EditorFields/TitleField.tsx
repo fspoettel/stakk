@@ -6,8 +6,6 @@ import { EditorContext } from '@stakk/context/editor/context';
 
 export function TitleField() {
   const { dispatch, state } = useContext(EditorContext);
-  if (!dispatch || !state) return null;
-
   const onTitleChange = actions.changeTitle(dispatch);
 
   return (

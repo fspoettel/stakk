@@ -1,10 +1,13 @@
 import { createContext, Dispatch } from 'react';
 import { AnyAction } from './reducer';
-import { EditorState } from './getInitialState';
+import getInitialState, { EditorState } from './getInitialState';
 
 type ContextState = {
-  state?: EditorState,
-  dispatch?: Dispatch<AnyAction>
+  state: EditorState,
+  dispatch: Dispatch<AnyAction>
 };
 
-export const EditorContext = createContext<ContextState>({});
+export const EditorContext = createContext<ContextState>({
+  state: getInitialState(),
+  dispatch: (val) => console.warn('no editor context provided'),
+});

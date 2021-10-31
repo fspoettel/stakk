@@ -12,7 +12,6 @@ type AuthorFieldProps = {
 
 export function AuthorField({ label, name }: AuthorFieldProps) {
   const { dispatch, state } = useContext(EditorContext);
-  if (!dispatch || !state) return null;
 
   const onChange = actions.changeAuthor(dispatch, name);
 

@@ -20,9 +20,6 @@ type EditorItemProps = RenderProps<StackItem>;
 
 function EditorItem({ item, dragging, listeners }: EditorItemProps) {
   const { dispatch, state } = useContext(EditorContext);
-
-  if (!item || !dispatch || !state) return null;
-
   const isEditing = getIsEditingItem(state, item.id);
 
   const onItemDelete = actions.deleteItem(dispatch);

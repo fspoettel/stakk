@@ -6,7 +6,6 @@ import { EditorContext } from '@stakk/context/editor/context';
 
 function EditorPreview() {
   const { state } = useContext(EditorContext);
-  if (!state) return null;
 
   return (
     <section className={css['preview']}>

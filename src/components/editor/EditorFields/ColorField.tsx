@@ -12,9 +12,6 @@ type ColorFieldProps = {
 
 export function ColorField({ label, name }: ColorFieldProps) {
   const { dispatch, state } = useContext(EditorContext);
-
-  if (!dispatch || !state) return null;
-
   const onColorChange = actions.changeColor(dispatch, name);
 
   return (

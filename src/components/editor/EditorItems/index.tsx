@@ -47,7 +47,6 @@ async function resolveInput(url: string) {
 
 function EditorItems() {
   const { dispatch, state } = useContext(EditorContext);
-  if (!dispatch || !state) return null;
 
   return (
     <div className={css['editoritems']}>

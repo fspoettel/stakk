@@ -27,8 +27,6 @@ export function EditorActions() {
     [copyToClipboard, state],
   );
 
-  if (!dispatch || !state) return null;
-
   const onLoadStack = actions.loadStack(dispatch);
   const onOpenLoader = actions.openStackLoader(dispatch);
   const onCloseLoader = actions.closeStackLoader(dispatch);
