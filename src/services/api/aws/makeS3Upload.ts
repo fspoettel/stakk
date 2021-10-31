@@ -1,13 +1,13 @@
 import s3Client from './s3Client';
 
 async function upload(filename: string, buffer: Buffer): Promise<void> {
-  const { API_AWS_BUCKET } = process.env;
+  const bucket = process.env.API_AWS_BUCKET;
 
-  if (!API_AWS_BUCKET) throw new Error('bad AWS environment');
+  if (!bucket) throw new Error('bad AWS environment');
 
   await s3Client
     .upload({
-      Bucket: API_AWS_BUCKET,
+      Bucket: bucket,
       Key: filename,
       Body: buffer,
       ACL: 'public-read',
