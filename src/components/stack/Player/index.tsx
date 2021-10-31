@@ -93,7 +93,6 @@ class Player extends React.Component<PlayerProps, PlayerState> {
   }
 
   render() {
-    if (!this.state.loaded) return null;
     if (this.props.url === '') return null;
 
     return (

@@ -88,7 +88,11 @@ function Stack({
 
   const bind = useDrag(
     ({ args: [index], dragging, down: mouseDown, movement: [xDelta], velocity }) => {
-      if (index !== activeIndex || isStatic) return;
+      if (
+        index !== activeIndex ||
+        isStatic ||
+        playbackIndex != null
+      ) return;
 
       const dragState = {
         dragging,

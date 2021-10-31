@@ -6,7 +6,6 @@ import {
   faChevronSquareLeft,
   faChevronSquareRight,
   faSpinner,
-  faStop,
   faUndo,
 } from '@fortawesome/pro-solid-svg-icons';
 import { Stack as StackData } from '@stakk/types/Stack';
@@ -132,7 +131,6 @@ function StackContainer({ data, hideDragIndicator, hideInitialAnimation }: Stack
             />
             {activeItem && (
               <Details
-                animationLock={state.stack.animationLock}
                 hideInitialAnimation={isEmbed || hideInitialAnimation}
                 index={activeIndex}
                 item={selectors.getActiveOrNextItem(state)}
@@ -149,22 +147,13 @@ function StackContainer({ data, hideDragIndicator, hideInitialAnimation }: Stack
         authorUrl={getAuthor(data, 'url')}
         title={getTitle(data)}
         actions={
-          isStatic
+          isStatic || isPlaying
             ? []
             : [
                 {
-                  key: 'stopPlayback',
-                  visible: playbackIndex != null,
-                  disabled: false,
-                  onClick: onStopPlayback,
-                  icon: faStop,
-                  tooltip: 'stop playback',
-                },
-                {
                   key: 'reset',
                   disabled:
-                    loading ||
-                    (isPlaying ? playbackIndex === activeIndex : selectors.getIsFirstItem(state)),
+                    loading || selectors.getIsFirstItem(state),
                   onClick: onReset,
                   icon: faUndo,
                   tooltip: isPlaying ? 'back to playing item' : 'back to first item',
