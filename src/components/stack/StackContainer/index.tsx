@@ -20,11 +20,12 @@ import Header from '@stakk/components/stack/Header';
 import Player from '@stakk/components/stack/Player';
 import Stack from '@stakk/components/stack/Stack';
 
+import * as actions from '@stakk/context/stack/actions';
+import * as selectors from '@stakk/context/stack/selectors';
+import getInitialState from '@stakk/context/stack/getInitialState';
+import stackReducer from '@stakk/context/stack/reducer';
+
 import getMixCloudUrl from './lib/getMixcloudUrl';
-import * as actions from './reducer/actions';
-import * as selectors from './reducer/selectors';
-import getInitialState from './reducer/getInitialState';
-import stackReducer from './reducer/reducer';
 import css from './StackContainer.module.css';
 import { useCoverPreload } from '@stakk/lib/useImagePreload';
 

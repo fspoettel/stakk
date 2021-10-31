@@ -8,9 +8,9 @@ import ButtonWithTooltip from '@stakk/components/shared/ButtonWithTooltip';
 import Button from '@stakk/components/shared/Button';
 import Field from '@stakk/components/shared/Form/Field';
 
-import { DispatchContext, FormStateContext } from '../reducer/context';
-import * as actions from '../reducer/actions';
-import { getIsEditingItem } from '../reducer/selectors';
+import { EditorContext } from '@stakk/context/editor/context';
+import * as actions from '@stakk/context/editor/actions';
+import { getIsEditingItem } from '@stakk/context/editor/selectors';
 
 import css from './EditorItems.module.css';
 import { StackItem } from '@stakk/types/StackItem';
@@ -19,8 +19,7 @@ import { TagField } from '@stakk/components/shared/Form/TagField';
 type EditorItemProps = RenderProps<StackItem>;
 
 function EditorItem({ item, dragging, listeners }: EditorItemProps) {
-  const dispatch = useContext(DispatchContext);
-  const state = useContext(FormStateContext);
+  const { dispatch, state } = useContext(EditorContext);
 
   if (!item || !dispatch || !state) return null;
 

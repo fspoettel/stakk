@@ -10,8 +10,8 @@ import { StackItem } from '@stakk/types/StackItem';
 
 import EditorItem from './EditorItem';
 
-import { DispatchContext, FormStateContext } from '../reducer/context';
-import * as actions from '../reducer/actions';
+import { EditorContext } from '@stakk/context/editor/context';
+import * as actions from '@stakk/context/editor/actions';
 
 import css from './EditorItems.module.css';
 
@@ -46,9 +46,7 @@ async function resolveInput(url: string) {
 }
 
 function EditorItems() {
-  const dispatch = useContext(DispatchContext);
-  const state = useContext(FormStateContext);
-
+  const { dispatch, state } = useContext(EditorContext);
   if (!dispatch || !state) return null;
 
   return (

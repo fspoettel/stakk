@@ -2,10 +2,10 @@ import StackContainer from '@stakk/components/stack/StackContainer';
 
 import css from './EditorPreview.module.css';
 import { useContext } from 'react';
-import { FormStateContext } from '../reducer/context';
+import { EditorContext } from '@stakk/context/editor/context';
 
 function EditorPreview() {
-  const state = useContext(FormStateContext);
+  const { state } = useContext(EditorContext);
   if (!state) return null;
 
   return (

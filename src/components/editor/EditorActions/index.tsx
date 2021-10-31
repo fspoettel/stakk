@@ -6,13 +6,12 @@ import ButtonGroup from '@stakk/components/shared/ButtonGroup';
 
 import LoadStackModal from '../LoadStackModal';
 
-import * as actions from '../reducer/actions';
-import * as selectors from '../reducer/selectors';
-import { DispatchContext, FormStateContext } from '../reducer/context';
+import * as actions from '@stakk/context/editor/actions';
+import * as selectors from '@stakk/context/editor/selectors';
+import { EditorContext } from '@stakk/context/editor/context';
 
 export function EditorActions() {
-  const dispatch = useContext(DispatchContext);
-  const state = useContext(FormStateContext);
+  const { dispatch, state } = useContext(EditorContext);
 
   const [clipboardState, copyToClipboard] = useCopyToClipboard();
 

@@ -51,7 +51,7 @@ export type TrackProgressAction = {
   progress: number;
 };
 
-type AnyAction =
+export type AnyAction =
   | ReinitAction
   | NextAction
   | PrevAction

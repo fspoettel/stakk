@@ -2,8 +2,8 @@ import { useContext } from 'react';
 import * as stackSelectors from '@stakk/lib/stackSelectors';
 import { ColorKey } from '@stakk/types/Stack';
 import Field from '@stakk/components/shared/Form/Field';
-import * as actions from '../reducer/actions';
-import { DispatchContext, FormStateContext } from '../reducer/context';
+import * as actions from '@stakk/context/editor/actions';
+import { EditorContext } from '@stakk/context/editor/context';
 
 type ColorFieldProps = {
   label: string;
@@ -11,8 +11,7 @@ type ColorFieldProps = {
 };
 
 export function ColorField({ label, name }: ColorFieldProps) {
-  const dispatch = useContext(DispatchContext);
-  const state = useContext(FormStateContext);
+  const { dispatch, state } = useContext(EditorContext);
 
   if (!dispatch || !state) return null;
 
