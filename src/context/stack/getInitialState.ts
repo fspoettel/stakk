@@ -13,10 +13,6 @@ export type StackState = {
     hasInteraction: boolean;
     hiddenItems: Record<string, HiddenState>;
   };
-  playback: {
-    index?: number;
-    progress: number;
-  };
 };
 
 const getInitialState = (stack: Stack, initialAnimationLock: boolean): StackState => {
@@ -32,11 +28,6 @@ const getInitialState = (stack: Stack, initialAnimationLock: boolean): StackStat
       dragState: { dragging: false },
       hasInteraction: false,
       hiddenItems: {},
-    },
-    /** playback state */
-    playback: {
-      index: undefined,
-      progress: 0,
     },
   };
 };

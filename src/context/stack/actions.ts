@@ -8,10 +8,8 @@ import {
   PrevAction,
   ReinitAction,
   ResetAction,
-  StopPlaybackAction,
+  SetAnimationLockAction,
   ToAction,
-  TogglePlaybackAction,
-  TrackProgressAction,
 } from './reducer';
 import { Stack } from '@stakk/types/Stack';
 
@@ -66,17 +64,6 @@ export function setDragState(
   dispatch({ type: 'stackDragState', dragState });
 }
 
-export function togglePlayback(dispatch: Dispatch<TogglePlaybackAction>) {
-  dispatch({ type: 'togglePlayback' });
-}
-
-export function stopPlayback(dispatch: Dispatch<StopPlaybackAction>) {
-  dispatch({ type: 'stopPlayback' });
-}
-
-export function setTrackProgress(
-  dispatch: Dispatch<TrackProgressAction>,
-  { progress }: { progress: number },
-) {
-  dispatch({ type: 'playbackProgress', progress });
+export function setAnimationLock(dispatch: Dispatch<SetAnimationLockAction>) {
+  dispatch({ type: 'setAnimationLock' });
 }

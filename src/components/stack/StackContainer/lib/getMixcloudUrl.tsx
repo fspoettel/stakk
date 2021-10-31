@@ -6,7 +6,8 @@ function isMixcloudUrl(url: ExternalLink | string): url is string {
 }
 
 function getMixCloudUrl(playbackItem?: StackItem): string {
-  if (!playbackItem || !playbackItem.primaryUrl || !isMixcloudUrl(playbackItem.primaryUrl)) return '';
+  if (!playbackItem || !playbackItem.primaryUrl || !isMixcloudUrl(playbackItem.primaryUrl))
+    return '';
 
   const mixcloudUrl = playbackItem.primaryUrl;
   if (!mixcloudUrl) return '';

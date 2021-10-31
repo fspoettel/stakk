@@ -3,8 +3,8 @@ import { AnyAction } from './reducer';
 import getInitialState, { EditorState } from './getInitialState';
 
 type ContextState = {
-  state: EditorState,
-  dispatch: Dispatch<AnyAction>
+  state: EditorState;
+  dispatch: Dispatch<AnyAction>;
 };
 
 export const EditorContext = createContext<ContextState>({

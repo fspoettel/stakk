@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { useKey } from 'react-use';
 import cx from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -20,14 +20,20 @@ import Header from '@stakk/components/stack/Header';
 import Player from '@stakk/components/stack/Player';
 import Stack from '@stakk/components/stack/Stack';
 
-import * as actions from '@stakk/context/stack/actions';
-import * as selectors from '@stakk/context/stack/selectors';
-import getInitialState from '@stakk/context/stack/getInitialState';
+import * as stackActions from '@stakk/context/stack/actions';
+import * as stackSelectors from '@stakk/context/stack/selectors';
+import getInitialStackState from '@stakk/context/stack/getInitialState';
 import stackReducer from '@stakk/context/stack/reducer';
+
+import * as playbackActions from '@stakk/context/playback/actions';
+import * as playbackSelectors from '@stakk/context/playback/selectors';
+import getInitialPlaybackState from '@stakk/context/playback/getInitialState';
+import playbackReducer from '@stakk/context/playback/reducer';
 
 import getMixCloudUrl from './lib/getMixcloudUrl';
 import css from './StackContainer.module.css';
 import { useCoverPreload } from '@stakk/lib/useImagePreload';
+import { DragState } from '@stakk/types/DragState';
 
 type StackContainerProps = {
   data: StackData;
@@ -41,58 +47,49 @@ interface StackContainerStyle extends React.CSSProperties {
 }
 
 function StackContainer({ data, hideDragIndicator, hideInitialAnimation }: StackContainerProps) {
-  const [state, dispatch] = useReducer(stackReducer, getInitialState(data, !!hideInitialAnimation));
+  const [stackState, stackDispatch] = useReducer(
+    stackReducer,
+    getInitialStackState(data, !!hideInitialAnimation),
+  );
+  const [playbackState, playbackDispatch] = useReducer(playbackReducer, getInitialPlaybackState());
 
   useEffect(() => {
-    actions.reinit(dispatch, data, !!hideInitialAnimation);
+    stackActions.reinit(stackDispatch, data, !!hideInitialAnimation);
   }, [data, hideInitialAnimation]);
 
-  const { items } = state;
+  const items = stackSelectors.getItems(stackState);
+
   const [loading] = useCoverPreload(items);
 
-  const activeIndex = selectors.getActiveIndex(state);
-  const activeItem = selectors.getActiveItem(state);
+  const activeIndex = stackSelectors.getActiveIndex(stackState);
+  const activeItem = stackSelectors.getActiveItem(stackState);
+  const hasPlayer = stackSelectors.getSupportsPlayback(stackState);
+  const stack = stackSelectors.getStackState(stackState);
+  const isStatic = stackSelectors.getIsStatic(stackState);
 
-  const hasPlayer = selectors.getHasPlayer(state);
-  const playbackIndex = selectors.getPlaybackIndex(state);
-  const playbackProgress = selectors.getPlaybackProgress(state);
-  const isPlaying = playbackIndex != null;
-  const isStatic = items.length <= 1;
+  const playbackIndex = playbackSelectors.getPlaybackIndex(playbackState);
+  const playbackProgress = playbackSelectors.getPlaybackProgress(playbackState);
+  const isPlaying = playbackSelectors.getIsPlaying(playbackState);
 
-  const onPrev = useCallback(() => {
-    actions.prev(dispatch);
-  }, []);
+  const onReset = () => stackActions.reset(stackDispatch, { data, playbackIndex });
+  const onPrev = () => stackActions.prev(stackDispatch);
+  const onNextGeneric = () => stackActions.next(stackDispatch, { activeIndex });
 
-  const onNext = useCallback(
-    (item?: HiddenState) => {
-      actions.next(dispatch, { activeIndex, item });
-    },
-    [activeIndex],
-  );
+  const onNext = (item?: HiddenState) => {
+    stackActions.next(stackDispatch, { activeIndex, item });
+  };
 
-  const onNextGeneric = useCallback(() => {
-    actions.next(dispatch, { activeIndex });
-  }, [activeIndex]);
+  const onSetDrageState = (dragState: DragState) => {
+    stackActions.setDragState(stackDispatch, { dragState });
+  };
 
-  const onReset = useCallback(() => {
-    actions.reset(dispatch, { data, playbackIndex });
-  }, [data, playbackIndex]);
+  const onTogglePlayback = () => {
+    stackActions.setAnimationLock(stackDispatch);
+    playbackActions.togglePlayback(playbackDispatch, activeIndex);
+  };
 
-  const onSetDrageState = useCallback((dragState) => {
-    actions.setDragState(dispatch, { dragState });
-  }, []);
-
-  const onTogglePlayback = useCallback(() => {
-    actions.togglePlayback(dispatch);
-  }, []);
-
-  const onStopPlayback = useCallback(() => {
-    actions.stopPlayback(dispatch);
-  }, []);
-
-  const onPlaybackProgress = useCallback((progress) => {
-    actions.setTrackProgress(dispatch, { progress });
-  }, []);
+  const onPlaybackProgress = (progress: number) =>
+    playbackActions.setTrackProgress(playbackDispatch, { progress });
 
   useKey(matchShortcutKey('ArrowRight'), onNextGeneric, {}, [onNext]);
   useKey(matchShortcutKey('ArrowLeft'), onPrev, {}, [onPrev]);
@@ -121,9 +118,9 @@ function StackContainer({ data, hideDragIndicator, hideInitialAnimation }: Stack
         ) : (
           <>
             <Stack
-              {...state.stack}
-              hasInteraction={!!hideDragIndicator || state.stack.hasInteraction}
-              hideInitialAnimation={isEmbed || hideInitialAnimation}
+              {...stack}
+              hasInteraction={!!hideDragIndicator || stack.hasInteraction}
+              hideInitialAnimation={isEmbed || !!hideInitialAnimation}
               isStatic={isStatic}
               items={items}
               onDrag={onSetDrageState}
@@ -134,7 +131,7 @@ function StackContainer({ data, hideDragIndicator, hideInitialAnimation }: Stack
               <Details
                 hideInitialAnimation={isEmbed || hideInitialAnimation}
                 index={activeIndex}
-                item={selectors.getActiveOrNextItem(state)}
+                item={stackSelectors.getActiveOrNextItem(stackState)}
                 onTogglePlayback={onTogglePlayback}
                 playbackIndex={playbackIndex}
                 playbackProgress={playbackProgress}
@@ -153,15 +150,14 @@ function StackContainer({ data, hideDragIndicator, hideInitialAnimation }: Stack
             : [
                 {
                   key: 'reset',
-                  disabled:
-                    loading || selectors.getIsFirstItem(state),
+                  disabled: loading || stackSelectors.getIsFirstItem(stackState),
                   onClick: onReset,
                   icon: faUndo,
                   tooltip: isPlaying ? 'back to playing item' : 'back to first item',
                 },
                 {
                   key: 'prev',
-                  disabled: loading || selectors.getIsFirstItem(state),
+                  disabled: loading || stackSelectors.getIsFirstItem(stackState),
                   onClick: onPrev,
                   icon: faChevronSquareLeft,
                   tooltip: 'prev. item',
@@ -184,10 +180,10 @@ function StackContainer({ data, hideDragIndicator, hideInitialAnimation }: Stack
           <Player
             url={getMixCloudUrl(
               isPlaying && playbackIndex != null
-                ? selectors.getItemByIndex(state, playbackIndex)
+                ? stackSelectors.getItemByIndex(stackState, playbackIndex)
                 : undefined,
             )}
-            onEnded={onStopPlayback}
+            onEnded={onTogglePlayback}
             onProgress={onPlaybackProgress}
           />
         </div>
