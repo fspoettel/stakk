@@ -8,9 +8,9 @@ import ButtonWithTooltip from '@stakk/components/shared/ButtonWithTooltip';
 import Button from '@stakk/components/shared/Button';
 import Field from '@stakk/components/shared/Form/Field';
 
-import { EditorContext } from '@stakk/context/editor/context';
-import * as actions from '@stakk/context/editor/actions';
-import { getIsEditingItem } from '@stakk/context/editor/selectors';
+import { EditorContext } from '@stakk/reducers/editor/context';
+import * as actions from '@stakk/reducers/editor/actions';
+import { getIsEditingItem } from '@stakk/reducers/editor/selectors';
 
 import css from './EditorItems.module.css';
 import { StackItem } from '@stakk/types/StackItem';

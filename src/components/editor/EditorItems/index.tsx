@@ -10,8 +10,8 @@ import { StackItem } from '@stakk/types/StackItem';
 
 import EditorItem from './EditorItem';
 
-import { EditorContext } from '@stakk/context/editor/context';
-import * as actions from '@stakk/context/editor/actions';
+import { EditorContext } from '@stakk/reducers/editor/context';
+import * as actions from '@stakk/reducers/editor/actions';
 
 import css from './EditorItems.module.css';
 

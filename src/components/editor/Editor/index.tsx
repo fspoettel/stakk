@@ -5,9 +5,9 @@ import EditorPreview from '@stakk/components/editor/EditorPreview';
 import FieldGroup from '@stakk/components/shared/Form/FieldGroup';
 import Form from '@stakk/components/shared/Form/Form';
 
-import { EditorContext } from '@stakk/context/editor/context';
-import reducer from '@stakk/context/editor/reducer';
-import getInitialState from '@stakk/context/editor/getInitialState';
+import { EditorContext } from '@stakk/reducers/editor/context';
+import reducer from '@stakk/reducers/editor/reducer';
+import getInitialState from '@stakk/reducers/editor/getInitialState';
 
 import css from './Editor.module.css';
 import { TitleField } from '../EditorFields/TitleField';

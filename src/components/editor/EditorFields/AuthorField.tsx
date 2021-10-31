@@ -2,8 +2,8 @@ import { useContext } from 'react';
 import Field from '@stakk/components/shared/Form/Field';
 import { AuthorKey } from '@stakk/types/Stack';
 import * as stackSelectors from '@stakk/lib/stackSelectors';
-import * as actions from '@stakk/context/editor/actions';
-import { EditorContext } from '@stakk/context/editor/context';
+import * as actions from '@stakk/reducers/editor/actions';
+import { EditorContext } from '@stakk/reducers/editor/context';
 
 type AuthorFieldProps = {
   label: string;

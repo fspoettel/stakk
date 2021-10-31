@@ -6,9 +6,9 @@ import ButtonGroup from '@stakk/components/shared/ButtonGroup';
 
 import LoadStackModal from '../LoadStackModal';
 
-import * as actions from '@stakk/context/editor/actions';
-import * as selectors from '@stakk/context/editor/selectors';
-import { EditorContext } from '@stakk/context/editor/context';
+import * as actions from '@stakk/reducers/editor/actions';
+import * as selectors from '@stakk/reducers/editor/selectors';
+import { EditorContext } from '@stakk/reducers/editor/context';
 
 export function EditorActions() {
   const { dispatch, state } = useContext(EditorContext);

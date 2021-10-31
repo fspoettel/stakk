@@ -2,8 +2,8 @@ import { useContext } from 'react';
 import * as stackSelectors from '@stakk/lib/stackSelectors';
 import { ColorKey } from '@stakk/types/Stack';
 import Field from '@stakk/components/shared/Form/Field';
-import * as actions from '@stakk/context/editor/actions';
-import { EditorContext } from '@stakk/context/editor/context';
+import * as actions from '@stakk/reducers/editor/actions';
+import { EditorContext } from '@stakk/reducers/editor/context';
 
 type ColorFieldProps = {
   label: string;

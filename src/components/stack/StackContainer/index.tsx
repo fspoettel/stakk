@@ -20,15 +20,15 @@ import Header from '@stakk/components/stack/Header';
 import Player from '@stakk/components/stack/Player';
 import Stack from '@stakk/components/stack/Stack';
 
-import * as stackActions from '@stakk/context/stack/actions';
-import * as stackSelectors from '@stakk/context/stack/selectors';
-import getInitialStackState from '@stakk/context/stack/getInitialState';
-import stackReducer from '@stakk/context/stack/reducer';
+import * as stackActions from '@stakk/reducers/stack/actions';
+import * as stackSelectors from '@stakk/reducers/stack/selectors';
+import getInitialStackState from '@stakk/reducers/stack/getInitialState';
+import stackReducer from '@stakk/reducers/stack/reducer';
 
-import * as playbackActions from '@stakk/context/playback/actions';
-import * as playbackSelectors from '@stakk/context/playback/selectors';
-import getInitialPlaybackState from '@stakk/context/playback/getInitialState';
-import playbackReducer from '@stakk/context/playback/reducer';
+import * as playbackActions from '@stakk/reducers/playback/actions';
+import * as playbackSelectors from '@stakk/reducers/playback/selectors';
+import getInitialPlaybackState from '@stakk/reducers/playback/getInitialState';
+import playbackReducer from '@stakk/reducers/playback/reducer';
 
 import getMixCloudUrl from './lib/getMixcloudUrl';
 import css from './StackContainer.module.css';

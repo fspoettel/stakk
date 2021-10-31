@@ -2,7 +2,7 @@ import StackContainer from '@stakk/components/stack/StackContainer';
 
 import css from './EditorPreview.module.css';
 import { useContext } from 'react';
-import { EditorContext } from '@stakk/context/editor/context';
+import { EditorContext } from '@stakk/reducers/editor/context';
 
 function EditorPreview() {
   const { state } = useContext(EditorContext);
