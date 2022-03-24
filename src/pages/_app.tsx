@@ -1,4 +1,4 @@
-import { AppProps } from 'next/dist/next-server/lib/router/router';
+import { AppProps } from 'next/dist/shared/lib/router/router';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 
 import { config } from '@fortawesome/fontawesome-svg-core';
