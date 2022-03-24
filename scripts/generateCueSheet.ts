@@ -16,7 +16,7 @@ import { Stack } from '@stakk/types/Stack';
   if (!user) throw new Error('required attribute `--user` missing');
   if (!mix) throw new Error('required attribute `--mix` missing');
 
-  const data: Stack = await import(`../content/data/${user}/${mix}.json`);
+  const data: Stack = await import(`../content/${user}/${mix}.json`);
 
   const target = Object.values(data.data).find((m) => m.slug === item);
   if (!target) throw new Error('could not find the specified --item');
