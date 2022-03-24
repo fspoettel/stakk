@@ -2,7 +2,7 @@
  * generates a cue sheet that can be pasted to mixcloud.
  * usage:
  * ```
- * yarn cue:generate --user dev --mix dev --item test-mix-1
+ * npm run cue:generate --user dev --mix dev --item test-mix-1
  * ```
  */
 

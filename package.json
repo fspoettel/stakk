@@ -56,7 +56,7 @@
   },
   "scripts": {
     "analyze": "ANALYZE=true next build",
-    "build:ci": "yarn content:sync && yarn build",
+    "build:ci": "npm run content:sync && npm run build",
     "build": "next build",
     "content:sync": "ts-node --project ./scripts/scripts.tsconfig.json ./scripts/syncContent.ts",
     "cue:generate": "ts-node --project ./scripts/scripts.tsconfig.json ./scripts/generateCueSheet.ts",
