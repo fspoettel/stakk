@@ -2,7 +2,7 @@ import React from 'react';
 import { useSprings } from '@react-spring/web';
 import { useDrag } from 'react-use-gesture';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHandPaper, faUndo } from '@fortawesome/pro-solid-svg-icons';
+import { faHandPaper, faUndo } from '@stakk/components/shared/icons/solid';
 import { StackItem } from '@stakk/types/StackItem';
 
 import { DragDirection, DragState } from '@stakk/types/DragState';

@@ -1,4 +1,4 @@
-import { faTimes } from '@fortawesome/pro-solid-svg-icons';
+import { faTimes } from '@stakk/components/shared/icons/solid';
 import { MouseEvent } from 'react';
 import ButtonWithTooltip from '../ButtonWithTooltip';
 import Combobox from '../Combobox';

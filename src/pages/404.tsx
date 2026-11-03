@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { faGhost } from '@fortawesome/pro-solid-svg-icons';
+import { faGhost } from '@stakk/components/shared/icons/solid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import css from '@stakk/components/shared/PageLayout/PageLayout.module.css';

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import cx from 'classnames';
-import { faChevronUp, faGripVertical, faPencil, faTrash } from '@fortawesome/pro-solid-svg-icons';
+import { faChevronUp, faGripVertical, faPencil, faTrash } from '@stakk/components/shared/icons/solid';
 
 import { RenderProps } from '@stakk/components/shared/SortableList/interfaces';
 import ButtonGroup from '@stakk/components/shared/ButtonGroup';

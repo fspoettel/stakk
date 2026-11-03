@@ -1,5 +1,5 @@
 import { ChangeEvent, KeyboardEvent, ReactNode, useState } from 'react';
-import { faPlusCircle, faSpinner } from '@fortawesome/pro-solid-svg-icons';
+import { faPlusCircle, faSpinner } from '@stakk/components/shared/icons/solid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import ButtonWithTooltip from '@stakk/components/shared/ButtonWithTooltip';

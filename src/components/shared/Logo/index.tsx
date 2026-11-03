@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAlbumCollection } from '@fortawesome/pro-regular-svg-icons';
+import { faAlbumCollection } from '@stakk/components/shared/icons/regular';
 
 import css from './Logo.module.css';
 

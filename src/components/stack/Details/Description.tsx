@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWaveform } from '@fortawesome/pro-regular-svg-icons';
+import { faWaveform } from '@stakk/components/shared/icons/regular';
 
 import { StackItem } from '@stakk/types/StackItem';
 

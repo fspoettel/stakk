@@ -1,6 +1,6 @@
 import { useContext, useCallback, MouseEvent } from 'react';
 import { useCopyToClipboard } from 'react-use';
-import { faDownload, faUpload } from '@fortawesome/pro-solid-svg-icons';
+import { faDownload, faUpload } from '@stakk/components/shared/icons/solid';
 import Button from '@stakk/components/shared/Button';
 import ButtonGroup from '@stakk/components/shared/ButtonGroup';
 

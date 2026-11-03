@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { animated, useTransition } from '@react-spring/web';
 import { faBandcamp, faSpotify, faYoutube } from '@fortawesome/free-brands-svg-icons';
-import { faLink } from '@fortawesome/pro-solid-svg-icons';
+import { faLink } from '@stakk/components/shared/icons/solid';
 import { StackItem } from '@stakk/types/StackItem';
 import ButtonGroup from '@stakk/components/shared/ButtonGroup';
 import Headline from '@stakk/components/shared/Headline';

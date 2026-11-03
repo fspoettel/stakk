@@ -7,7 +7,12 @@ kill_timeout = 5
 processes = []
 
 [build]
-  builder = "heroku/buildpacks:20"
+  builder = "heroku/builder:22"
+
+[build.args]
+  CONTENT_GH_REPO = "fspoettel/stakk-content"
+  CONTENT_GH_BRANCH = "master"
+  NEXT_PUBLIC_ASSET_URL = "https://stakk-cdn.spoet.tel"
 
 [env]
   PORT = "8080"

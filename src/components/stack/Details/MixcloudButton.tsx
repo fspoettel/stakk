@@ -1,5 +1,5 @@
 import { MouseEventHandler } from 'react';
-import { faPlay, faStop } from '@fortawesome/pro-solid-svg-icons';
+import { faPlay, faStop } from '@stakk/components/shared/icons/solid';
 import Button from '@stakk/components/shared/Button';
 
 type MixcloudButtonProps = {

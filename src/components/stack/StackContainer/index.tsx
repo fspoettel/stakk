@@ -7,7 +7,7 @@ import {
   faChevronSquareRight,
   faSpinner,
   faUndo,
-} from '@fortawesome/pro-solid-svg-icons';
+} from '@stakk/components/shared/icons/solid';
 import { Stack as StackData } from '@stakk/types/Stack';
 import { HiddenState } from '@stakk/types/HiddenState';
 
